@@ -26,18 +26,18 @@ class Medico(models.Model):
 		return self.nomMedico
 
 class Servicio(models.Model):
-	codServicio=models.CharField(
+	codSer=models.CharField(
 		max_length=10,
 		help_text="Ingrese el codigo del Servicio"
 		)
-	nomServicio=models.CharField(
+	nomSer=models.CharField(
 		max_length=200,
 		help_text="Ingrese el nombre del Servicio"
 		)
-	preServicio=models.DecimalField(
+	preSer=models.DecimalField(
 		max_digits=5,
 		decimal_places=2,
 		help_text="Ingrese el precio del Servicio"
 		)
 	def __str__(self):
-		 return '{0}, {1}'.format(self.nomServicio, self.preServicio)
+		 return '{0}, {1}'.format(self.nomSer, self.preSer)
