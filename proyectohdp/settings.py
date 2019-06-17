@@ -55,9 +55,11 @@ ROOT_URLCONF = 'proyectohdp.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [
-            os.path.join(BASE_DIR, 'templates')
-        ],
+<<<<<<< HEAD
+        'DIRS': [],
+=======
+        'DIRS': [os.path.join(BASE_DIR,'templates')], # se agrega os.path.join(BASE_DIR,'templates')
+>>>>>>> b4ca0ebcdf8fbe2b519dce899922db8e11b985c3
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -106,9 +108,10 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+LANGUAGE_CODE = 'es-es'
+
+TIME_ZONE = 'America/El_Salvador'
 
 USE_I18N = True
 
@@ -121,3 +124,4 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS=(os.path.join(BASE_DIR,'static'),)
