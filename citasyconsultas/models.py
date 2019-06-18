@@ -23,7 +23,7 @@ class Cita (models.Model):
 	nomPac = models.CharField(max_length = 255, help_text = "Ingrese los nombres, solo letras")
 	apePac = models.CharField(max_length = 255, help_text = "Ingrese los apellidos, solo letras")
 	telPac = models.IntegerField(unique = True, help_text = "Solo numeros")# Telefono del paciente
-	fecCon = models.DateTimeField(help_text = "Seleccione una fecha para la cita")# Fecha de la consulta
+	fecCon = models.DateField(help_text = "Seleccione la fecha para la cita")# Fecha de la consulta
 	fecCre = models.DateField(auto_now_add = True)# afecha de creacion
 
 	class Meta:
