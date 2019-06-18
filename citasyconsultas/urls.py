@@ -5,6 +5,7 @@ from .views import *
 
 app_name = 'citasyconsultas'
 urlpatterns=[
+	path('index/', index, name='index'),
 	path('gestionMedicamento/', ListadoMedicamento.as_view(), name="listado_medicamento"),
 	path('crearMedicamento/', crearMedicamento.as_view(), name="crear_medicamento"),
 	path('modificarMedicamento/<int:pk>/',modificarMedicamento.as_view(), name="modificar_medicamento"),

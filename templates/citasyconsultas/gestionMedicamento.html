@@ -1,21 +1,20 @@
 {% extends 'base/base.html'%}
 
-{% block title %} Gestion de Lenguaje {% endblock %}
+{% block title %} Gestion de Medicamento {% endblock %}
 
-{% block encabezado %} Gestion de lenguaje {% endblock %}
+{% block encabezado %} Gestion de Medicamento {% endblock %}
 {% block content %}
-
 <div class="container">
 	<div class="row">
-	<a onclick="return abrir_modal('{% url 'citasyconsultas:crear_medicamento' %}', 'Crear Medicamento')" class="btn btn-success" style="color:white; background-color:#33CC00">
+	<a onclick="return abrir_modal('{% url 'citasyconsultas:crear_medicamento' %}', 'Crear medicamento')" class="btn btn-success" style="color:white; background-color:#33CC00">
    Registrar 
 </a>
 </div>
 <div class="row">
-<table  class="table table-striped">
+<table  class="table ">
 		<tr>
-			<th>Codigo Medicamento</th>
-			<th>Nombre Medicamento</th>
+			<th>No</th>
+			<th>Nombre</th>
 			<th>Editar</th>
             <th>Eliminar</th>
 		</tr>
@@ -23,8 +22,12 @@
 					<tr>
 						<td>{{med.codMedicamento}}</td>
 						<td>{{med.nomMedicamento}}</td>
-						<td style="text-align:center;"><a href="#" onclick="return abrir_modal('{% url 'citasyconsultas:modificar_medicamento' med.pk %}', 'Modificar/{{ med.nomMedicamento }}')" class="btn"><span class="glyphicon glyphicon-pencil"></a></td>
-						<td style="text-align:center;"><a href="#" onclick="return abrir_modal('{% url 'citasyconsultas:eliminar_medicamento' med.pk %}', 'Emiminar/{{ med.nomMedicamento}}')" class="btn"><span class="glyphicon glyphicon-trash"></span></a></td>
+						<td style="text-align:center;">
+							<a href="#" onclick="return abrir_modal('{% url 'citasyconsultas:modificar_medicamento' med.pk %}', 'Modificar/{{ med.codMedicamento }}')" class="btn"><span class="glyphicon glyphicon-pencil"></a>
+							</td>
+						<td style="text-align:center;">
+							<a href="#" onclick="return abrir_modal('{% url 'citasyconsultas:eliminar_medicamento' med.pk %}', 'Emiminar/{{ med.codMedicamento}}')" class="btn"><span class="glyphicon glyphicon-trash"></span></a
+								td>
 					</tr>
 		{% endfor %}
 	</table>
