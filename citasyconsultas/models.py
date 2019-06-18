@@ -1,7 +1,7 @@
 
 from django.db import models
 
-<<<<<<< HEAD
+
 
 # Modelo de los Servicios
 class Servicio (models.Model):
@@ -38,7 +38,7 @@ class CitaServicio(models.Model):
 
 
 
-=======
+
 # Create your models here.
 class Medicamento(models.Model):
 	codMedicamento=models.CharField(max_length=10,help_text="Ingrese el codigo del Medicamento",primary_key = True)
@@ -62,11 +62,10 @@ class Usuario(models.Model):
 		('s','Secretaria'),
 		('m', 'Medico'),		
 		)
-<<<<<<< HEAD
+
 	def __str__(self):
 		 return '{0}, {1}'.format(self.nomSer, self.preSer)
->>>>>>> b4ca0ebcdf8fbe2b519dce899922db8e11b985c3
-=======
+
 
 	tipo_usuario= models.CharField(
         max_length=1,
@@ -74,5 +73,4 @@ class Usuario(models.Model):
         blank=True,
         default='s',
         help_text='Tipo de usuario en el sistema')
-		
->>>>>>> e61d06ba1b655322d1ce9f18c9daa07f775672c8
+

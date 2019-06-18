@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 
 
 from django.views.generic.edit import CreateView
@@ -15,7 +15,7 @@ class CrearCita(CreateView):
 		'fecCon',
 	]
 
-=======
+
 from django.shortcuts import render
 from django.views.generic.edit import UpdateView, CreateView, DeleteView
 from django.views.generic.list import ListView
@@ -52,4 +52,4 @@ class eliminarMedicamento(DeleteView ):
     model = Medicamento
     template_name='citasyconsultas/eliminarMedicamento.html'
     success_url = reverse_lazy('citasyconsultas:listado_medicamento')
->>>>>>> e61d06ba1b655322d1ce9f18c9daa07f775672c8
+

@@ -55,11 +55,9 @@ ROOT_URLCONF = 'proyectohdp.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-<<<<<<< HEAD
-        'DIRS': [],
-=======
+
         'DIRS': [os.path.join(BASE_DIR,'templates')], # se agrega os.path.join(BASE_DIR,'templates')
->>>>>>> b4ca0ebcdf8fbe2b519dce899922db8e11b985c3
+
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
