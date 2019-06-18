@@ -35,10 +35,6 @@ class CitaServicio(models.Model):
 	servicio = models.ForeignKey(Servicio, on_delete = models.PROTECT)
 
 
-
-
-
-
 # Create your models here.
 class Medicamento(models.Model):
 	codMedicamento=models.CharField(max_length=10,help_text="Ingrese el codigo del Medicamento",primary_key = True)
