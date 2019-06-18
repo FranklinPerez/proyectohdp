@@ -37,13 +37,13 @@ class CitaServicio(models.Model):
 
 # Create your models here.
 class Medicamento(models.Model):
-	codMedicamento=models.CharField(max_length=10,help_text="Ingrese el codigo del Medicamento",primary_key = True)
+	codMedicamento=models.IntegerField(help_text="Ingrese el codigo del Medicamento",primary_key = True)
 	nomMedicamento=models.CharField(max_length=200,help_text="Ingrese el nombre del Medicamento")
 	def __str__(self):
 		return self.nomMedicamento
 
 class Medico(models.Model):
-	codMedico=models.CharField(max_length=10,help_text="Ingrese el codigo del Medico",primary_key = True)
+	codMedico=models.IntegerField(max_length=10,help_text="Ingrese el codigo del Medico",primary_key = True)
 	nomMedico=models.CharField(max_length=200,help_text="Ingrese el nombre del Medico")
 	def __str__(self):
 		return self.nomMedico
@@ -59,9 +59,6 @@ class Usuario(models.Model):
 		('m', 'Medico'),		
 		)
 
-	def __str__(self):
-		 return '{0}, {1}'.format(self.nomSer, self.preSer)
-
 
 	tipo_usuario= models.CharField(
         max_length=1,
@@ -69,4 +66,7 @@ class Usuario(models.Model):
         blank=True,
         default='s',
         help_text='Tipo de usuario en el sistema')
+
+	def __str__(self):
+		 return '{0}, {1}'.format(self.codUsu, self.pasUsu)
 

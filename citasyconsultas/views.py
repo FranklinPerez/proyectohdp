@@ -1,11 +1,9 @@
-
 from django.shortcuts import render
 from django.views.generic.edit import UpdateView, CreateView, DeleteView
 from django.views.generic.list import ListView
 from django.urls import reverse_lazy
 from .models import *
 from .forms import *
-
 
 class CrearCita(CreateView):
 	model = Cita
@@ -42,7 +40,7 @@ class modificarMedicamento(UpdateView):
     form_class = MedicamentoForm
     success_url = reverse_lazy('citasyconsultas:listado_medicamento')
 
-class eliminarMedicamento(DeleteView ):
+class eliminarMedicamento(DeleteView):
     model = Medicamento
     template_name='citasyconsultas/eliminarMedicamento.html'
     success_url = reverse_lazy('citasyconsultas:listado_medicamento')
