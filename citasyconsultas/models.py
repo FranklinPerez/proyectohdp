@@ -45,10 +45,16 @@ class Medicamento(models.Model):
 class Medico(models.Model):
 	codMedico=models.IntegerField(max_length=10,help_text="Ingrese el codigo del Medico",primary_key = True)
 	nomMedico=models.CharField(max_length=200,help_text="Ingrese el nombre del Medico")
+	usuario=models.ForeignKey('Usuario', on_delete=models.SET_NULL, null=True)
 	def __str__(self):
 		return self.nomMedico
 
-
+class Secretaria(models.Model):
+	codSec=models.IntegerField(max_length=10,help_text="Ingrese el codigo de la Secretaria",primary_key = True)
+	nomSec=models.CharField(max_length=200,help_text="Ingrese el nombre de la Secretaria")
+	usuario=models.ForeignKey('Usuario', on_delete=models.SET_NULL, null=True)
+	def __str__(self):
+		return self.nomSec
 
 class Usuario(models.Model):
 	codUsu=models.CharField(max_length=10,help_text="Ingrese el Usuario, maximo 10 caracteres",primary_key = True)
@@ -58,7 +64,6 @@ class Usuario(models.Model):
 		('s','Secretaria'),
 		('m', 'Medico'),		
 		)
-
 
 	tipo_usuario= models.CharField(
         max_length=1,
@@ -70,3 +75,14 @@ class Usuario(models.Model):
 	def __str__(self):
 		 return '{0}, {1}'.format(self.codUsu, self.pasUsu)
 
+
+class Consulta(models.Model):
+	codCon=models.IntegerField(primary_key = True)
+	diagnostico=models.CharField(max_length=500,help_text="Ingrese el diagnostico")
+	dosis=models.CharField(max_length=500,help_text="Ingrese la dosis")
+	#paciente = models.ManyToManyField(Paciente, help_text="Seleccione el paciente")
+	medico=models.ForeignKey('Medico', on_delete=models.SET_NULL, null=True)
+	medicamentos=models.ManyToManyField('Medicamento', on_delete=models.SET_NULL, null=True)
+	servicios=models.ManyToManyField('Servicio', on_delete=models.SET_NULL, null=True)
+	def __str__(self):
+		return self.codCon
