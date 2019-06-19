@@ -82,7 +82,7 @@ class Consulta(models.Model):
 	dosis=models.CharField(max_length=500,help_text="Ingrese la dosis")
 	#paciente = models.ManyToManyField(Paciente, help_text="Seleccione el paciente")
 	medico=models.ForeignKey('Medico', on_delete=models.SET_NULL, null=True)
-	medicamentos=models.ManyToManyField('Medicamento', on_delete=models.SET_NULL, null=True)
-	servicios=models.ManyToManyField('Servicio', on_delete=models.SET_NULL, null=True)
+	medicamentos=models.ManyToManyField(Medicamento)
+	servicios=models.ManyToManyField(Servicio)
 	def __str__(self):
 		return self.codCon
