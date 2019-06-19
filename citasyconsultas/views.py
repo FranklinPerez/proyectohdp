@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 
+=======
+>>>>>>> b044f7f65bcc261f7ee9bfe1c3fcb2387f211f4a
 from django.shortcuts import render
 from django.views.generic.edit import UpdateView, CreateView, DeleteView
 from django.views.generic.list import ListView
@@ -6,7 +9,20 @@ from django.urls import reverse_lazy
 from .models import *
 from .forms import *
 
+<<<<<<< HEAD
 
+=======
+class CrearCita(CreateView):
+	model = Cita
+	fields =[
+		'nomPac',
+		'apePac',
+		'telPac',
+		'fecCon',
+	]
+
+# Create your views here.
+>>>>>>> b044f7f65bcc261f7ee9bfe1c3fcb2387f211f4a
 
 def index(request):   
 
@@ -38,7 +54,7 @@ class ListadoMedicamento(ListView):
     context_object_name = 'medicamentos'
 
 class crearMedicamento(CreateView):
-    template_name = 'citasyconsultascrearMedicamento.html'
+    template_name = 'citasyconsultas/crearMedicamento.html'
     form_class = MedicamentoForm
     success_url = reverse_lazy('citasyconsultas:listado_medicamento')
 
@@ -48,7 +64,7 @@ class modificarMedicamento(UpdateView):
     form_class = MedicamentoForm
     success_url = reverse_lazy('citasyconsultas:listado_medicamento')
 
-class eliminarMedicamento(DeleteView ):
+class eliminarMedicamento(DeleteView):
     model = Medicamento
     template_name='citasyconsultas/eliminarMedicamento.html'
     success_url = reverse_lazy('citasyconsultas:listado_medicamento')

@@ -1,0 +1,73 @@
+{% extends 'base/base.html'%}
+
+{% block title %} Gestion de Medicamento {% endblock %}
+
+{% block encabezado %} Gestion de Medicamento {% endblock %}
+{% block content %}
+<h3>Aqui puede registrar, modificar y eliminar los medicamentos</h3>
+<div class="container">
+	<div class="row">
+
+	<a onclick="return abrir_modal('{% url 'citasyconsultas:crear_medicamento' %}', 'Crear medicamento')" class="btn btn-success" style="color:white; background-color:#33CC00">
+   Registrar Nuevo Medicamento
+		</a>
+	</div>
+</div>
+<br><br><br>
+<div class="row text-center">
+<table  class="table ">
+		<tr style="text-align: center">
+			<th style="text-align: center">Codigo del Medicamento</th>
+			<th style="text-align: center">Nombre del Medicamento</th>
+			<th style="text-align: center">Editar Medicamento</th>
+            <th style="text-align: center">Eliminar Medicamento</th>
+		</tr>
+		{% for med in medicamentos %}
+					<tr>
+						<td>{{med.codMedicamento}}</td>
+						<td>{{med.nomMedicamento}}</td>
+						<td style="text-align:center;">
+							<a href="#" onclick="return abrir_modal('{% url 'citasyconsultas:modificar_medicamento' med.pk %}', 'Modificar/{{ med.codMedicamento }}')" class="btn"><span class="glyphicon glyphicon-pencil">Editar {{med.nomMedicamento}}</a>
+							</td>
+						<td style="text-align:center;">
+							<a href="#" onclick="return abrir_modal('{% url 'citasyconsultas:eliminar_medicamento' med.pk %}', 'Emiminar/{{ med.codMedicamento}}')" class="btn"><span class="glyphicon glyphicon-trash"></span>Eliminar {{med.nomMedicamento}}</a
+								td>
+					</tr>
+		{% endfor %}
+	</table>
+</div>
+</div>
+<div id="popup">
+
+</div>
+	<script>
+var modal;
+
+function abrir_modal(url, titulo)
+{
+    modal = $('#popup').dialog(
+    {
+        title: titulo,
+        modal: true,
+        width: 600,
+        resizable: false
+    }).dialog('open').load(url)
+}
+
+function cerrar_modal()
+{
+    modal.dialog("close");
+}
+
+$(document).ready(function()
+{
+    var table = $('#tabla').dataTable( {
+        "language": {
+                url: "/static/localizacion/es_ES.json"
+        }
+    } );
+});
+</script>
+
+
+{% endblock %}
