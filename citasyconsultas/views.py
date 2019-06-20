@@ -21,8 +21,8 @@ def index(request):
 class CrearCita(CreateView):
 	model = Cita
 	template_name = 'citasyconsultas/cita_form.html'
-	form_class = NuevaCitaForm
-	success_url = reverse_lazy('/')
+	form_class= NuevaCitaForm
+	success_url = reverse_lazy('index/')
 
 # Listar los servicios disponibles
 class ListarServicio(ListView):

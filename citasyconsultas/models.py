@@ -24,6 +24,7 @@ class Cita (models.Model):
 	apePac = models.CharField(max_length = 255, help_text = "Ingrese los apellidos, solo letras")
 	telPac = models.IntegerField(unique = True, help_text = "Solo numeros")# Telefono del paciente
 	fecCon = models.DateField(help_text = "Seleccione la fecha para la cita")# Fecha de la consulta
+	horCon = models.CharField(max_length = 10, null=True, help_text="Seleccione un horario disponible")
 	fecCre = models.DateField(auto_now_add = True)# afecha de creacion
 
 	class Meta:
@@ -43,14 +44,14 @@ class Medicamento(models.Model):
 		return self.nomMedicamento
 
 class Medico(models.Model):
-	codMedico=models.IntegerField(max_length=10,help_text="Ingrese el codigo del Medico",primary_key = True)
+	codMedico=models.IntegerField(help_text="Ingrese el codigo del Medico",primary_key = True)
 	nomMedico=models.CharField(max_length=200,help_text="Ingrese el nombre del Medico")
 	usuario=models.ForeignKey('Usuario', on_delete=models.SET_NULL, null=True)
 	def __str__(self):
 		return self.nomMedico
 
 class Secretaria(models.Model):
-	codSec=models.IntegerField(max_length=10,help_text="Ingrese el codigo de la Secretaria",primary_key = True)
+	codSec=models.IntegerField(help_text="Ingrese el codigo de la Secretaria",primary_key = True)
 	nomSec=models.CharField(max_length=200,help_text="Ingrese el nombre de la Secretaria")
 	usuario=models.ForeignKey('Usuario', on_delete=models.SET_NULL, null=True)
 	def __str__(self):

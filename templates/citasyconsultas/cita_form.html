@@ -6,16 +6,28 @@
 {% block content %}
 <h3>Nueva Cita</h3>
 
-<form action="" method="post" >
+<script language="JavaScript" type="text/javascript">
+	function pasar(form){
+		if(form.fecCon.value != form.fecha.velue){
+			form.fecCon.value = form.fecha.velue
+		}
 
-	{% csrf_token %}
-	{{ form.as_p}}
+		
+	}
+</script>
 
-	<label for="nom"> {{ form.nomPac.label }} </label>
-	<input type="text" name="nom" placeholder="{{ form.nomPac.label }}">
+<form action="" method="POST" >
+	<div>
+		{% csrf_token %}
+		{{ form.as_p}}
+	</div>
+	<div>
+		<label for="fecha"> {{ form.fecCon.label }} </label>
+		<input type="date" name="fecha" form="form" required="required">
 
-	<label for="time"> {{ form.fecCon.label }} </label>
-	<input type="datetime-local" name="time" placeholder="">
+		<label for="telefono"> {{ form.fecCon.label }} </label>
+		<input type="tel" name="telefono"  >
+	</div>
 
 	<button type="submit" class="btn btn-success" name="Aceptar" style="color: white; background-color: #33CC00">Aceptar</button>
 </form>
