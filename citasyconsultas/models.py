@@ -80,7 +80,7 @@ class Consulta(models.Model):
 	codCon=models.IntegerField(primary_key = True)
 	diagnostico=models.CharField(max_length=500,help_text="Ingrese el diagnostico")
 	dosis=models.CharField(max_length=500,help_text="Ingrese la dosis")
-	#paciente = models.ManyToManyField(Paciente, help_text="Seleccione el paciente")
+	paciente = models.ManyToManyField('Paciente', help_text="Seleccione el paciente")
 	medico=models.ForeignKey('Medico', on_delete=models.SET_NULL, null=True)
 	medicamentos=models.ManyToManyField(Medicamento)
 	servicios=models.ManyToManyField(Servicio)
