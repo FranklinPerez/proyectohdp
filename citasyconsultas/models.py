@@ -5,7 +5,7 @@ from django.db import models
 
 # Modelo de los Servicios
 class Servicio (models.Model):
-	codSer = models.CharField(max_length = 10, primary_key = True)
+	codSer = models.IntegerField(primary_key = True)
 	nomSer = models.CharField(max_length = 200) # Nombre del servicio
 	precio = models.DecimalField(max_digits = 3, decimal_places = 2)
 	duraci = models.IntegerField()# Duracion PROMEDIO del servicio en minutos
@@ -81,6 +81,7 @@ class Consulta(models.Model):
 	medico=models.ForeignKey('Medico', on_delete=models.SET_NULL, null=True)
 	medicamentos=models.ManyToManyField(Medicamento)
 	servicios=models.ManyToManyField(Servicio)
+	
 	def __str__(self):
 		return self.codCon
 

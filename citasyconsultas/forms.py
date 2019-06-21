@@ -8,7 +8,7 @@ class NuevaCitaForm(forms.ModelForm):
 		fields = {
 			'nomPac', 'apePac', 'telPac', 'fecCon', 'horCon', 'servic',
 		}
-		labels ={
+		labels = {
 			'nomPac': 'Nombres ',
 			'apePac': 'Apellidos ',
 			'telPac': 'Telefono ',
@@ -21,11 +21,17 @@ class ServicioForm(forms.ModelForm):
 	class Meta:
 		model = Servicio
 		fields = {
-			'nomSer', 'precio', 'duraci',
+			'codSer', 'nomSer','precio','duraci',
 		}
-		labels ={
-			'nomSer': 'Nombre del Servicio ','precio': 'Precio ($) ','duraci': 'Duracion (Min) ',
-		}
+		labels = {
+			'codSer':'Codigo',
+		    'nomSer':'Nombre',
+		    'precio':'Precio ($)',
+		    'duraci':'Duracion (Min.)',
+		}	
+
+
+
 
 class MedicamentoForm(forms.ModelForm):
 	class Meta:

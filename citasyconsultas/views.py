@@ -27,8 +27,33 @@ class CrearCita(CreateView):
 class ListarServicio(ListView):
 	model = Servicio
 	template_name = 'citasyconsultas/servicio_list.html'
-	form_class = ServicioForm
-	success_url = reverse_lazy('/')
+	context_object_name = 'listaServicios'
+
+#==========================================================================
+class GestionServicio(ListView):
+	model = Servicio
+	template_name = 'citasyconsultas/gestionServicios.html'
+	context_object_name = 'GestionServicios'
+
+class AgregarServicio(CreateView):
+    template_name = 'citasyconsultas/agregarServicio.html'
+    form_class = ServicioForm
+    success_url = reverse_lazy('citasyconsultas:gestion_servicio')
+
+class ModificarServicio(UpdateView):
+    template_name = 'citasyconsultas/agregarServicio.html'
+    form_class = ServicioForm
+    success_url = reverse_lazy('citasyconsultas:gestion_servicio')
+    model = Servicio
+
+class EliminarServicio(DeleteView):
+    template_name = 'citasyconsultas/agregarServicio.html'
+    form_class = ServicioForm
+    success_url = reverse_lazy('citasyconsultas:gestion_servicio')
+
+#==========================================================================
+
+
 
 
 #modelos de Medicamento

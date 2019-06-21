@@ -9,31 +9,38 @@
 	<div class="row">
 		<form method="POST">
 			{% csrf_token %}
-			
+
 			<div class="panel-body">
+			
 				<p>
 					<label for="id_nombre">{{form.nomPac.label}}</label> 
-					<input name="nomPac" id="id_nombre" type="text">
+					<input name="nomPac" id="id_nombre" type="text" required="">
 				</p>
 				<p>
 					<label for="id_apellido">{{form.apePac.label}}</label> 
-					<input name="apePac" id="id_apellido" type="text">
+					<input name="apePac" id="id_apellido" type="text" required="">
 				</p>
 				<p>
 					<label for="id_telefono">{{form.telPac.label}}</label> 
-					<input name="talPac" id="id_telefono" type="number">
+					<input name="talPac" id="id_telefono" type="number" required="">
 				</p>
 				<p>
 					<label for="id_fecha">{{form.fecCon.label}}</label> 
-					<input name="fecCon" id="id_fecha" type="date">
+					<input name="fecCon" id="id_fecha" type="date" required="" >
 				</p>
 				<p>
 					<label for="id_hora">{{form.horCon.label}}</label> 
-					<input name="talPac" id="id_telefono" type="text">
+					<input name="talPac" id="id_telefono" type="text" required="">
 				</p>
 				<p>
-					<label for="id_servicio">{{form.servic.label}}</label> 
-					<input name="servic" id="id_servicio" type="text">
+					<div class="row">
+						<label for="id_servicio">{{form.servic.label}}</label> 
+						<input name="servic" id="id_servicio" type="text" required="">       
+							
+
+						 | <a onclick="return abrir_modal('{% url 'citasyconsultas:lista_servicio' %}', 'lista de Servicios')" class="btn btn-success" style="color:white; background-color:#33CC00">
+					   Seleccionar</a>
+					</div>
 				</p>
 
 				<button type="submit" class="btn btn-success" style="color:white; background-color:#33CC00">
