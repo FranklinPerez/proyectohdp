@@ -7,7 +7,7 @@ from django.db import models
 class Servicio (models.Model):
 	codSer = models.IntegerField(primary_key = True)
 	nomSer = models.CharField(max_length = 200) # Nombre del servicio
-	precio = models.DecimalField(max_digits = 3, decimal_places = 2)
+	precio = models.DecimalField(max_digits = 10, decimal_places = 2)
 	duraci = models.IntegerField()# Duracion PROMEDIO del servicio en minutos
 
 	def __str__(self):
