@@ -5,7 +5,7 @@ from django.db import models
 
 # Modelo de los Servicios
 class Servicio (models.Model):
-	codSer = models.CharField(max_length = 10, primary_key = True)
+	codSer = models.IntegerField(max_length = 10, primary_key = True)
 	nomSer = models.CharField(max_length = 200) # Nombre del servicio
 	precio = models.DecimalField(max_digits = 3, decimal_places = 2)
 	duraci = models.IntegerField()# Duracion PROMEDIO del servicio en minutos
@@ -43,14 +43,14 @@ class Medicamento(models.Model):
 		return self.nomMedicamento
 
 class Medico(models.Model):
-	codMedico=models.IntegerField(max_length=10,help_text="Ingrese el codigo del Medico",primary_key = True)
+	codMedico=models.IntegerField(help_text="Ingrese el codigo del Medico",primary_key = True)
 	nomMedico=models.CharField(max_length=200,help_text="Ingrese el nombre del Medico")
 	usuario=models.ForeignKey('Usuario', on_delete=models.SET_NULL, null=True)
 	def __str__(self):
 		return self.nomMedico
 
 class Secretaria(models.Model):
-	codSec=models.IntegerField(max_length=10,help_text="Ingrese el codigo de la Secretaria",primary_key = True)
+	codSec=models.IntegerField(help_text="Ingrese el codigo de la Secretaria",primary_key = True)
 	nomSec=models.CharField(max_length=200,help_text="Ingrese el nombre de la Secretaria")
 	usuario=models.ForeignKey('Usuario', on_delete=models.SET_NULL, null=True)
 	def __str__(self):
@@ -80,7 +80,7 @@ class Consulta(models.Model):
 	codCon=models.IntegerField(primary_key = True)
 	diagnostico=models.CharField(max_length=500,help_text="Ingrese el diagnostico")
 	dosis=models.CharField(max_length=500,help_text="Ingrese la dosis")
-	paciente = models.ManyToManyField('Paciente', help_text="Seleccione el paciente")
+	paciente = models.ForeignKey('Paciente', help_text="Seleccione el paciente",on_delete=models.SET_NULL, null=True)
 	medico=models.ForeignKey('Medico', on_delete=models.SET_NULL, null=True)
 	medicamentos=models.ManyToManyField(Medicamento)
 	servicios=models.ManyToManyField(Servicio)
