@@ -77,9 +77,32 @@ class Consulta(models.Model):
 	codCon=models.IntegerField(primary_key = True)
 	diagnostico=models.CharField(max_length=500,help_text="Ingrese el diagnostico")
 	dosis=models.CharField(max_length=500,help_text="Ingrese la dosis")
-	#paciente = models.ManyToManyField(Paciente, help_text="Seleccione el paciente")
+	paciente = models.ManyToManyField('Paciente', help_text="Seleccione el paciente")
 	medico=models.ForeignKey('Medico', on_delete=models.SET_NULL, null=True)
 	medicamentos=models.ManyToManyField(Medicamento)
 	servicios=models.ManyToManyField(Servicio)
 	def __str__(self):
 		return self.codCon
+
+class Departamento(models.Model):
+	numDep = models.IntegerField(primary_key = True)
+	nomDep = models.CharField(max_length = 100, help_text = "Ingrese un departamento")
+	def __str__(self):
+		return self.nomDep
+
+class Municipio(models.Model):
+	numMunicipio = models.IntegerField(primary_key = True)
+	nomMunicipio = models.CharField(max_length = 100, help_text = "Ingrese un municipio")
+	departamento = models.ForeignKey(Departamento, on_delete = models.CASCADE)
+	def __str__(self):
+		return self.nomMunicipio
+
+class Paciente(models.Model):
+	numExpediente = models.IntegerField(primary_key = True)
+	nomPaciente = models.CharField(max_length = 200, help_text = "Ingrese el nombre del paciente")
+	apelPaciente = models.CharField(max_length = 200, help_text = "Ingrese el apellido del paciente")
+	fechaNacimiento = models.DateField()
+	emailPaciente = models.CharField(max_length = 200, help_text = "Ingrese eMail del paciente")
+	telefono = models.CharField(max_length = 8, help_text = "Ingrese el telefono del paciente")
+	def __str__(self):
+		return self.nomPaciente

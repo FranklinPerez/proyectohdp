@@ -9,39 +9,46 @@
 	<div class="row">
 		<form method="POST">
 			{% csrf_token %}
+			
 			<div class="panel-body">
-				{{ form.as_p }}
+				<p>
+					<label for="id_nombre">{{form.nomPac.label}}</label> 
+					<input name="nomPac" id="id_nombre" type="text">
+				</p>
+				<p>
+					<label for="id_apellido">{{form.apePac.label}}</label> 
+					<input name="apePac" id="id_apellido" type="text">
+				</p>
+				<p>
+					<label for="id_telefono">{{form.telPac.label}}</label> 
+					<input name="talPac" id="id_telefono" type="number">
+				</p>
+				<p>
+					<label for="id_fecha">{{form.fecCon.label}}</label> 
+					<input name="fecCon" id="id_fecha" type="date">
+				</p>
+				<p>
+					<label for="id_hora">{{form.horCon.label}}</label> 
+					<input name="talPac" id="id_telefono" type="text">
+				</p>
+				<p>
+					<label for="id_servicio">{{form.servic.label}}</label> 
+					<input name="servic" id="id_servicio" type="text">
+				</p>
+
+				<button type="submit" class="btn btn-success" style="color:white; background-color:#33CC00">
+   				Aceptar</button>
 			</div>
 		</form>
 
-	<a onclick="return abrir_modal('{% url 'citasyconsultas:crear_medicamento' %}', 'Crear medicamento')" class="btn btn-success" style="color:white; background-color:#33CC00">
-   Registrar Nuevo Medicamento
-		</a>
+
 	</div>
 </div>
 <br><br><br>
-<div class="row text-center">
-<table  class="table ">
-		<tr style="text-align: center">
-			<th style="text-align: center">Codigo del Medicamento</th>
-			<th style="text-align: center">Nombre del Medicamento</th>
-			<th style="text-align: center">Editar Medicamento</th>
-            <th style="text-align: center">Eliminar Medicamento</th>
-		</tr>
-		{% for med in medicamentos %}
-					<tr>
-						<td>{{med.codMedicamento}}</td>
-						<td>{{med.nomMedicamento}}</td>
-						<td style="text-align:center;">
-							<a href="#" onclick="return abrir_modal('{% url 'citasyconsultas:modificar_medicamento' med.pk %}', 'Modificar/{{ med.codMedicamento }}')" class="btn"><span class="glyphicon glyphicon-pencil">Editar {{med.nomMedicamento}}</a>
-							</td>
-						<td style="text-align:center;">
-							<a href="#" onclick="return abrir_modal('{% url 'citasyconsultas:eliminar_medicamento' med.pk %}', 'Emiminar/{{ med.codMedicamento}}')" class="btn"><span class="glyphicon glyphicon-trash"></span>Eliminar {{med.nomMedicamento}}</a
-								td>
-					</tr>
-		{% endfor %}
-	</table>
-</div>
+
+
+
+
 </div>
 <div id="popup">
 

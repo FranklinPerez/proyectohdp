@@ -37,3 +37,14 @@ class MedicamentoForm(forms.ModelForm):
 		'codMedicamento':'Codigo del Medicamento', 'nomMedicamento':'nombre del Medicamento',
 		}		
 
+class ExpedienteForm(forms.ModelForm):
+	class Meta:
+		model = Paciente
+		fields = {
+			"numExpediente", "nomPaciente", "apelPaciente", "fechaNacimiento", "emailPaciente", "telefono",
+		}
+		labels = {
+			"numExpediente" : "Número de expediente: ", "nomPaciente" : "Nombre del paciente: ",
+			"apelPaciente" : "Apellido del paciente: ", "fechaNacimiento" : "Fecha de nacimiento: ",
+			"emailPaciente" : "eMail: ", "telefono" : "Teléfono de contacto: ",
+		}
