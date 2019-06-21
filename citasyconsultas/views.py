@@ -53,3 +53,25 @@ class eliminarMedicamento(DeleteView):
     template_name='citasyconsultas/eliminarMedicamento.html'
     success_url = reverse_lazy('citasyconsultas:listado_medicamento')
 
+#modelos de Servicio
+class ListadoServicio(ListView):
+    model = Servicio
+    template_name = 'citasyconsultas/gestionServicio.html'
+    context_object_name = 'servicios'
+
+class crearServicio(CreateView):
+    template_name = 'citasyconsultas/crearServicio.html'
+    form_class = ServicioForm
+    success_url = reverse_lazy('citasyconsultas:listado_servicio')
+
+class modificarServicio(UpdateView):
+    model = Servicio
+    template_name = 'citasyconsultas/crearServicio.html'
+    form_class = ServicioForm
+    success_url = reverse_lazy('citasyconsultas:listado_servicio')
+
+class eliminarServicio(DeleteView):
+    model = Servicio
+    template_name='citasyconsultas/eliminarServicio.html'
+    success_url = reverse_lazy('citasyconsultas:listado_servicio')
+

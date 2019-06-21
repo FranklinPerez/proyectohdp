@@ -48,3 +48,13 @@ class ExpedienteForm(forms.ModelForm):
 			"apelPaciente" : "Apellido del paciente: ", "fechaNacimiento" : "Fecha de nacimiento: ",
 			"emailPaciente" : "eMail: ", "telefono" : "Teléfono de contacto: ",
 		}
+
+class ServicioForm(forms.ModelForm):
+	class Meta:
+		model=Servicio
+		fields={
+		'codSer', 'nomSer','precio','duraci',
+		}
+		labels={
+		'codSer':'Codigo del Servicio', 'nomSer':'nombre del Servicio','precio':'Precio del Servicio','duraci':'Duracion del Servicio (en minutos)',
+		}
