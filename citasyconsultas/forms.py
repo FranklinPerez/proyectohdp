@@ -14,7 +14,7 @@ class NuevaCitaForm(forms.ModelForm):
 			'telPac': 'Telefono ',
 			'fecCon': 'Fecha de Consulta ',
 			'horCon': 'Hora de Consulta ',
-			'servic': 'Motivo de Consulta'
+			'servic': 'Motivo de Consulta',
 		}
 
 class ServicioForm(forms.ModelForm):
@@ -24,7 +24,7 @@ class ServicioForm(forms.ModelForm):
 			'nomSer', 'precio', 'duraci',
 		}
 		labels ={
-			'nomSer': 'Nombre del Servicio ','precio': 'Precio ($) ','duraci': 'Duracion ',
+			'nomSer': 'Nombre del Servicio ','precio': 'Precio ($) ','duraci': 'Duracion (Min) ',
 		}
 
 class MedicamentoForm(forms.ModelForm):
