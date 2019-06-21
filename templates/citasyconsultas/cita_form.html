@@ -6,63 +6,23 @@
 {% block content %}
 <h3>Nueva Cita</h3>
 
-<script language="JavaScript" type="text/javascript">
-	function pasar(form){
-		if(form.fecCon.value != form.fecha.velue){
-			form.fecCon.value = form.fecha.velue
-		}
 
-		
-	}
-</script>
 
-<form action="" method="POST" >
-	<div>
-		{% csrf_token %}
-		{{ form.as_p}}
-	</div>
-	<div>
-		<label for="fecha"> {{ form.fecCon.label }} </label>
-		<input type="date" name="fecha" form="form" required="required">
+<form method="POST" >
+	
+	{% csrf_token %}
+	{{ form.as_p }}
 
-		<label for="telefono"> {{ form.fecCon.label }} </label>
-		<input type="tel" name="telefono"  >
-	</div>
 
-	<button type="submit" class="btn btn-success" name="Aceptar" style="color: white; background-color: #33CC00">Aceptar</button>
+
+	<button type="submit" onchange="pasar()" class="btn btn-success" style="color:white; background-color:#33CC00">Aceptar</button>
+
 </form>
-<
-<div class="container">
-	<div class="row">
+===========================================================================================================
 
-	<a onclick="return abrir_modal('{% url 'citasyconsultas:crear_medicamento' %}', 'Crear medicamento')" class="btn btn-success" style="color:white; background-color:#33CC00">
-   Registrar Nuevo Medicamento
-		</a>
-	</div>
-</div>
-<br><br><br>
-<div class="row text-center">
-<table  class="table ">
-		<tr style="text-align: center">
-			<th style="text-align: center">Codigo del Medicamento</th>
-			<th style="text-align: center">Nombre del Medicamento</th>
-			<th style="text-align: center">Editar Medicamento</th>
-            <th style="text-align: center">Eliminar Medicamento</th>
-		</tr>
-		{% for med in medicamentos %}
-					<tr>
-						<td>{{med.codMedicamento}}</td>
-						<td>{{med.nomMedicamento}}</td>
-						<td style="text-align:center;">
-							<a href="#" onclick="return abrir_modal('{% url 'citasyconsultas:modificar_medicamento' med.pk %}', 'Modificar/{{ med.codMedicamento }}')" class="btn"><span class="glyphicon glyphicon-pencil">Editar {{med.nomMedicamento}}</a>
-							</td>
-						<td style="text-align:center;">
-							<a href="#" onclick="return abrir_modal('{% url 'citasyconsultas:eliminar_medicamento' med.pk %}', 'Emiminar/{{ med.codMedicamento}}')" class="btn"><span class="glyphicon glyphicon-trash"></span>Eliminar {{med.nomMedicamento}}</a
-								td>
-					</tr>
-		{% endfor %}
-	</table>
-</div>
+
+
+
 </div>
 <div id="popup">
 

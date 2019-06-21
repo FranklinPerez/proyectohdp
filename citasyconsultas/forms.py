@@ -6,10 +6,15 @@ class NuevaCitaForm(forms.ModelForm):
 	class Meta:
 		model = Cita
 		fields = {
-			'nomPac', 'apePac', 'telPac', 'fecCon', 'horCon',
+			'nomPac', 'apePac', 'telPac', 'fecCon', 'horCon', 'servic',
 		}
 		labels ={
-			'nomPac': 'Nombres ','apePac': 'Apellidos ','telPac': 'Telefono ','fecCon': 'Fecha de Consulta ','horCon': 'Hora de Consulta ',
+			'nomPac': 'Nombres ',
+			'apePac': 'Apellidos ',
+			'telPac': 'Telefono ',
+			'fecCon': 'Fecha de Consulta ',
+			'horCon': 'Hora de Consulta ',
+			'servic': 'Motivo de Consulta'
 		}
 
 class ServicioForm(forms.ModelForm):

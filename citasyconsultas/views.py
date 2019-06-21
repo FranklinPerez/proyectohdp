@@ -19,7 +19,6 @@ def index(request):
 
 # Vista de la creacion de cita
 class CrearCita(CreateView):
-	model = Cita
 	template_name = 'citasyconsultas/cita_form.html'
 	form_class= NuevaCitaForm
 	success_url = reverse_lazy('index/')

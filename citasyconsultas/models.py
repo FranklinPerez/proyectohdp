@@ -25,15 +25,11 @@ class Cita (models.Model):
 	telPac = models.IntegerField(unique = True, help_text = "Solo numeros")# Telefono del paciente
 	fecCon = models.DateField(help_text = "Seleccione la fecha para la cita")# Fecha de la consulta
 	horCon = models.CharField(max_length = 10, null=True, help_text="Seleccione un horario disponible")
+	servic = models.ManyToManyField(Servicio)
 	fecCre = models.DateField(auto_now_add = True)# afecha de creacion
 
 	class Meta:
 		ordering = ('numCit',)
-
-# Relacion de Muchos a Muchos entre Cita y Servicio
-class CitaServicio(models.Model):
-	cita = models.ForeignKey(Cita, on_delete = models.PROTECT )
-	servicio = models.ForeignKey(Servicio, on_delete = models.PROTECT)
 
 
 # Create your models here.
