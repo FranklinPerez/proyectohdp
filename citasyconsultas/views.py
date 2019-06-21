@@ -1,3 +1,4 @@
+
 from django.shortcuts import render
 from django.views.generic.edit import UpdateView, CreateView, DeleteView
 from django.views.generic.list import ListView
@@ -5,16 +6,8 @@ from django.urls import reverse_lazy
 from .models import *
 from .forms import *
 
-class CrearCita(CreateView):
-	model = Cita
-	fields =[
-		'nomPac',
-		'apePac',
-		'telPac',
-		'fecCon',
-	]
 
-# Create your views here.
+
 
 def index(request):   
 
@@ -23,6 +16,21 @@ def index(request):
         'base/base.html',
         context={},
     )
+
+# Vista de la creacion de cita
+class CrearCita(CreateView):
+	template_name = 'citasyconsultas/cita_form.html'
+	form_class= NuevaCitaForm
+	success_url = reverse_lazy('index/')
+
+# Listar los servicios disponibles
+class ListarServicio(ListView):
+	model = Servicio
+	template_name = 'citasyconsultas/servicio_list.html'
+	form_class = ServicioForm
+	success_url = reverse_lazy('/')
+
+
 #modelos de Medicamento
 class ListadoMedicamento(ListView):
     model = Medicamento

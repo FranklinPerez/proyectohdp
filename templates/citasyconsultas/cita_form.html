@@ -1,14 +1,86 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset = "UTF-8">
-	<title>Nueva Cita</title>
-</head>
-<body>
-	<form action = "" method = "post">
-		{% csrf_token %}
-		{{ form.as_p }}
-		<input type = "submit" value = "Aceptar"/>    
-	</form>
-</body>
-</html>
+{% extends 'base/base.html'%}
+
+{% block title %} Creacion de citas {% endblock %}
+
+{% block encabezado %} Creacion de citas {% endblock %}
+{% block content %}
+<h3>Nueva Cita</h3>
+<div class="container">
+	<div class="row">
+		<form method="POST">
+			{% csrf_token %}
+			
+			<div class="panel-body">
+				<p>
+					<label for="id_nombre">{{form.nomPac.label}}</label> 
+					<input name="nomPac" id="id_nombre" type="text">
+				</p>
+				<p>
+					<label for="id_apellido">{{form.apePac.label}}</label> 
+					<input name="apePac" id="id_apellido" type="text">
+				</p>
+				<p>
+					<label for="id_telefono">{{form.telPac.label}}</label> 
+					<input name="talPac" id="id_telefono" type="number">
+				</p>
+				<p>
+					<label for="id_fecha">{{form.fecCon.label}}</label> 
+					<input name="fecCon" id="id_fecha" type="date">
+				</p>
+				<p>
+					<label for="id_hora">{{form.horCon.label}}</label> 
+					<input name="talPac" id="id_telefono" type="text">
+				</p>
+				<p>
+					<label for="id_servicio">{{form.servic.label}}</label> 
+					<input name="servic" id="id_servicio" type="text">
+				</p>
+
+				<button type="submit" class="btn btn-success" style="color:white; background-color:#33CC00">
+   				Aceptar</button>
+			</div>
+		</form>
+
+
+	</div>
+</div>
+<br><br><br>
+
+
+
+
+</div>
+<div id="popup">
+
+</div>
+	<script>
+var modal;
+
+function abrir_modal(url, titulo)
+{
+    modal = $('#popup').dialog(
+    {
+        title: titulo,
+        modal: true,
+        width: 600,
+        resizable: false
+    }).dialog('open').load(url)
+}
+
+function cerrar_modal()
+{
+    modal.dialog("close");
+}
+
+$(document).ready(function()
+{
+    var table = $('#tabla').dataTable( {
+        "language": {
+                url: "/static/localizacion/es_ES.json"
+        }
+    } );
+});
+</script>
+
+
+{% endblock %}

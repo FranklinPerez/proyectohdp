@@ -4,14 +4,28 @@ from .models import *
 
 class NuevaCitaForm(forms.ModelForm):
 	class Meta:
-		models = Cita
+		model = Cita
 		fields = {
-			'nomPac: ', 'apePac: ', 'telPac: ', 'fecCon',
+			'nomPac', 'apePac', 'telPac', 'fecCon', 'horCon', 'servic',
 		}
 		labels ={
-			'nomPac':'Nombres :','apePac':'Apellidos :','telPac':'Telefono :','fecCon':'Fecha de Consuta :',
+			'nomPac': 'Nombres ',
+			'apePac': 'Apellidos ',
+			'telPac': 'Telefono ',
+			'fecCon': 'Fecha de Consulta ',
+			'horCon': 'Hora de Consulta ',
+			'servic': 'Motivo de Consulta',
 		}
 
+class ServicioForm(forms.ModelForm):
+	class Meta:
+		model = Servicio
+		fields = {
+			'nomSer', 'precio', 'duraci',
+		}
+		labels ={
+			'nomSer': 'Nombre del Servicio ','precio': 'Precio ($) ','duraci': 'Duracion (Min) ',
+		}
 
 class MedicamentoForm(forms.ModelForm):
 	class Meta:
