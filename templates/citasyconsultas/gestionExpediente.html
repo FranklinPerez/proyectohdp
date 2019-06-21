@@ -1,0 +1,72 @@
+{% extends 'base/base.html'%}
+
+{% block title %} Gestion de Expedientes {% endblock %}
+
+{% block encabezado %} Gestion de Paciente {% endblock %}
+{% block content %}
+
+
+<h3>Aqui puede registrar y modificar los expedientes</h3>
+<div class="container">
+	<div class="row">
+
+	<a onclick="return abrir_modal('{% url 'citasyconsultas:crear_expediente' %}', 'Crear expediente')" class="btn btn-success" style="color:white; background-color:#33CC00">
+   Registrar Nuevo Paciente
+		</a>
+	</div>
+</div>
+<br><br><br>
+<div class="row text-center">
+<table  class="table ">
+		<tr style="text-align: center">
+			<th style="text-align: center">Codigo del Paciente</th>
+			<th style="text-align: center">Nombre del Paciente</th>
+			<th style="text-align: center">Editar Paciente</th>
+		</tr>
+		{% for pac in expedientes %}
+					<tr>
+						<td>{{pac.codPaciente}}</td>
+						<td>{{pac.nomPaciente}}</td>
+						<td style="text-align:center;">
+							<a href="#" onclick="return abrir_modal('{% url 'citasyconsultas:modificar_expediente' pac.pk %}', 'Modificar/{{ pac.numExpediente }}')" class="btn"><span class="glyphicon glyphicon-pencil">Editar {{pac.nomPaciente}}
+							</a>
+						</td>
+					</tr>
+		{% endfor %}
+	</table>
+</div>
+</div>
+<div id="popup">
+
+</div>
+	<script>
+var modal;
+
+function abrir_modal(url, titulo)
+{
+    modal = $('#popup').dialog(
+    {
+        title: titulo,
+        modal: true,
+        width: 600,
+        resizable: false
+    }).dialog('open').load(url)
+}
+
+function cerrar_modal()
+{
+    modal.dialog("close");
+}
+
+$(document).ready(function()
+{
+    var table = $('#tabla').dataTable( {
+        "language": {
+                url: "/static/localizacion/es_ES.json"
+        }
+    } );
+});
+</script>
+
+
+{% endblock %}

@@ -41,12 +41,14 @@ class ExpedienteForm(forms.ModelForm):
 	class Meta:
 		model = Paciente
 		fields = {
-			"numExpediente", "nomPaciente", "apelPaciente", "fechaNacimiento", "emailPaciente", "telefono",
+			"numExpediente", "nomPaciente", "apelPaciente", "fechaNacimiento", "emailPaciente",
+			 "depResidencia", "munResidencia", "telefono",
 		}
 		labels = {
 			"numExpediente" : "Número de expediente: ", "nomPaciente" : "Nombre del paciente: ",
 			"apelPaciente" : "Apellido del paciente: ", "fechaNacimiento" : "Fecha de nacimiento: ",
-			"emailPaciente" : "eMail: ", "telefono" : "Teléfono de contacto: ",
+			"emailPaciente" : "eMail: ", "depResidencia" : "Departamento: ", "munResidencia" : "Municipio: ", 
+			"telefono" : "Teléfono de contacto: ",
 		}
 
 class ServicioForm(forms.ModelForm):

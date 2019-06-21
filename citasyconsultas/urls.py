@@ -19,5 +19,10 @@ urlpatterns=[
 	path('crearServicio/', crearServicio.as_view(), name='crear_servicio'),
 	path('modificarServicio/<int:pk>/', modificarServicio.as_view(), name='modificar_servicio'),
 	path('eliminarServicio/<int:pk>/', eliminarServicio.as_view(), name='eliminar_servicio'),
+
+	#views para exp
+	path('gestionExpediente/', BuscarExpediente.as_view(), name='listado_expediente'),
+	path('crearExpediente/', crearExpediente.as_view(), name='crear_expediente'),
+	path('modificarExpediente/<int:pk>/', modificarExpediente.as_view(), name='modificar_expediente'),
 ]
 

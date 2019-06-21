@@ -104,6 +104,8 @@ class Paciente(models.Model):
 	apelPaciente = models.CharField(max_length = 200, help_text = "Ingrese el apellido del paciente")
 	fechaNacimiento = models.DateField()
 	emailPaciente = models.CharField(max_length = 200, help_text = "Ingrese eMail del paciente")
+	depResidencia = models.ForeignKey(Departamento, on_delete=models.PROTECT, default = '10')
+	munResidencia = models.ForeignKey(Municipio, on_delete = models.PROTECT, default = '15')
 	telefono = models.CharField(max_length = 8, help_text = "Ingrese el telefono del paciente")
 	def __str__(self):
 		return self.nomPaciente

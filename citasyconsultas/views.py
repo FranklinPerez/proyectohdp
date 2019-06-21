@@ -6,9 +6,6 @@ from django.urls import reverse_lazy
 from .models import *
 from .forms import *
 
-
-
-
 def index(request):   
 
     return render(
@@ -75,3 +72,21 @@ class eliminarServicio(DeleteView):
     template_name='citasyconsultas/eliminarServicio.html'
     success_url = reverse_lazy('citasyconsultas:listado_servicio')
 
+
+
+
+class BuscarExpediente(ListView):
+    model = Paciente
+    template_name = 'citasyconsultas/gestionExpediente.html'
+    context_object_name = 'expedientes'
+
+class crearExpediente(CreateView):
+    template_name = 'citasyconsultas/crearExpediente.html'
+    form_class = ExpedienteForm
+    success_url = reverse_lazy('citasyconsultas:listado_expediente')
+
+class modificarExpediente(UpdateView):
+    model = Paciente
+    template_name = 'citasyconsultas/crearExpediente.html'
+    form_class = ExpedienteForm
+    success_url = reverse_lazy('citasyconsultas:listado_expediente')
