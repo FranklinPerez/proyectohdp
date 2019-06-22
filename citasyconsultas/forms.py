@@ -7,7 +7,7 @@ class NuevaCitaForm(forms.ModelForm):
 	class Meta:
 		model = Cita
 		fields = {
-			'numCit', 'pacien', 'fecCon', 'horCon', 'servic',#'estado',
+			'numCit', 'pacien', 'fecCon', 'horCon', 'servic','estado',
 		}
 		labels = {
 			'numCit': 'Número de Cita           ',
@@ -15,9 +15,9 @@ class NuevaCitaForm(forms.ModelForm):
 			'fecCon': 'Fecha de Consulta        ',
 			'horCon': 'Hora de Consulta         ',
 			'servic': 'Motivo de Consulta       ',
-			#'estado': 'Estado de la Cita'
+			'estado': 'Estado de la Cita        ',
 		}
-		#fecCon = forms.DateField(widget = SelectDateWidget)
+		fecCon = forms.DateField(widget = SelectDateWidget)
 
 
 class ServicioForm(forms.ModelForm):
