@@ -8,8 +8,5 @@ admin.site.register(Cita)
 admin.site.register(Medico)
 admin.site.register(Usuario)
 admin.site.register(Consulta)
-
-admin.site.register(Paciente)
-
 admin.site.register(Departamento)
 admin.site.register(Municipio)
