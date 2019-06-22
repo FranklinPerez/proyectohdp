@@ -18,17 +18,17 @@ def index(request):
 class CrearCita(CreateView):
 	template_name = 'citasyconsultas/cita_form.html'
 	form_class= NuevaCitaForm
-	success_url = reverse_lazy('index/')
+	success_url = reverse_lazy('citasyconsultas:gestion_cita')
     
 
 class GestionCitas(ListView):
 	model = Cita
 	template_name = 'citasyconsultas/gestionCitas.html'
-	context_object_name = 'GestionServicios'
+	context_object_name = 'GestionCitas'
 
 
 class ModificarCita(UpdateView):
-    template_name = 'citasyconsultas/agregarCita.html'
+    template_name = 'citasyconsultas/cita_form.html'
     model = Cita
     form_class = NuevaCitaForm
     success_url = reverse_lazy('citasyconsultas:gestion_cita')
