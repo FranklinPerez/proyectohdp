@@ -24,5 +24,11 @@ urlpatterns=[
 	path('gestionExpediente/', BuscarExpediente.as_view(), name='listado_expediente'),
 	path('crearExpediente/', crearExpediente.as_view(), name='crear_expediente'),
 	path('modificarExpediente/<int:pk>/', modificarExpediente.as_view(), name='modificar_expediente'),
+
+	#views para consulta
+	path('consultasPendientes/', consultasPendientes, name='listado_consulta'),
+	path('modificarConsulta/<int:pk>/', modificarConsulta.as_view(), name='modificar_consulta'),
+
+
 ]
 

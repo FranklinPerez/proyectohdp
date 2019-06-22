@@ -1,6 +1,6 @@
 
 from django.db import models
-
+from django.utils import timezone
 
 
 # Modelo de los Servicios
@@ -75,18 +75,19 @@ class Usuario(models.Model):
 
 class Consulta(models.Model):
 	codCon=models.IntegerField(primary_key = True)
-	diagnostico=models.CharField(max_length=500,help_text="Ingrese el diagnostico")
-	dosis=models.CharField(max_length=500,help_text="Ingrese la dosis")
+	diagnostico=models.CharField(max_length=500,help_text="Ingrese el diagnostico", null=True)	
+	dosis=models.CharField(max_length=500,help_text="Ingrese la dosis", null=True)
 	paciente = models.ForeignKey('Paciente', help_text="Seleccione el paciente",on_delete=models.SET_NULL, null=True)
 	medico=models.ForeignKey('Medico', on_delete=models.SET_NULL, null=True)
-	medicamentos=models.ManyToManyField(Medicamento)
+	fecConHoy=models.DateField()
+	medicamentos=models.ManyToManyField(Medicamento, null=True)
 	servicios=models.ManyToManyField(Servicio)
 	estCon=models.IntegerField(default=0) #Estado de la consulta
 	def __str__(self):
-		return self.codCon
+		return self.dosis
 
 class Departamento(models.Model):
-	numDep = models.IntegerField(primary_key = True)
+	numDep = models.IntegerField(primary_key = True) 
 	nomDep = models.CharField(max_length = 100, help_text = "Ingrese un departamento")
 	def __str__(self):
 		return self.nomDep

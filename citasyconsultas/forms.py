@@ -60,3 +60,13 @@ class ServicioForm(forms.ModelForm):
 		labels={
 		'codSer':'Codigo del Servicio', 'nomSer':'nombre del Servicio','precio':'Precio del Servicio','duraci':'Duracion del Servicio (en minutos)',
 		}
+
+class ConsultaForm(forms.ModelForm):
+	class Meta:
+		model=Servicio
+		fields={
+		'codSer', 'nomSer','precio','duraci',
+		}
+		labels={
+		'codSer':'Codigo del Servicio', 'nomSer':'nombre del Servicio','precio':'Precio del Servicio','duraci':'Duracion del Servicio (en minutos)',
+		}
