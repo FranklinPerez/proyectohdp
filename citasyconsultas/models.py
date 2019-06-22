@@ -30,10 +30,10 @@ class Paciente(models.Model):
 # Modelo de laas citas.
 class Cita (models.Model):
 	numCit = models.IntegerField(primary_key = True)# Numero de cita del dia
-	pacien = models.ForeignKey(Paciente, null=True, on_delete = models.CASCADE)
+	pacien = models.ForeignKey(Paciente, on_delete = models.PROTECT)
 	fecCon = models.DateField(null=True, help_text = "Seleccione la fecha para la cita")# Fecha de la consulta
 	horCon = models.CharField(max_length = 10, null=True, help_text="Seleccione un horario disponible")
-	servic = models.ForeignKey(Servicio, null=True,on_delete = models.PROTECT)
+	servic = models.ForeignKey(Servicio,on_delete = models.PROTECT)
 	estado = models.IntegerField(default=0, null=True, help_text = "Pendiente = 0 ,  Completado = 1") #  Pendiente = 0 ,  Completado = 1
 	fecCre = models.DateField(auto_now_add = True)# afecha de creacion
 

@@ -1,5 +1,4 @@
 
-from django.forms.widgets import SelectDateWidget 
 from django import forms
 from .models import *
 
@@ -10,14 +9,13 @@ class NuevaCitaForm(forms.ModelForm):
 			'numCit', 'pacien', 'fecCon', 'horCon', 'servic','estado',
 		}
 		labels = {
-			'numCit': 'Número de Cita           ',
-			'pacien': 'Paciente                 ',
-			'fecCon': 'Fecha de Consulta        ',
-			'horCon': 'Hora de Consulta         ',
-			'servic': 'Motivo de Consulta       ',
-			'estado': 'Estado de la Cita        ',
+			'numCit': 'Número de Cita',
+			'pacien': 'Paciente ',
+			'fecCon': 'Fecha de Consulta',
+			'horCon': 'Hora de Consulta ',
+			'servic': 'Motivo de Consulta',
 		}
-		fecCon = forms.DateField(widget = SelectDateWidget)
+		
 
 
 class ServicioForm(forms.ModelForm):
