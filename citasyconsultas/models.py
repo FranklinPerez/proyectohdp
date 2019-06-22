@@ -17,12 +17,27 @@ class Servicio (models.Model):
 	class Meta:
 		ordering = ('codSer',)
 
+class Departamento(models.Model):
+	numDep = models.IntegerField(primary_key = True) 
+	nomDep = models.CharField(max_length = 100, help_text = "Ingrese un departamento")
+	def __str__(self):
+		return self.nomDep
+
+class Municipio(models.Model):
+	numMunicipio = models.IntegerField(primary_key = True)
+	nomMunicipio = models.CharField(max_length = 100, help_text = "Ingrese un municipio")
+	departamento = models.ForeignKey(Departamento, on_delete = models.CASCADE)
+	def __str__(self):
+		return self.nomMunicipio	
+
 class Paciente(models.Model):
 	numExpediente = models.IntegerField(primary_key = True)
 	nomPaciente = models.CharField(max_length = 200, help_text = "Ingrese el nombre del paciente")
 	apelPaciente = models.CharField(max_length = 200, help_text = "Ingrese el apellido del paciente")
 	fechaNacimiento = models.DateField(null=True)
-	emailPaciente = models.EmailField(max_length = 200, help_text = "Ingrese eMail del paciente")
+	emailPaciente = models.CharField(max_length = 200, help_text = "Ingrese eMail del paciente")
+	depResidencia = models.ForeignKey(Departamento, on_delete=models.PROTECT, default = '10')
+	munResidencia = models.ForeignKey(Municipio, on_delete = models.PROTECT, default = '15')
 	telefono = models.CharField(max_length = 8, help_text = "Ingrese el telefono del paciente")
 	def __str__(self):
 		return self.nomPaciente
@@ -30,10 +45,10 @@ class Paciente(models.Model):
 # Modelo de laas citas.
 class Cita (models.Model):
 	numCit = models.IntegerField(primary_key = True)# Numero de cita del dia
-	pacien = models.ForeignKey(Paciente, on_delete = models.PROTECT)
+	pacien = models.ForeignKey('Paciente', on_delete = models.PROTECT, null=True)
 	fecCon = models.DateField(null=True, help_text = "Seleccione la fecha para la cita")# Fecha de la consulta
 	horCon = models.CharField(max_length = 10, null=True, help_text="Seleccione un horario disponible")
-	servic = models.ForeignKey(Servicio,on_delete = models.PROTECT)
+	servic = models.ForeignKey(Servicio,on_delete = models.PROTECT, null=True)
 	estado = models.IntegerField(default=0, null=True, help_text = "Pendiente = 0 ,  Completado = 1") #  Pendiente = 0 ,  Completado = 1
 	fecCre = models.DateField(auto_now_add = True)# afecha de creacion
 
@@ -114,29 +129,7 @@ class Consulta(models.Model):
 	def __str__(self):
 		return self.dosis
 
-class Departamento(models.Model):
-	numDep = models.IntegerField(primary_key = True) 
-	nomDep = models.CharField(max_length = 100, help_text = "Ingrese un departamento")
-	def __str__(self):
-		return self.nomDep
-
-class Municipio(models.Model):
-	numMunicipio = models.IntegerField(primary_key = True)
-	nomMunicipio = models.CharField(max_length = 100, help_text = "Ingrese un municipio")
-	departamento = models.ForeignKey(Departamento, on_delete = models.CASCADE)
-	def __str__(self):
-		return self.nomMunicipio
 
 
-class Paciente(models.Model):
-	numExpediente = models.IntegerField(primary_key = True)
-	nomPaciente = models.CharField(max_length = 200, help_text = "Ingrese el nombre del paciente")
-	apelPaciente = models.CharField(max_length = 200, help_text = "Ingrese el apellido del paciente")
-	fechaNacimiento = models.DateField()
-	emailPaciente = models.CharField(max_length = 200, help_text = "Ingrese eMail del paciente")
-	depResidencia = models.ForeignKey(Departamento, on_delete=models.PROTECT, default = '10')
-	munResidencia = models.ForeignKey(Municipio, on_delete = models.PROTECT, default = '15')
-	telefono = models.CharField(max_length = 8, help_text = "Ingrese el telefono del paciente")
-	def __str__(self):
-		return self.nomPaciente
+
 

@@ -13,7 +13,6 @@ admin.site.register(Paciente)
 
 admin.site.register(Departamento)
 admin.site.register(Municipio)
-<<<<<<< HEAD
-admin.site.register(Paciente)
-=======
->>>>>>> d6f5344848ddebcfb36a851cb8e53af45a7edbb6
+
+
+
