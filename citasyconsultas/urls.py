@@ -11,9 +11,14 @@ urlpatterns=[
 	path('crearMedicamento/', crearMedicamento.as_view(), name='crear_medicamento'),
 	path('modificarMedicamento/<int:pk>/', modificarMedicamento.as_view(), name='modificar_medicamento'),
 	path('eliminarMedicamento/<int:pk>/', eliminarMedicamento.as_view(), name='eliminar_medicamento'),
-	#views para cita
+
+
 	path('nueva_cita/', CrearCita.as_view(), name = 'nueva_cita'),
-	path('lista_servicios/', ListarServicio.as_view(), name = 'lista_servicios'),
+	path('gestion_cita/', GestionCitas.as_view(), name = 'gestion_servicio'),
+	path('modificar_cita/<int:pk>/', ModificarCita.as_view(), name = 'modificar_cita'),
+	path('eliminar_cita/<int:pk>/', EliminarCita.as_view(), name = 'eliminar_cita'),
+
+
 	#views para servicio
 	path('gestionServicio/', ListadoServicio.as_view(), name='listado_servicio'),
 	path('crearServicio/', crearServicio.as_view(), name='crear_servicio'),
@@ -25,10 +30,13 @@ urlpatterns=[
 	path('crearExpediente/', crearExpediente.as_view(), name='crear_expediente'),
 	path('modificarExpediente/<int:pk>/', modificarExpediente.as_view(), name='modificar_expediente'),
 
+<<<<<<< HEAD
 	#views para consulta
 	path('consultasPendientes/', consultasPendientes, name='listado_consulta'),
 	path('modificarConsulta/<int:pk>/', modificarConsulta.as_view(), name='modificar_consulta'),
 
 
+=======
+>>>>>>> d6f5344848ddebcfb36a851cb8e53af45a7edbb6
 ]
 

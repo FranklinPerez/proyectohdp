@@ -16,19 +16,35 @@ def index(request):
         'base/base.html',
         context={},
     )
-
+# CITA Y SU CRUD==========================================================================
 # Vista de la creacion de cita
 class CrearCita(CreateView):
 	template_name = 'citasyconsultas/cita_form.html'
 	form_class= NuevaCitaForm
-	success_url = reverse_lazy('index/')
+	success_url = reverse_lazy('citasyconsultas:gestion_cita')
+    
 
-# Listar los servicios disponibles
-class ListarServicio(ListView):
-	model = Servicio
-	template_name = 'citasyconsultas/servicio_list.html'
-	form_class = ServicioForm
-	success_url = reverse_lazy('/')
+class GestionCitas(ListView):
+	model = Cita
+	template_name = 'citasyconsultas/gestionCitas.html'
+	context_object_name = 'GestionCitas'
+
+
+class ModificarCita(UpdateView):
+    template_name = 'citasyconsultas/cita_form.html'
+    model = Cita
+    form_class = NuevaCitaForm
+    success_url = reverse_lazy('citasyconsultas:gestion_cita')
+    
+
+class EliminarCita(DeleteView):
+    template_name = 'citasyconsultas/eliminarCita.html'
+    model = Cita
+    success_url = reverse_lazy('citasyconsultas:gestion_cita')
+
+#==========================================================================
+
+
 
 
 #modelos de Medicamento

@@ -1,0 +1,83 @@
+{% extends 'base/base.html'%}
+
+{% block title %} Gestion de Citas {% endblock %}
+
+{% block encabezado %} Gestion de Citas {% endblock %}
+{% block content %}
+<h3>Aqui puede crear, modificar y eliminar citas</h3>
+<div class="container">
+	<div class="row">
+
+	<a onclick="return abrir_modal('{% url 'citasyconsultas:nueva_cita' %}', 'Crear Cita')" class="btn btn-success" style="color:white; background-color:#33CC00">
+    Nueva Cita
+		</a>
+	</div>
+</div>
+<br><br><br>
+<div class="row text-center">
+	<table  class="table ">
+		<tr style="text-align: center">
+			<th style="text-align: center">Numero de Cita</th>
+			<th style="text-align: center">Paciente</th>
+			<th style="text-align: center">Fecha de Cita</th>
+            <th style="text-align: center">Hora</th>
+            <th style="text-align: center">Razon de Consulta</th>
+            <th style="text-align: center">Estado ( 0=Activa, 1=terminada)</th>
+            <th style="text-align: center">Fecha de Creacion</th>
+            <th style="text-align: center">Editar</th>
+            <th style="text-align: center">Eliminar</th>
+		</tr>
+		{% for cit in object_list %}
+					<tr>
+						<td>{{cit.numCit}}</td>
+						<td>{{cit.pacien}}</td>
+						<td>{{cit.fecCon}}</td>
+						<td>{{cit.horCon}}</td>
+						<td>{{cit.servic}}</td>
+						<td>{{cit.estado}}</td>
+						<td>{{cit.fecCre}}</td>
+						<td style="text-align:center;">
+							<a href="#" onclick="return abrir_modal('{% url 'citasyconsultas:modificar_cita' cit.pk %}', 'Modificar Cita numero {{ cit.numCit }}')" class="btn"><span class="glyphicon glyphicon-pencil">Editar</a>
+							</td>
+						<td style="text-align:center;">
+							<a href="#" onclick="return abrir_modal('{% url 'citasyconsultas:eliminar_cita' cit.pk %}', 'Emiminar Cita numero {{ cit.numCit}}')" class="btn"><span class="glyphicon glyphicon-trash"></span>Eliminar</a
+								td>
+					</tr>
+		{% endfor %}
+	</table>
+</div>
+</div>
+<div id="popup">
+
+</div>
+	<script>
+var modal;
+
+function abrir_modal(url, titulo)
+{
+    modal = $('#popup').dialog(
+    {
+        title: titulo,
+        modal: true,
+        width: 600,
+        resizable: false
+    }).dialog('open').load(url)
+}
+
+function cerrar_modal()
+{
+    modal.dialog("close");
+}
+
+$(document).ready(function()
+{
+    var table = $('#tabla').dataTable( {
+        "language": {
+                url: "/static/localizacion/es_ES.json"
+        }
+    } );
+});
+</script>
+
+
+{% endblock %}

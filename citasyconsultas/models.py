@@ -5,9 +5,10 @@ from django.utils import timezone
 
 # Modelo de los Servicios
 class Servicio (models.Model):
-	codSer = models.IntegerField( primary_key = True)
+
+	codSer = models.IntegerField(primary_key = True)
 	nomSer = models.CharField(max_length = 200) # Nombre del servicio
-	precio = models.DecimalField(max_digits = 5, decimal_places = 2)
+	precio = models.DecimalField(max_digits = 10, decimal_places = 2)
 	duraci = models.IntegerField()# Duracion PROMEDIO del servicio en minutos
 
 	def __str__(self):
@@ -16,17 +17,28 @@ class Servicio (models.Model):
 	class Meta:
 		ordering = ('codSer',)
 
+class Paciente(models.Model):
+	numExpediente = models.IntegerField(primary_key = True)
+	nomPaciente = models.CharField(max_length = 200, help_text = "Ingrese el nombre del paciente")
+	apelPaciente = models.CharField(max_length = 200, help_text = "Ingrese el apellido del paciente")
+	fechaNacimiento = models.DateField(null=True)
+	emailPaciente = models.EmailField(max_length = 200, help_text = "Ingrese eMail del paciente")
+	telefono = models.CharField(max_length = 8, help_text = "Ingrese el telefono del paciente")
+	def __str__(self):
+		return self.nomPaciente
 
 # Modelo de laas citas.
 class Cita (models.Model):
 	numCit = models.IntegerField(primary_key = True)# Numero de cita del dia
-	nomPac = models.CharField(max_length = 255, help_text = "Ingrese los nombres, solo letras")
-	apePac = models.CharField(max_length = 255, help_text = "Ingrese los apellidos, solo letras")
-	telPac = models.IntegerField(unique = True, help_text = "Solo numeros")# Telefono del paciente
-	fecCon = models.DateField(help_text = "Seleccione la fecha para la cita")# Fecha de la consulta
+	pacien = models.ForeignKey(Paciente, on_delete = models.PROTECT)
+	fecCon = models.DateField(null=True, help_text = "Seleccione la fecha para la cita")# Fecha de la consulta
 	horCon = models.CharField(max_length = 10, null=True, help_text="Seleccione un horario disponible")
-	servic = models.ManyToManyField(Servicio)
+	servic = models.ForeignKey(Servicio,on_delete = models.PROTECT)
+	estado = models.IntegerField(default=0, null=True, help_text = "Pendiente = 0 ,  Completado = 1") #  Pendiente = 0 ,  Completado = 1
 	fecCre = models.DateField(auto_now_add = True)# afecha de creacion
+
+	def __str__(self):
+		return self.numCit
 
 	class Meta:
 		ordering = ('numCit',)
@@ -79,6 +91,7 @@ class Consulta(models.Model):
 	dosis=models.CharField(max_length=500,help_text="Ingrese la dosis", null=True, blank=True)
 	paciente = models.ForeignKey('Paciente', help_text="Seleccione el paciente",on_delete=models.SET_NULL, null=True)
 	medico=models.ForeignKey('Medico', on_delete=models.SET_NULL, null=True)
+<<<<<<< HEAD
 	fecConHoy=models.DateField()
 	medicamentos=models.ManyToManyField(Medicamento, null=True, blank=True)
 	servicios=models.ForeignKey('Servicio', blank=True, on_delete=models.SET_NULL, null=True)
@@ -93,6 +106,12 @@ class Consulta(models.Model):
         choices=Estado_Consulta,
         blank=True,
         default='p')
+=======
+	medicamentos=models.ManyToManyField(Medicamento)
+	servicios=models.ManyToManyField(Servicio)
+	estCon=models.IntegerField(default=0) #Estado de la consulta
+
+>>>>>>> d6f5344848ddebcfb36a851cb8e53af45a7edbb6
 	def __str__(self):
 		return self.dosis
 
@@ -109,6 +128,7 @@ class Municipio(models.Model):
 	def __str__(self):
 		return self.nomMunicipio
 
+
 class Paciente(models.Model):
 	numExpediente = models.IntegerField(primary_key = True)
 	nomPaciente = models.CharField(max_length = 200, help_text = "Ingrese el nombre del paciente")
@@ -120,3 +140,4 @@ class Paciente(models.Model):
 	telefono = models.CharField(max_length = 8, help_text = "Ingrese el telefono del paciente")
 	def __str__(self):
 		return self.nomPaciente
+
