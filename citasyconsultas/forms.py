@@ -63,10 +63,10 @@ class ServicioForm(forms.ModelForm):
 
 class ConsultaForm(forms.ModelForm):
 	class Meta:
-		model=Servicio
+		model=Consulta
 		fields={
-		'codSer', 'nomSer','precio','duraci',
+		'paciente', 'servicios','diagnostico','dosis','medicamentos','estado',
 		}
 		labels={
-		'codSer':'Codigo del Servicio', 'nomSer':'nombre del Servicio','precio':'Precio del Servicio','duraci':'Duracion del Servicio (en minutos)',
+		'paciente':'Paciente', 'servicios':'Servicio que se aplico','diagnostico':'diagnostico','dosis':'dosis','medicamentos':'medicamentos recetados','estado':'colocar 1 para terminar consulta',
 		}

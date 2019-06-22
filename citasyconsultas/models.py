@@ -75,14 +75,24 @@ class Usuario(models.Model):
 
 class Consulta(models.Model):
 	codCon=models.IntegerField(primary_key = True)
-	diagnostico=models.CharField(max_length=500,help_text="Ingrese el diagnostico", null=True)	
-	dosis=models.CharField(max_length=500,help_text="Ingrese la dosis", null=True)
+	diagnostico=models.CharField(max_length=500,help_text="Ingrese el diagnostico", null=True, blank=True)	
+	dosis=models.CharField(max_length=500,help_text="Ingrese la dosis", null=True, blank=True)
 	paciente = models.ForeignKey('Paciente', help_text="Seleccione el paciente",on_delete=models.SET_NULL, null=True)
 	medico=models.ForeignKey('Medico', on_delete=models.SET_NULL, null=True)
 	fecConHoy=models.DateField()
-	medicamentos=models.ManyToManyField(Medicamento, null=True)
-	servicios=models.ManyToManyField(Servicio)
-	estCon=models.IntegerField(default=0) #Estado de la consulta
+	medicamentos=models.ManyToManyField(Medicamento, null=True, blank=True)
+	servicios=models.ForeignKey('Servicio', blank=True, on_delete=models.SET_NULL, null=True)
+	
+	Estado_Consulta= (
+		('f','Finalizar'),
+		('p', 'Pendiente'),		
+		)
+
+	estado= models.CharField(
+        max_length=1,
+        choices=Estado_Consulta,
+        blank=True,
+        default='p')
 	def __str__(self):
 		return self.dosis
 

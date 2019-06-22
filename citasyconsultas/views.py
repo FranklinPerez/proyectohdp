@@ -98,11 +98,11 @@ class modificarExpediente(UpdateView):
 
 def consultasPendientes(request):
     fechahoy=datetime.now().date()
-    consultas=Consulta.objects.filter(estCon=0).filter(fecConHoy__contains=fechahoy)            
+    consultas=Consulta.objects.filter(estado='p').filter(fecConHoy__contains=fechahoy)            
     return render(request, 'citasyconsultas/consultasPendientes.html',context={'consultas':consultas})
 
 class modificarConsulta(UpdateView):
-    model = Paciente
+    model = Consulta
     template_name = 'citasyconsultas/modificarConsulta.html'
-    form_class = ExpedienteForm
+    form_class = ConsultaForm
     success_url = reverse_lazy('citasyconsultas:listado_consulta')
