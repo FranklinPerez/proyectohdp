@@ -6,9 +6,6 @@ from django.urls import reverse_lazy
 from .models import *
 from .forms import *
 
-
-
-
 def index(request):   
 
     return render(
@@ -23,30 +20,24 @@ class CrearCita(CreateView):
 	form_class= NuevaCitaForm
 	success_url = reverse_lazy('index/')
     
-#==========================================================================
 
-# SERVICIO Y SU CRUD==========================================================================
-class GestionServicio(ListView):
-	model = Servicio
-	template_name = 'citasyconsultas/gestionServicios.html'
+class GestionCitas(ListView):
+	model = Cita
+	template_name = 'citasyconsultas/gestionCitas.html'
 	context_object_name = 'GestionServicios'
 
-class AgregarServicio(CreateView):
-    template_name = 'citasyconsultas/agregarServicio.html'
-    form_class = ServicioForm
-    success_url = reverse_lazy('citasyconsultas:gestion_servicio')
 
-class ModificarServicio(UpdateView):
-    template_name = 'citasyconsultas/agregarServicio.html'
-    model = Servicio
-    form_class = ServicioForm
-    success_url = reverse_lazy('citasyconsultas:gestion_servicio')
+class ModificarCita(UpdateView):
+    template_name = 'citasyconsultas/agregarCita.html'
+    model = Cita
+    form_class = NuevaCitaForm
+    success_url = reverse_lazy('citasyconsultas:gestion_cita')
     
 
-class EliminarServicio(DeleteView):
-    template_name = 'citasyconsultas/eliminarServicio.html'
-    model = Servicio
-    success_url = reverse_lazy('citasyconsultas:gestion_servicio')
+class EliminarCita(DeleteView):
+    template_name = 'citasyconsultas/eliminarCita.html'
+    model = Cita
+    success_url = reverse_lazy('citasyconsultas:gestion_cita')
 
 #==========================================================================
 
@@ -75,3 +66,43 @@ class eliminarMedicamento(DeleteView):
     template_name='citasyconsultas/eliminarMedicamento.html'
     success_url = reverse_lazy('citasyconsultas:listado_medicamento')
 
+#modelos de Servicio
+class ListadoServicio(ListView):
+    model = Servicio
+    template_name = 'citasyconsultas/gestionServicio.html'
+    context_object_name = 'servicios'
+
+class crearServicio(CreateView):
+    template_name = 'citasyconsultas/crearServicio.html'
+    form_class = ServicioForm
+    success_url = reverse_lazy('citasyconsultas:listado_servicio')
+
+class modificarServicio(UpdateView):
+    model = Servicio
+    template_name = 'citasyconsultas/crearServicio.html'
+    form_class = ServicioForm
+    success_url = reverse_lazy('citasyconsultas:listado_servicio')
+
+class eliminarServicio(DeleteView):
+    model = Servicio
+    template_name='citasyconsultas/eliminarServicio.html'
+    success_url = reverse_lazy('citasyconsultas:listado_servicio')
+
+
+
+
+class BuscarExpediente(ListView):
+    model = Paciente
+    template_name = 'citasyconsultas/gestionExpediente.html'
+    context_object_name = 'expedientes'
+
+class crearExpediente(CreateView):
+    template_name = 'citasyconsultas/crearExpediente.html'
+    form_class = ExpedienteForm
+    success_url = reverse_lazy('citasyconsultas:listado_expediente')
+
+class modificarExpediente(UpdateView):
+    model = Paciente
+    template_name = 'citasyconsultas/crearExpediente.html'
+    form_class = ExpedienteForm
+    success_url = reverse_lazy('citasyconsultas:listado_expediente')

@@ -5,6 +5,7 @@ from django.db import models
 
 # Modelo de los Servicios
 class Servicio (models.Model):
+
 	codSer = models.IntegerField(primary_key = True)
 	nomSer = models.CharField(max_length = 200) # Nombre del servicio
 	precio = models.DecimalField(max_digits = 10, decimal_places = 2)
@@ -33,11 +34,11 @@ class Cita (models.Model):
 	fecCon = models.DateField(null=True, help_text = "Seleccione la fecha para la cita")# Fecha de la consulta
 	horCon = models.CharField(max_length = 10, null=True, help_text="Seleccione un horario disponible")
 	servic = models.ForeignKey(Servicio, null=True,on_delete = models.PROTECT)
-	estado = models.IntegerField( null=True, help_text = "Pendiente = 0 ,  Completado = 1") #  Pendiente = 0 ,  Completado = 1
+	estado = models.IntegerField(default=0, null=True, help_text = "Pendiente = 0 ,  Completado = 1") #  Pendiente = 0 ,  Completado = 1
 	fecCre = models.DateField(auto_now_add = True)# afecha de creacion
 
 	def __str__(self):
-		return self.nomPac
+		return self.numCit
 
 	class Meta:
 		ordering = ('numCit',)
@@ -88,11 +89,12 @@ class Consulta(models.Model):
 	codCon=models.IntegerField(primary_key = True)
 	diagnostico=models.CharField(max_length=500,help_text="Ingrese el diagnostico")
 	dosis=models.CharField(max_length=500,help_text="Ingrese la dosis")
-	paciente = models.ManyToManyField('Paciente', help_text="Seleccione el paciente")
+	paciente = models.ForeignKey('Paciente', help_text="Seleccione el paciente",on_delete=models.SET_NULL, null=True)
 	medico=models.ForeignKey('Medico', on_delete=models.SET_NULL, null=True)
 	medicamentos=models.ManyToManyField(Medicamento)
 	servicios=models.ManyToManyField(Servicio)
-	
+	estCon=models.IntegerField(default=0) #Estado de la consulta
+
 	def __str__(self):
 		return self.codCon
 
@@ -108,4 +110,17 @@ class Municipio(models.Model):
 	departamento = models.ForeignKey(Departamento, on_delete = models.CASCADE)
 	def __str__(self):
 		return self.nomMunicipio
+
+
+class Paciente(models.Model):
+	numExpediente = models.IntegerField(primary_key = True)
+	nomPaciente = models.CharField(max_length = 200, help_text = "Ingrese el nombre del paciente")
+	apelPaciente = models.CharField(max_length = 200, help_text = "Ingrese el apellido del paciente")
+	fechaNacimiento = models.DateField()
+	emailPaciente = models.CharField(max_length = 200, help_text = "Ingrese eMail del paciente")
+	depResidencia = models.ForeignKey(Departamento, on_delete=models.PROTECT, default = '10')
+	munResidencia = models.ForeignKey(Municipio, on_delete = models.PROTECT, default = '15')
+	telefono = models.CharField(max_length = 8, help_text = "Ingrese el telefono del paciente")
+	def __str__(self):
+		return self.nomPaciente
 

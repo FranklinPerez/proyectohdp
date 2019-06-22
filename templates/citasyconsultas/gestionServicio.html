@@ -1,0 +1,77 @@
+{% extends 'base/base.html'%}
+
+{% block title %} Gestion de los Servicios {% endblock %}
+
+{% block encabezado %} Gestion de Servicio {% endblock %}
+{% block content %}
+<h3>Aqui puede registrar, modificar y eliminar los servicios</h3>
+<div class="container">
+	<div class="row">
+
+	<a onclick="return abrir_modal('{% url 'citasyconsultas:crear_servicio' %}', 'Crear servicio')" class="btn btn-success" style="color:white; background-color:#33CC00">
+   Registrar Nuevo Servicio
+		</a>
+	</div>
+</div>
+<br><br><br>
+<div class="row text-center">
+<table  class="table ">
+		<tr style="text-align: center">
+			<th style="text-align: center">Codigo del Servicio</th>
+			<th style="text-align: center">Nombre del Servicio</th>
+			<th style="text-align: center">Precio del Servicio</th>
+			<th style="text-align: center">Duracion del Servicio (minutos)</th>
+			<th style="text-align: center">Editar Servicio</th>
+            <th style="text-align: center">Eliminar Servicio</th>
+		</tr>
+		{% for ser in servicios %}
+					<tr>
+						<td>{{ser.codSer}}</td>
+						<td>{{ser.nomSer}}</td>
+						<td>{{ser.precio}}</td>
+						<td>{{ser.duraci}}</td>
+						<td style="text-align:center;">
+							<a href="#" onclick="return abrir_modal('{% url 'citasyconsultas:modificar_servicio' ser.pk %}', 'Modificar/{{ ser.codSer }}')" class="btn"><span class="glyphicon glyphicon-pencil">Editar {{ser.nomSer}}</a>
+							</td>
+						<td style="text-align:center;">
+							<a href="#" onclick="return abrir_modal('{% url 'citasyconsultas:eliminar_servicio' ser.pk %}', 'Emiminar/{{ ser.codSer}}')" class="btn"><span class="glyphicon glyphicon-trash"></span>Eliminar {{ser.nomSer}}</a
+								td>
+					</tr>
+		{% endfor %}
+	</table>
+</div>
+</div>
+<div id="popup">
+
+</div>
+	<script>
+var modal;
+
+function abrir_modal(url, titulo)
+{
+    modal = $('#popup').dialog(
+    {
+        title: titulo,
+        modal: true,
+        width: 600,
+        resizable: false
+    }).dialog('open').load(url)
+}
+
+function cerrar_modal()
+{
+    modal.dialog("close");
+}
+
+$(document).ready(function()
+{
+    var table = $('#tabla').dataTable( {
+        "language": {
+                url: "/static/localizacion/es_ES.json"
+        }
+    } );
+});
+</script>
+
+
+{% endblock %}
