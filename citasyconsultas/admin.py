@@ -10,3 +10,6 @@ admin.site.register(Usuario)
 admin.site.register(Consulta)
 admin.site.register(Departamento)
 admin.site.register(Municipio)
+
+
+

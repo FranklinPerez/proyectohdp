@@ -35,9 +35,15 @@ var modal;
 //<!--Para el  datepicker-->
 $(function(){
 	$(".datepicker").datepicker({
+		monthNames: [ "Enero","Ferero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Dicimbre" ],
+		monthNamesShort: [ "Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic" ], 
+		dayNames: [ "Domingo", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado" ], 
+		dayNamesShort: [ "Dom", "Lun", "Mar", "Mie", "jue", "Vie", "Sab" ], 
+		dayNamesMin: [ "Dom", "Lun", "Mar", "Mie", "jue", "Vie", "Sab"],
+		dateFormat: "yy/mm/dd",
 		changeYear: true,
 		changeMonth: true,
-		yearRange: "1900:3000",
+		yearRange: "2019:3000",
 	});
 });
 

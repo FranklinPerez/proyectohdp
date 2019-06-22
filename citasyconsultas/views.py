@@ -2,7 +2,10 @@
 from django.shortcuts import render
 from django.views.generic.edit import UpdateView, CreateView, DeleteView
 from django.views.generic.list import ListView
+from django.views.generic import TemplateView
 from django.urls import reverse_lazy
+from django.http import HttpResponse
+from datetime import *
 from .models import *
 from .forms import *
 
@@ -106,3 +109,16 @@ class modificarExpediente(UpdateView):
     template_name = 'citasyconsultas/crearExpediente.html'
     form_class = ExpedienteForm
     success_url = reverse_lazy('citasyconsultas:listado_expediente')
+
+
+
+def consultasPendientes(request):
+    fechahoy=datetime.now().date()
+    consultas=Consulta.objects.filter(estado='p').filter(fecConHoy__contains=fechahoy)            
+    return render(request, 'citasyconsultas/consultasPendientes.html',context={'consultas':consultas})
+
+class modificarConsulta(UpdateView):
+    model = Consulta
+    template_name = 'citasyconsultas/modificarConsulta.html'
+    form_class = ConsultaForm
+    success_url = reverse_lazy('citasyconsultas:listado_consulta')

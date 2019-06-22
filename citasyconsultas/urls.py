@@ -12,7 +12,7 @@ urlpatterns=[
 	path('modificarMedicamento/<int:pk>/', modificarMedicamento.as_view(), name='modificar_medicamento'),
 	path('eliminarMedicamento/<int:pk>/', eliminarMedicamento.as_view(), name='eliminar_medicamento'),
 
-
+	# URL's y VIEWS para el control de las citas
 	path('nueva_cita/', CrearCita.as_view(), name = 'nueva_cita'),
 	path('gestion_cita/', GestionCitas.as_view(), name = 'gestion_servicio'),
 	path('modificar_cita/<int:pk>/', ModificarCita.as_view(), name = 'modificar_cita'),
@@ -29,6 +29,13 @@ urlpatterns=[
 	path('gestionExpediente/', BuscarExpediente.as_view(), name='listado_expediente'),
 	path('crearExpediente/', crearExpediente.as_view(), name='crear_expediente'),
 	path('modificarExpediente/<int:pk>/', modificarExpediente.as_view(), name='modificar_expediente'),
+
+
+	#views para consulta
+	path('consultasPendientes/', consultasPendientes, name='listado_consulta'),
+	path('modificarConsulta/<int:pk>/', modificarConsulta.as_view(), name='modificar_consulta'),
+
+
 
 ]
 

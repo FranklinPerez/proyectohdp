@@ -15,6 +15,9 @@ class NuevaCitaForm(forms.ModelForm):
 			'horCon': 'Hora de Consulta ',
 			'servic': 'Motivo de Consulta',
 		}
+		widgets ={
+			'fecCon' : forms.DateInput(attrs={'class':'datepicker'}),
+		}
 		
 
 
@@ -66,4 +69,14 @@ class ServicioForm(forms.ModelForm):
 		}
 		labels={
 		'codSer':'Codigo del Servicio', 'nomSer':'nombre del Servicio','precio':'Precio del Servicio','duraci':'Duracion del Servicio (en minutos)',
+		}
+
+class ConsultaForm(forms.ModelForm):
+	class Meta:
+		model=Consulta
+		fields={
+		'paciente', 'servicios','diagnostico','dosis','medicamentos','estado',
+		}
+		labels={
+		'paciente':'Paciente', 'servicios':'Servicio que se aplico','diagnostico':'diagnostico','dosis':'dosis','medicamentos':'medicamentos recetados','estado':'colocar 1 para terminar consulta',
 		}
