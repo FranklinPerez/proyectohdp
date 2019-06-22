@@ -91,7 +91,6 @@ class Consulta(models.Model):
 	dosis=models.CharField(max_length=500,help_text="Ingrese la dosis", null=True, blank=True)
 	paciente = models.ForeignKey('Paciente', help_text="Seleccione el paciente",on_delete=models.SET_NULL, null=True)
 	medico=models.ForeignKey('Medico', on_delete=models.SET_NULL, null=True)
-<<<<<<< HEAD
 	fecConHoy=models.DateField()
 	medicamentos=models.ManyToManyField(Medicamento, null=True, blank=True)
 	servicios=models.ForeignKey('Servicio', blank=True, on_delete=models.SET_NULL, null=True)
@@ -106,12 +105,12 @@ class Consulta(models.Model):
         choices=Estado_Consulta,
         blank=True,
         default='p')
-=======
+
 	medicamentos=models.ManyToManyField(Medicamento)
 	servicios=models.ManyToManyField(Servicio)
 	estCon=models.IntegerField(default=0) #Estado de la consulta
 
->>>>>>> d6f5344848ddebcfb36a851cb8e53af45a7edbb6
+
 	def __str__(self):
 		return self.dosis
 
