@@ -16,17 +16,28 @@ class Servicio (models.Model):
 	class Meta:
 		ordering = ('codSer',)
 
+class Paciente(models.Model):
+	numExpediente = models.IntegerField(primary_key = True)
+	nomPaciente = models.CharField(max_length = 200, help_text = "Ingrese el nombre del paciente")
+	apelPaciente = models.CharField(max_length = 200, help_text = "Ingrese el apellido del paciente")
+	fechaNacimiento = models.DateField(null=True)
+	emailPaciente = models.EmailField(max_length = 200, help_text = "Ingrese eMail del paciente")
+	telefono = models.CharField(max_length = 8, help_text = "Ingrese el telefono del paciente")
+	def __str__(self):
+		return self.nomPaciente
 
 # Modelo de laas citas.
 class Cita (models.Model):
 	numCit = models.IntegerField(primary_key = True)# Numero de cita del dia
-	nomPac = models.CharField(max_length = 255, help_text = "Ingrese los nombres, solo letras")
-	apePac = models.CharField(max_length = 255, help_text = "Ingrese los apellidos, solo letras")
-	telPac = models.IntegerField(unique = True, help_text = "Solo numeros")# Telefono del paciente
-	fecCon = models.DateField(help_text = "Seleccione la fecha para la cita")# Fecha de la consulta
+	pacien = models.ForeignKey(Paciente, null=True, on_delete = models.CASCADE)
+	fecCon = models.DateField(null=True, help_text = "Seleccione la fecha para la cita")# Fecha de la consulta
 	horCon = models.CharField(max_length = 10, null=True, help_text="Seleccione un horario disponible")
-	servic = models.ManyToManyField(Servicio)
+	servic = models.ForeignKey(Servicio, null=True,on_delete = models.PROTECT)
+	estado = models.IntegerField(default=0, null=True, help_text = "Pendiente = 0 ,  Completado = 1") #  Pendiente = 0 ,  Completado = 1
 	fecCre = models.DateField(auto_now_add = True)# afecha de creacion
+
+	def __str__(self):
+		return self.nomPac
 
 	class Meta:
 		ordering = ('numCit',)
@@ -98,12 +109,3 @@ class Municipio(models.Model):
 	def __str__(self):
 		return self.nomMunicipio
 
-class Paciente(models.Model):
-	numExpediente = models.IntegerField(primary_key = True)
-	nomPaciente = models.CharField(max_length = 200, help_text = "Ingrese el nombre del paciente")
-	apelPaciente = models.CharField(max_length = 200, help_text = "Ingrese el apellido del paciente")
-	fechaNacimiento = models.DateField()
-	emailPaciente = models.CharField(max_length = 200, help_text = "Ingrese eMail del paciente")
-	telefono = models.CharField(max_length = 8, help_text = "Ingrese el telefono del paciente")
-	def __str__(self):
-		return self.nomPaciente

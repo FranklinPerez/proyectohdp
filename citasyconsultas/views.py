@@ -16,20 +16,16 @@ def index(request):
         'base/base.html',
         context={},
     )
-
+# CITA Y SU CRUD==========================================================================
 # Vista de la creacion de cita
 class CrearCita(CreateView):
 	template_name = 'citasyconsultas/cita_form.html'
 	form_class= NuevaCitaForm
 	success_url = reverse_lazy('index/')
-
-# Listar los servicios disponibles
-class ListarServicio(ListView):
-	model = Servicio
-	template_name = 'citasyconsultas/servicio_list.html'
-	context_object_name = 'listaServicios'
-
+    
 #==========================================================================
+
+# SERVICIO Y SU CRUD==========================================================================
 class GestionServicio(ListView):
 	model = Servicio
 	template_name = 'citasyconsultas/gestionServicios.html'
@@ -42,13 +38,14 @@ class AgregarServicio(CreateView):
 
 class ModificarServicio(UpdateView):
     template_name = 'citasyconsultas/agregarServicio.html'
+    model = Servicio
     form_class = ServicioForm
     success_url = reverse_lazy('citasyconsultas:gestion_servicio')
-    model = Servicio
+    
 
 class EliminarServicio(DeleteView):
-    template_name = 'citasyconsultas/agregarServicio.html'
-    form_class = ServicioForm
+    template_name = 'citasyconsultas/eliminarServicio.html'
+    model = Servicio
     success_url = reverse_lazy('citasyconsultas:gestion_servicio')
 
 #==========================================================================

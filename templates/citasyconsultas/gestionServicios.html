@@ -15,14 +15,16 @@
 </div>
 <br><br><br>
 <div class="row text-center">
-	<table  class="table ">
+	<table  class="table table-sm table-striped">
 		<tr style="text-align: center">
 			<th style="text-align: center">Codigo</th>
 			<th style="text-align: center">Nombre</th>
 			<th style="text-align: center">Precio ( $ )</th>
             <th style="text-align: center">Duracion ( min )</th>
+            <th style="text-align: center">Editar</th>
+            <th style="text-align: center">Eliminar</th>
 		</tr>
-		{% for ser in GestionServicio %}
+		{% for ser in object_list %}
 					<tr>
 						<td>{{ser.codSer}}</td>
 						<td>{{ser.nomSer}}</td>
@@ -32,7 +34,7 @@
 							<a href="#" onclick="return abrir_modal('{% url 'citasyconsultas:modificar_servicio' ser.pk %}', 'Modificar/{{ ser.codSer }}')" class="btn"><span class="glyphicon glyphicon-pencil">Editar</a>
 							</td>
 						<td style="text-align:center;">
-							<a href="#" onclick="return abrir_modal('{% url 'citasyconsultas:eliminar_servicio' ser.pk %}', 'Emiminar/{{ ser.codSer}}')" class="btn"><span class="glyphicon glyphicon-trash"></span>Eliminar</a
+							<a href="#" onclick="return abrir_modal('{% url 'citasyconsultas:eliminar_servicio'  ser.pk %}', 'Emiminar/{{ ser.codSer}}')" class="btn"><span class="glyphicon glyphicon-trash"></span>Eliminar</a
 								td>
 					</tr>
 		{% endfor %}

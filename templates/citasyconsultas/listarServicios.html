@@ -1,0 +1,28 @@
+
+<h3>Servicios Disponibles.</h3>
+
+<br><br><br>
+<div class="row text-center">
+	<table  class="table table-sm table-striped">
+		<tr style="text-align: center">
+			<th style="text-align: center">Codigo</th>
+			<th style="text-align: center">Nombre</th>
+			<th style="text-align: center">Precio ( $ )</th>
+            <th style="text-align: center">Duracion ( min )</th>
+            <th style="text-align: center">Seleccionar</th>
+		</tr>
+		{% for serv in object_list %}
+					<tr>
+						<td>{{serv.codSer}}</td>
+						<td>{{serv.nomSer}}</td>
+						<td>{{serv.precio}}</td>
+						<td>{{serv.duraci}}</td>
+						<td style="text-align:center;">
+							<button  onclick="return get_value_from_modal('{{ object }}')" class="btn"><span class="glyphicon glyphicon-pencil">Seleccionar</button>
+						</td>
+						
+					</tr>
+		{% endfor %}
+	</table>
+</div>
+</div>
