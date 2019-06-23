@@ -127,6 +127,8 @@ class crearConsulta(CreateView):
     template_name = "citasyconsultas/crearConsulta.html"
     form_class = nuevaConsultaForm
     success_url = reverse_lazy('citasyconsultas:gestion_servicio')
+
+
    
    
         
