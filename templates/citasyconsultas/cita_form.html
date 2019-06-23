@@ -19,6 +19,7 @@
 				
 			<div>
 				<button type="submit" class="btn btn-success" style="color:white; background-color:#33CC00">Aceptar</button>
+				<a href="{% url 'citasyconsultas:gestion_cita' %}" class="btn btn-success" style="color:white; background-color:#f6685e">Cancelar</a>
    			</div>
 		</form>
 	</div>
@@ -32,6 +33,7 @@
 <script>
 var modal;
 
+
 //<!--Para el  datepicker-->
 $(function(){
 	$(".datepicker").datepicker({
@@ -40,7 +42,7 @@ $(function(){
 		dayNames: [ "Domingo", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado" ], 
 		dayNamesShort: [ "Dom", "Lun", "Mar", "Mie", "jue", "Vie", "Sab" ], 
 		dayNamesMin: [ "Dom", "Lun", "Mar", "Mie", "jue", "Vie", "Sab"],
-		dateFormat: "yy/mm/dd",
+		dateFormat: "dd/mm/yy",
 		changeYear: true,
 		changeMonth: true,
 		yearRange: "2019:3000",

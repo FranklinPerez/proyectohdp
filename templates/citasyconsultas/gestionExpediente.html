@@ -19,14 +19,16 @@
 <div class="row text-center">
 <table  class="table ">
 		<tr style="text-align: center">
-			<th style="text-align: center">Codigo del Paciente</th>
-			<th style="text-align: center">Nombre del Paciente</th>
+			<th style="text-align: center">No. de Expediente</th>
+			<th style="text-align: center">Nombre</th>
+			<th style="text-align: center">Apellido</th>
 			<th style="text-align: center">Editar Paciente</th>
 		</tr>
 		{% for pac in expedientes %}
 					<tr>
-						<td>{{pac.codPaciente}}</td>
+						<td>{{pac.numExpediente}}</td>
 						<td>{{pac.nomPaciente}}</td>
+						<td>{{pac.apelPaciente}}</td>
 						<td style="text-align:center;">
 							<a href="#" onclick="return abrir_modal('{% url 'citasyconsultas:modificar_expediente' pac.pk %}', 'Modificar/{{ pac.numExpediente }}')" class="btn"><span class="glyphicon glyphicon-pencil">Editar {{pac.nomPaciente}}
 							</a>

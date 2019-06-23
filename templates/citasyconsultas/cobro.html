@@ -1,0 +1,22 @@
+
+<div>
+	<h3>Realizar Cobro</h3>
+	<form action="." method="GET">
+		<div>
+			<label >Fecha de Hoy: {{form.fecCon}}</label>
+		</div>
+		<label for="q">Numero de Cita</label>
+		<input type="number" name="q"  required="">
+		<br>
+		<input type="submit" value="Buscar">
+		<br><br><br>
+		<h2>Resultado</h2>
+		{{ cita_a_cobrar.numCit }}
+		{{ cita_a_cobrar.servic.nomSer }}
+		{{ cita_a_cobrar.servic.precio }}
+
+	</form>	
+	
+
+
+</div>

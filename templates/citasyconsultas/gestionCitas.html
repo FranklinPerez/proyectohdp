@@ -4,18 +4,16 @@
 
 {% block encabezado %} Gestion de Citas {% endblock %}
 {% block content %}
-<h3>Aqui puede crear, modificar y eliminar citas</h3>
+<h3>Crear, Modificar o Eliminar Citas</h3>
 <div class="container">
 	<div class="row">
 
-	<a onclick="return abrir_modal('{% url 'citasyconsultas:nueva_cita' %}', 'Crear Cita')" class="btn btn-success" style="color:white; background-color:#33CC00">
-    Nueva Cita
-		</a>
+	<a href="{% url 'citasyconsultas:nueva_cita' %}" class="btn btn-success" style="color:white; background-color:#33CC00">Nueva Cita</a>
 	</div>
 </div>
 <br><br><br>
 <div class="row text-center">
-	<table  class="table ">
+	<table  class="table table- striped table-sm">
 		<tr style="text-align: center">
 			<th style="text-align: center">Numero de Cita</th>
 			<th style="text-align: center">Paciente</th>

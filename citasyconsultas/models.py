@@ -3,6 +3,10 @@ from django.db import models
 from django.utils import timezone
 
 
+
+class Horario(models.Model):
+	hora = models.CharField(max_length = 10)
+
 # Modelo de los Servicios
 class Servicio (models.Model):
 
@@ -40,23 +44,20 @@ class Paciente(models.Model):
 	munResidencia = models.ForeignKey(Municipio, on_delete = models.PROTECT, default = '15')
 	telefono = models.CharField(max_length = 8, help_text = "Ingrese el telefono del paciente")
 	def __str__(self):
-		return self.nomPaciente
+		return self.apelPaciente + ", " + self.nomPaciente
 
 # Modelo de laas citas.
 class Cita (models.Model):
 	numCit = models.IntegerField(primary_key = True)# Numero de cita del dia
 	pacien = models.ForeignKey('Paciente', on_delete = models.PROTECT, null=True)
-	fecCon = models.DateField(null=True, help_text = "Seleccione la fecha para la cita")# Fecha de la consulta
-	horCon = models.CharField(max_length = 10, null=True, help_text="Seleccione un horario disponible")
+	fecCon = models.DateField(null=True, help_text = " ")# Fecha de la consulta
+	horCon = models.ForeignKey(Horario, null=True, on_delete=models.PROTECT)
 	servic = models.ForeignKey(Servicio,on_delete = models.PROTECT, null=True)
-	estado = models.IntegerField(default=0, null=True, help_text = "Pendiente = 0 ,  Completado = 1") #  Pendiente = 0 ,  Completado = 1
+	estado = models.IntegerField(default=0, null=True, help_text = "Pendiente = 0,  Completado = 1") #  Pendiente = 0 ,  Completado = 1
 	fecCre = models.DateField(auto_now_add = True)# afecha de creacion
 
 	def __str__(self):
 		return self.numCit
-
-	class Meta:
-		ordering = ('numCit',)
 
 
 # Create your models here.

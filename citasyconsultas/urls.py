@@ -14,9 +14,10 @@ urlpatterns=[
 
 	# URL's y VIEWS para el control de las citas
 	path('nueva_cita/', CrearCita.as_view(), name = 'nueva_cita'),
-	path('gestion_cita/', GestionCitas.as_view(), name = 'gestion_servicio'),
+	path('gestion_cita/', GestionCitas.as_view(), name = 'gestion_cita'),
 	path('modificar_cita/<int:pk>/', ModificarCita.as_view(), name = 'modificar_cita'),
 	path('eliminar_cita/<int:pk>/', EliminarCita.as_view(), name = 'eliminar_cita'),
+	path('cobrar/', RealizarCobro, name = 'cobrar'),
 
 
 	#views para servicio

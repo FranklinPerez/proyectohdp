@@ -1,3 +1,5 @@
+from django.db.models import Q
+
 
 from django.shortcuts import render
 from django.views.generic.edit import UpdateView, CreateView, DeleteView
@@ -16,13 +18,12 @@ def index(request):
         'base/base.html',
         context={},
     )
-# CITA Y SU CRUD==========================================================================
-# Vista de la creacion de cita
+# CITA Y SU CRUD==============================================================
 class CrearCita(CreateView):
 	template_name = 'citasyconsultas/cita_form.html'
 	form_class= NuevaCitaForm
 	success_url = reverse_lazy('citasyconsultas:gestion_cita')
-    
+
 
 class GestionCitas(ListView):
 	model = Cita
@@ -43,8 +44,16 @@ class EliminarCita(DeleteView):
     success_url = reverse_lazy('citasyconsultas:gestion_cita')
 
 #==========================================================================
+#REALIZAR COBRO============================================================
+def RealizarCobro(request):
+    query = request.GET.get('q')
+    hoy = datetime.now().date()
+    qset = (Q(numCit = query) & Q(fecCon__contains = hoy))
+    results = Cita.objects.filter(qset)
 
-
+    return render(request, 'citasyconsultas/cobro.html',context={'cita_a_cobrar':results})
+          
+#==========================================================================
 
 
 #modelos de Medicamento

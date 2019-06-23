@@ -2,6 +2,8 @@
 from django import forms
 from .models import *
 
+
+		
 class NuevaCitaForm(forms.ModelForm):
 	class Meta:
 		model = Cita
@@ -18,7 +20,6 @@ class NuevaCitaForm(forms.ModelForm):
 		widgets ={
 			'fecCon' : forms.DateInput(attrs={'class':'datepicker'}),
 		}
-		
 
 
 class ServicioForm(forms.ModelForm):
@@ -33,8 +34,6 @@ class ServicioForm(forms.ModelForm):
 		    'precio':'Precio ($)',
 		    'duraci':'Duracion (Min.)',
 		}	
-
-
 
 
 class MedicamentoForm(forms.ModelForm):
@@ -60,15 +59,8 @@ class ExpedienteForm(forms.ModelForm):
 			"emailPaciente" : "eMail: ", "depResidencia" : "Departamento: ", "munResidencia" : "Municipio: ", 
 			"telefono" : "Teléfono de contacto: ",
 		}
-
-class ServicioForm(forms.ModelForm):
-	class Meta:
-		model=Servicio
-		fields={
-		'codSer', 'nomSer','precio','duraci',
-		}
-		labels={
-		'codSer':'Codigo del Servicio', 'nomSer':'nombre del Servicio','precio':'Precio del Servicio','duraci':'Duracion del Servicio (en minutos)',
+		widgets ={
+			'fechaNacimiento' : forms.DateInput(attrs={'class':'datepicker'}),
 		}
 
 class ConsultaForm(forms.ModelForm):
