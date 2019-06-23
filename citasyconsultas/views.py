@@ -122,3 +122,13 @@ class modificarConsulta(UpdateView):
     template_name = 'citasyconsultas/modificarConsulta.html'
     form_class = ConsultaForm
     success_url = reverse_lazy('citasyconsultas:listado_consulta')
+
+class crearConsulta(CreateView):   
+    template_name = "citasyconsultas/crearConsulta.html"
+    form_class = nuevaConsultaForm
+    success_url = reverse_lazy('citasyconsultas:gestion_servicio')
+   
+   
+        
+              
+        

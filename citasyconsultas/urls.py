@@ -2,7 +2,6 @@
 from django.urls import path
 from .views import *
 
-
 app_name = 'citasyconsultas'
 urlpatterns=[
 	path('index/', index, name='index'),
@@ -34,8 +33,6 @@ urlpatterns=[
 	#views para consulta
 	path('consultasPendientes/', consultasPendientes, name='listado_consulta'),
 	path('modificarConsulta/<int:pk>/', modificarConsulta.as_view(), name='modificar_consulta'),
-
-
-
+	path('crearConsulta', crearConsulta.as_view(), name='crear_consulta'),
 ]
 

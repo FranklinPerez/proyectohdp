@@ -1,9 +1,4 @@
-{% extends 'base/base.html'%}
 
-{% block title %} Creacion de citas {% endblock %}
-
-{% block encabezado %} Creacion de citas {% endblock %}
-{% block content %}
 
 <h3>Nueva Cita</h3>
 <div class="container">
@@ -17,9 +12,13 @@
 
 			</div>
 				
-			<div>
+			<tr>
 				<button type="submit" class="btn btn-success" style="color:white; background-color:#33CC00">Aceptar</button>
    			</div>
+   			<button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" style="background-color:#f6685e;color:white" onclick="return cerrar_modal()">
+                                                Cancelar
+            </button>
+        </tr>
 		</form>
 	</div>
 </div>
@@ -69,4 +68,3 @@ $(document).ready(function()
 </script>
 
 
-{% endblock %}

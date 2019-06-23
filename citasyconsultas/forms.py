@@ -77,3 +77,13 @@ class ConsultaForm(forms.ModelForm):
 		labels={
 		'paciente':'Paciente', 'servicios':'Servicio que se aplico','diagnostico':'diagnostico','dosis':'dosis','medicamentos':'medicamentos recetados','estado':'colocar 1 para terminar consulta',
 		}
+
+class nuevaConsultaForm(forms.ModelForm):
+	class Meta:
+		model=Consulta
+		fields={
+		'paciente', 'estado',
+		}
+		labels={
+		'paciente':'Paciente', 'estado':'colocar Pendiente para poner la consulta en espera',
+		}
