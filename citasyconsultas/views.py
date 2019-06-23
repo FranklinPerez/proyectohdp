@@ -9,6 +9,13 @@ from datetime import *
 from .models import *
 from .forms import *
 
+from django.http import HttpResponseRedirect
+from django.core import serializers
+from django.views.generic import TemplateView
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import redirect
+from django.contrib.auth import authenticate, login
+
 def index(request):   
 
     return render(
@@ -41,6 +48,11 @@ class EliminarCita(DeleteView):
     template_name = 'citasyconsultas/eliminarCita.html'
     model = Cita
     success_url = reverse_lazy('citasyconsultas:gestion_cita')
+
+def citasParaHoy(request):
+    fechahoy=datetime.now().date()
+    citas=Cita.objects.filter(fecCitHoy__contains=fechahoy)            
+    return render(request, 'citasyconsultas/citasParaHoy.html',context={'citas':citas})
 
 #==========================================================================
 
@@ -128,7 +140,23 @@ class crearConsulta(CreateView):
     form_class = nuevaConsultaForm
     success_url = reverse_lazy('citasyconsultas:gestion_servicio')
    
-   
+def register(request):
+    registered = False
+    if request.method=='POST':
+        user_form = UserForm(data=request.POST)
+        if user_form.is_valid():
+            user=user_form.save()
+            user.set_password(user.password)
+            user.save()
+            login(request, user)
+            registered=True
+            return redirect('gestor:index')
+        else:
+            print(user_form.errors)
+    else:
+        user_form=UserForm()
+        return render(request, 'registration/register.html', {
+            'user_form':user_form, 'registered':registered})
         
               
         

@@ -1,6 +1,7 @@
 
 from django import forms
 from .models import *
+from django.contrib.admin.widgets import AdminDateWidget
 
 class NuevaCitaForm(forms.ModelForm):
 	class Meta:
@@ -87,3 +88,9 @@ class nuevaConsultaForm(forms.ModelForm):
 		labels={
 		'paciente':'Paciente', 'estado':'colocar Pendiente para poner la consulta en espera',
 		}
+
+class UsuarioForm(forms.ModelForm):
+	password=forms.CharField(widget=forms.PasswordInput())
+	class Meta():
+		model = Usuario
+		fields=('codUsu', 'pasUsu')

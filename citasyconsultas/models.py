@@ -52,6 +52,7 @@ class Cita (models.Model):
 	servic = models.ForeignKey(Servicio,on_delete = models.PROTECT, null=True)
 	estado = models.IntegerField(default=0, null=True, help_text = "Pendiente = 0 ,  Completado = 1") #  Pendiente = 0 ,  Completado = 1
 	fecCre = models.DateField(auto_now_add = True)# afecha de creacion
+	fecCitHoy=models.DateField(default=datetime.now().date())
 
 	def __str__(self):
 		return self.horCon

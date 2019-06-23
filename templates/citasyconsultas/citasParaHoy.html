@@ -1,0 +1,73 @@
+{% extends 'base/base.html'%}
+
+{% block title %} Citas Para hoy {% endblock %}
+
+{% block encabezado %} Citas Pendientes {% endblock %}
+{% block content %}
+
+<br><br><br>
+
+
+<br><br><br>
+<div class="row text-center">
+<table  class="table ">
+		<tr style="text-align: center">
+			<th style="text-align: center">Nombre del paciente</th>
+			<th style="text-align: center">Servicio</th>
+			<th style="text-align: center">Hora</th>
+			
+			
+		</tr>
+	{%if consultas %}
+		{% for con in citas %}
+					<tr>
+						<td>{{con.paciente.nomPaciente}}</td>
+						<td>{{con.servicios.nomSer}}</td>
+						<td style="text-align:center;">
+							<a href="#" onclick="return abrir_modal('{% url 'citasyconsultas:modificar_cita' con.pk %}', 'Modificar/{{ con.codCon }}')" class="btn"><span class="glyphicon glyphicon-pencil">Terminar Cita
+							</a>
+						</td>
+					</tr>
+		{% endfor %}
+	
+
+	</table>
+	{% else%}
+	<div><h2>No hay citas para hoy</h2></div>
+	{% endif %}
+</div>
+</div>
+<div id="popup">
+
+</div>
+	<script>
+var modal;
+
+function abrir_modal(url, titulo)
+{
+    modal = $('#popup').dialog(
+    {
+        title: titulo,
+        modal: true,
+        width: 600,
+        resizable: false
+    }).dialog('open').load(url)
+}
+
+function cerrar_modal()
+{
+    modal.dialog("close");
+}
+
+$(document).ready(function()
+{
+    var table = $('#tabla').dataTable( {
+        "language": {
+                url: "/static/localizacion/es_ES.json"
+        }
+    } );
+});
+</script>
+
+
+{% endblock %}

@@ -16,6 +16,7 @@ urlpatterns=[
 	path('gestion_cita/', GestionCitas.as_view(), name = 'gestion_servicio'),
 	path('modificar_cita/<int:pk>/', ModificarCita.as_view(), name = 'modificar_cita'),
 	path('eliminar_cita/<int:pk>/', EliminarCita.as_view(), name = 'eliminar_cita'),
+	path('citasParaHoy/', citasParaHoy, name='gestion_cita'),
 
 
 	#views para servicio
