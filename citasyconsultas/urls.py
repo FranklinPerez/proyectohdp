@@ -1,7 +1,6 @@
 
-from django.urls import path
+from django.urls import path, include
 from .views import *
-
 
 app_name = 'citasyconsultas'
 urlpatterns=[
@@ -18,6 +17,8 @@ urlpatterns=[
 	path('modificar_cita/<int:pk>/', ModificarCita.as_view(), name = 'modificar_cita'),
 	path('cancelar_cita/<int:pk>/', CancelarCita.as_view(), name = 'cancelar_cita'),
 	path('cobrar/', RealizarCobro, name = 'cobrar'),
+	path('citasParaHoy/', citasParaHoy, name='gestion_cita'),
+
 
 
 	#views para servicio
@@ -35,8 +36,10 @@ urlpatterns=[
 	#views para consulta
 	path('consultasPendientes/', consultasPendientes, name='listado_consulta'),
 	path('modificarConsulta/<int:pk>/', modificarConsulta.as_view(), name='modificar_consulta'),
+	path('crearConsulta', crearConsulta.as_view(), name='crear_consulta'),
 
-
-
+	path('iniciarSesion', iniciarSesion, name='inicar_sesion'),
+	path('autenticarUsuario', autenticarUsuario, name='autenticar_usuario'),
+	path('cerrarSesion', cerrarSesion, name='cerrar_sesion'),
 ]
 

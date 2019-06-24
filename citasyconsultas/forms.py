@@ -1,6 +1,7 @@
 
 from django import forms
 from .models import *
+from django.contrib.admin.widgets import AdminDateWidget
 
 
 		
@@ -73,6 +74,7 @@ class ConsultaForm(forms.ModelForm):
 		'paciente':'Paciente', 'servicios':'Servicio que se aplico','diagnostico':'diagnostico','dosis':'dosis','medicamentos':'medicamentos recetados','estado':'colocar 1 para terminar consulta',
 		}
 
+<<<<<<< HEAD
 
 class ModificarCitaForm(forms.ModelForm):
 	class Meta:
@@ -91,3 +93,20 @@ class ModificarCitaForm(forms.ModelForm):
 		widgets ={
 			'fecCon' : forms.DateInput(attrs={'class':'datepicker'}),
 		}
+=======
+class nuevaConsultaForm(forms.ModelForm):
+	class Meta:
+		model=Consulta
+		fields={
+		'paciente', 'estado',
+		}
+		labels={
+		'paciente':'Paciente', 'estado':'colocar Pendiente para poner la consulta en espera',
+		}
+
+class UsuarioForm(forms.ModelForm):
+	password=forms.CharField(widget=forms.PasswordInput())
+	class Meta():
+		model = Usuario
+		fields=('codUsu', 'pasUsu')
+>>>>>>> 81d2089201bd11839fbea1efadc42b5d96d43525

@@ -11,6 +11,13 @@ from datetime import *
 from .models import *
 from .forms import *
 
+from django.http import HttpResponseRedirect
+from django.core import serializers
+from django.views.generic import TemplateView
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import redirect
+from django.contrib.auth import authenticate, login
+
 def index(request):   
 
     return render(
@@ -42,6 +49,11 @@ class CancelarCita(DeleteView):
     template_name = 'citasyconsultas/cancelarCita.html'
     model = Cita
     success_url = reverse_lazy('citasyconsultas:gestion_cita')
+
+def citasParaHoy(request):
+    fechahoy=datetime.now().date()
+    citas=Cita.objects.filter(fecCitHoy__contains=fechahoy)            
+    return render(request, 'citasyconsultas/citasParaHoy.html',context={'citas':citas})
 
 #==========================================================================
 #REALIZAR COBRO============================================================
@@ -131,3 +143,60 @@ class modificarConsulta(UpdateView):
     template_name = 'citasyconsultas/modificarConsulta.html'
     form_class = ConsultaForm
     success_url = reverse_lazy('citasyconsultas:listado_consulta')
+
+class crearConsulta(CreateView):   
+    template_name = "citasyconsultas/crearConsulta.html"
+    form_class = nuevaConsultaForm
+    success_url = reverse_lazy('citasyconsultas:gestion_servicio')
+
+
+   
+def register(request):
+    registered = False
+    if request.method=='POST':
+        user_form = UserForm(data=request.POST)
+        if user_form.is_valid():
+            user=user_form.save()
+            user.set_password(user.password)
+            user.save()
+            login(request, user)
+            registered=True
+            return redirect('gestor:index')
+        else:
+            print(user_form.errors)
+    else:
+        user_form=UserForm()
+        return render(request, 'registration/register.html', {
+            'user_form':user_form, 'registered':registered})
+
+
+def iniciarSesion(request):   
+
+    return render(
+        request,
+        'citasyconsultas/login.html',
+        context={},
+    )
+
+def autenticarUsuario(request):
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        filtro = Usuario.objects.filter(codUsu=username).filter(pasUsu=password).values('tipo_usuario')
+        
+        if filtro[0].get('tipo_usuario')=='m':
+            
+            template_name = "citasyconsultas/consultasPendientes.html"
+            return render(request,'citasyconsultas/consultasPendientes.html')
+
+        else:
+            if filtro[0].get('tipo_usuario')=='s':
+                
+                template_name = "citasyconsultas/citasParaHoy.html"
+                return render(request,'citasyconsultas/citasParaHoy.html')
+
+def cerrarSesion(request):
+    return render(request,'citasyconsultas/login.html')
+
+
+
+        

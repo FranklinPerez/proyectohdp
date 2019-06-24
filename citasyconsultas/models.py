@@ -1,5 +1,6 @@
 
 from django.db import models
+from datetime import *
 from django.utils import timezone
 
 
@@ -58,9 +59,10 @@ class Cita (models.Model):
 	servic = models.ForeignKey(Servicio,on_delete = models.PROTECT, null=True)
 	estado = models.IntegerField(default=0, null=True, help_text = "Activa (0), Completada (1)") #  Pendiente = 0 ,  Completado = 1
 	fecCre = models.DateField(auto_now_add = True)# afecha de creacion
+	fecCitHoy=models.DateField(default=datetime.now().date())
 
 	def __str__(self):
-		return self.numCit
+		return self.horCon
 
 
 # Create your models here.
@@ -101,7 +103,7 @@ class Usuario(models.Model):
         help_text='Tipo de usuario en el sistema')
 
 	def __str__(self):
-		 return '{0}, {1}'.format(self.codUsu, self.pasUsu)
+		 return '{0}, {1},{2}'.format(self.codUsu, self.pasUsu, self.tipo_usuario)
 
 
 class Consulta(models.Model):
@@ -109,8 +111,8 @@ class Consulta(models.Model):
 	diagnostico=models.CharField(max_length=500,help_text="Ingrese el diagnostico", null=True, blank=True)	
 	dosis=models.CharField(max_length=500,help_text="Ingrese la dosis", null=True, blank=True)
 	paciente = models.ForeignKey('Paciente', help_text="Seleccione el paciente",on_delete=models.SET_NULL, null=True)
-	medico=models.ForeignKey('Medico', on_delete=models.SET_NULL, null=True)
-	fecConHoy=models.DateField()
+	#medico=models.ForeignKey('Medico', on_delete=models.SET_NULL, null=True)
+	fecConHoy=models.DateField(default=datetime.now().date())
 	medicamentos=models.ManyToManyField(Medicamento, null=True, blank=True)
 	servicios=models.ForeignKey('Servicio', blank=True, on_delete=models.SET_NULL, null=True)
 	
@@ -125,13 +127,10 @@ class Consulta(models.Model):
         blank=True,
         default='p')
 
-	medicamentos=models.ManyToManyField(Medicamento)
-	servicios=models.ManyToManyField(Servicio)
-	estCon=models.IntegerField(default=0) #Estado de la consulta
-
 
 	def __str__(self):
 		return self.dosis
+
 
 
 
