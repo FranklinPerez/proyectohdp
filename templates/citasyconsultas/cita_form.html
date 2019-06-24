@@ -1,4 +1,9 @@
+{% extends 'base/base.html'%}
 
+{% block title %} Gestion de Citas {% endblock %}
+
+{% block encabezado %} Gestion de Citas {% endblock %}
+{% block content %}
 
 <h3>Nueva Cita</h3>
 <div class="container">
@@ -17,8 +22,7 @@
 				 || 
 				<a href="{% url 'citasyconsultas:gestion_cita' %}" class="btn btn-success" style="color:white; background-color:#f6685e">Cancelar</a>
    			</div>
-   			<button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" style="background-color:#f6685e;color:white" onclick="return cerrar_modal()">
-                                                Cancelar
+ 
             </button>
         </tr>
 		</form>
@@ -76,4 +80,4 @@ $(document).ready(function()
 });
 </script>
 
-
+{% endblock %}
