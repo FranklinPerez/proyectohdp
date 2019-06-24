@@ -1,5 +1,5 @@
 {% load static %}
-<!DOCTYPE html>
+<!doctype html>
 <html>
     <head>
         <link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
@@ -9,8 +9,8 @@
  
  <body>
     
-    <form method = "post" action = "{% url 'login' %}">
-    {% csrf_token %}
+    <form action="{% url 'citasyconsultas:autenticar_usuario'%}" method="post">
+   {% csrf_token %}
         
         <div class="wrapper fadeInDown">
             <div id="formContent" style ="margin-top:0px">
@@ -28,8 +28,9 @@
                 <!-- Login Form -->
                 <form>    
                     <input type ="text" id = "id_username" class = "fadeIn second" name= "username" placeholder="Usuario">
-                    <input  type = "password" class ="fadeIn third"  name = "password" required id = "id_password" placeholder="Contraseña"/><input type = "hidden" name = "next" avlue = {{next}}/>
-                    <input type = "submit" class = "btn btn-succes btn-lg" value= "login" style ="margin-top:20px;background-color:#C0C0C0 margin-bottom:60px;">
+                    <input  type = "password" class ="fadeIn third"  name = "password" required id = "id_password" placeholder="Contraseña"/>
+                  
+                    <input type = "submit" class = "btn btn-succes btn-lg" value= "login" style ="margin-top:20px;background-color:'green'; margin-bottom:60px;">
                 </form>
                 
             </div>

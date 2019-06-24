@@ -99,7 +99,7 @@ class Usuario(models.Model):
         help_text='Tipo de usuario en el sistema')
 
 	def __str__(self):
-		 return '{0}, {1}'.format(self.codUsu, self.pasUsu)
+		 return '{0}, {1},{2}'.format(self.codUsu, self.pasUsu, self.tipo_usuario)
 
 
 class Consulta(models.Model):

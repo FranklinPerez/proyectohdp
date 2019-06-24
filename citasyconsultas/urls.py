@@ -1,5 +1,5 @@
 
-from django.urls import path
+from django.urls import path, include
 from .views import *
 
 app_name = 'citasyconsultas'
@@ -35,5 +35,9 @@ urlpatterns=[
 	path('consultasPendientes/', consultasPendientes, name='listado_consulta'),
 	path('modificarConsulta/<int:pk>/', modificarConsulta.as_view(), name='modificar_consulta'),
 	path('crearConsulta', crearConsulta.as_view(), name='crear_consulta'),
+
+	path('iniciarSesion', iniciarSesion, name='inicar_sesion'),
+	path('autenticarUsuario', autenticarUsuario, name='autenticar_usuario'),
+	path('cerrarSesion', cerrarSesion, name='cerrar_sesion'),
 ]
 

@@ -159,6 +159,35 @@ def register(request):
         user_form=UserForm()
         return render(request, 'registration/register.html', {
             'user_form':user_form, 'registered':registered})
+
+
+def iniciarSesion(request):   
+
+    return render(
+        request,
+        'citasyconsultas/login.html',
+        context={},
+    )
+
+def autenticarUsuario(request):
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        filtro = Usuario.objects.filter(codUsu=username).filter(pasUsu=password).values('tipo_usuario')
         
-              
+        if filtro[0].get('tipo_usuario')=='m':
+            
+            template_name = "citasyconsultas/consultasPendientes.html"
+            return render(request,'citasyconsultas/consultasPendientes.html')
+
+        else:
+            if filtro[0].get('tipo_usuario')=='s':
+                
+                template_name = "citasyconsultas/citasParaHoy.html"
+                return render(request,'citasyconsultas/citasParaHoy.html')
+
+def cerrarSesion(request):
+    return render(request,'citasyconsultas/login.html')
+
+
+
         
