@@ -6,15 +6,14 @@
 {% block content %}
 
 
-<h3>Aqui puede registrar y modificar los expedientes</h3>
-<div class="container">
-	<div class="row">
-
-	<a onclick="return abrir_modal('{% url 'citasyconsultas:crear_expediente' %}', 'Crear expediente')" class="btn btn-success" style="color:white; background-color:#33CC00">
+<h3>Aqui puede registrar y modificar los expedientes</h3><br>
+<div><a onclick="return abrir_modal('{% url 'citasyconsultas:crear_expediente' %}', 'Crear expediente')" class="btn btn-success" style="color:white; background-color:#33CC00">
    Registrar Nuevo Paciente
 		</a>
-	</div>
-</div>
+	</div><br>
+	<div><a href="{% url 'citasyconsultas:gestion_cita' %}" class="btn btn-success" style="color:white; background-color:#f6685e">Regresar a Todas las Citas</a></div><br>
+<div class="container">
+	<div class="row">
 <br><br><br>
 <div class="row text-center">
 <table  class="table ">

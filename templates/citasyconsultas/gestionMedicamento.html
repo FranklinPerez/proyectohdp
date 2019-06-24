@@ -10,10 +10,13 @@
 
 	<a onclick="return abrir_modal('{% url 'citasyconsultas:crear_medicamento' %}', 'Crear medicamento')" class="btn btn-success" style="color:white; background-color:#33CC00">
    Registrar Nuevo Medicamento
-		</a>
+		</a>---
+		<a href="{% url 'citasyconsultas:listado_consulta' %}" class="btn btn-success" style="color:white; background-color:#f6685e">Regresar a Consultas Pendientes</a>
+<div id="popup">
 	</div>
-</div>
-<br><br><br>
+</div><br><br>
+
+<br><br>
 <div class="row text-center">
 	<table  class="table table-sm">
 		<tr style="text-align: center">
@@ -37,7 +40,7 @@
 	</table>
 </div>
 </div>
-<div id="popup">
+
 
 </div>
 	<script>

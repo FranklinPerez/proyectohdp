@@ -5,12 +5,14 @@
 {% block encabezado %} Citas para hoy {% endblock %}
 {% block content %}
 
-<br><br><br>
+<br>
+<div><h3>Aqui puede ver las citas de este dia</h3></div><br>
+	<div><a href="{% url 'citasyconsultas:gestion_cita' %}" class="btn btn-success" style="color:white; background-color:#f6685e">Regresar a Todas las Citas</a></div>
+<br><br>
 
 
-
-<br><br><br>
 <div class="row text-center">
+
 <table  class="table ">
 		<tr style="text-align: center">
 			<th style="text-align: center">Numero de cita</th>

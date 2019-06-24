@@ -44,13 +44,13 @@ class ModificarCita(UpdateView):
     template_name = 'citasyconsultas/modificarCita.html'
     model = Cita
     form_class = ModificarCitaForm
-    success_url = reverse_lazy('citasyconsultas:verCitas')
+    success_url = reverse_lazy('citasyconsultas:gestion_cita')
     
 
 class CancelarCita(DeleteView):
     template_name = 'citasyconsultas/cancelarCita.html'
     model = Cita
-    success_url = reverse_lazy('citasyconsultas:verCitas')
+    success_url = reverse_lazy('citasyconsultas:gestion_cita')
 
 def citasParaHoy(request):
     fechahoy=datetime.now().date()
@@ -157,8 +157,6 @@ class crearConsulta(CreateView):
     template_name = "citasyconsultas/crearConsulta.html"
     form_class = nuevaConsultaForm
     success_url = reverse_lazy('citasyconsultas:gestion_cita')
-    def quitarCita(request):
-        return redirect('citasyconsultas:modificar_cita') 
 
 
    
@@ -186,6 +184,12 @@ def autenticarUsuario(request):
 def cerrarSesion(request):
     return render(request,'citasyconsultas/login.html')
 
+
+def ir_a_medicamento(request):
+    return redirect('citasyconsultas:listado_medicamento')
+
+def ir_a_servicio(request):
+    return redirect('citasyconsultas:listado_servicio')
 
 
         

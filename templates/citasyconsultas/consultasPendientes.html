@@ -4,7 +4,25 @@
 
 {% block encabezado %} Consultas Pendientes {% endblock %}
 {% block content %}
-
+<div class="row text-center">
+	<table  class="table table-sm">
+		<tr style="text-align: center">
+			<th style="text-align: center">Gestion Medicamento</th>
+			<th style="text-align: center">Gestion Servicio</th>
+			
+		</tr>
+		
+					<tr>
+						
+						<td style="text-align:center;">
+							<a href="{% url 'citasyconsultas:ir_a_medicamento' %}" class="btn btn-success" style="color:white; background-color:#33CC00">Gestion Medicamento</a>
+							</td>
+						<td style="text-align:center;">
+							<a href="{% url 'citasyconsultas:ir_a_servicio' %}" class="btn btn-success" style="color:white; background-color:#33CC00">Gestion Servicio</a>
+								</td>
+					</tr>
+	</table>
+</div>
 <br><br><br>
 
 <h3>Aqui puede completar los datos de las consultas pendientes para darlas por terminadas</h3>
@@ -25,8 +43,7 @@
 						<td>{{con.paciente.nomPaciente}}</td>
 						
 						<td style="text-align:center;">
-							<a href="#" onclick="return abrir_modal('{% url 'citasyconsultas:modificar_consulta' con.pk %}', 'Modificar/{{ con.codCon }}')" class="btn"><span class="glyphicon glyphicon-pencil">Terminar Consulta
-							</a>
+							<a onclick="return abrir_modal('{% url 'citasyconsultas:modificar_consulta' con.pk %}', 'Terminar consulta al paciente: {{con.pacien.nomPaciente}}')" class="btn btn-success" style="color:white; background-color:#33CC00" value="Modificar consulta">Terminar Consulta</a>
 						</td>
 					</tr>
 		{% endfor %}

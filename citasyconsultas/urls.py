@@ -43,5 +43,8 @@ urlpatterns=[
 	path('iniciarSesion', iniciarSesion, name='inicar_sesion'),
 	path('autenticarUsuario', autenticarUsuario, name='autenticar_usuario'),
 	path('cerrarSesion', cerrarSesion, name='cerrar_sesion'),
+
+	path('gestionMedicamento', ir_a_medicamento, name='ir_a_medicamento'),
+	path('gestionServicio', ir_a_servicio, name='ir_a_servicio'),
 ]
 
