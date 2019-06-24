@@ -28,6 +28,7 @@
             <th style="text-align: center">Editar</th>
             <th style="text-align: center">Cancelar</th>
             <th style="text-align: center">Crear Consulta</th>
+            <th style="text-align: center">Ver Cita</th>
 
 		</tr>
 		{% for cit in object_list %}
@@ -39,15 +40,24 @@
 						<td>{{cit.servic}}</td>
 						<td>{{cit.estado}}</td>
 						<td>{{cit.fecCre}}</td>
+						<td>{{cit.verCita}}</td>
+
+
+
 						
 						<td style="text-align:center;">
 							<a href="#" onclick="return abrir_modal('{% url 'citasyconsultas:modificar_cita' cit.pk %}', 'Modificar Cita Numero: -->> {{ cit.numCit }}')" class="btn"><span class="glyphicon glyphicon-pencil">Editar</a>
 							</td>
+
+						
 						<td style="text-align:center;">
 							<a href="#" onclick="return abrir_modal('{% url 'citasyconsultas:cancelar_cita' cit.pk %}', 'Emiminar Cita numero {{ cit.numCit}}')" class="btn"><span class="glyphicon glyphicon-trash"></span>Cancelar</a
 								td>
 								<td style="text-align:center;">
 							<a onclick="return abrir_modal('{% url 'citasyconsultas:crear_consulta' %}', 'Crear consulta')" class="btn btn-success" style="color:white; background-color:#33CC00">
+						<td style="text-align:center;">
+							<a href="#" onclick="return abrir_modal('{% url 'citasyconsultas:verCita' cit.pk %}', 'Ver Cita Numero: -->> {{ cit.numCit }}')" class="btn"><span class="glyphicon glyphicon-pencil">Ver Cita</a>
+							</td>
    													Crear Consulta
 		</a>
 							</td>

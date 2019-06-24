@@ -10,6 +10,8 @@ from django.http import HttpResponse
 from datetime import *
 from .models import *
 from .forms import *
+from django.views.generic.detail import DetailView
+from django.views import View
 
 from django.http import HttpResponseRedirect
 from django.core import serializers
@@ -54,6 +56,13 @@ def citasParaHoy(request):
     fechahoy=datetime.now().date()
     citas=Cita.objects.filter(fecCitHoy__contains=fechahoy)            
     return render(request, 'citasyconsultas/citasParaHoy.html',context={'citas':citas})
+
+class verCita(DetailView):
+    template_name = 'citasyconsultas/verCita.html'
+    model = Cita
+    context_object_name = 'verCita'
+    success_url = reverse_lazy('citasyconsultas:gestion_cita')
+
 
 #==========================================================================
 #REALIZAR COBRO============================================================
