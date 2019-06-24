@@ -7,26 +7,38 @@
 
 <br><br><br>
 
+<div class="container">
+	<div class="row">
 
+	<a onclick="return abrir_modal('{% url 'citasyconsultas:nueva_cita' %}', 'Crear cita')" class="btn btn-success" style="color:white; background-color:#33CC00">
+   Registrar Nueva cita
+		</a>
+	</div>
+</div>
 <br><br><br>
 <div class="row text-center">
 <table  class="table ">
 		<tr style="text-align: center">
 			<th style="text-align: center">Nombre del paciente</th>
 			<th style="text-align: center">Servicio</th>
-			<th style="text-align: center">Hora</th>
+			<th style="text-align: center">Modificarss</th>
+			<th style="text-align: center">Crear consulta</th>
 			
 			
 		</tr>
-	{%if consultas %}
+	{%if citas %}
 		{% for con in citas %}
 					<tr>
-						<td>{{con.paciente.nomPaciente}}</td>
-						<td>{{con.servicios.nomSer}}</td>
+						<td>{{con.pacien.nomPaciente}}</td>
+						<td>{{con.servic.nomSer}}</td>
 						<td style="text-align:center;">
-							<a href="#" onclick="return abrir_modal('{% url 'citasyconsultas:modificar_cita' con.pk %}', 'Modificar/{{ con.codCon }}')" class="btn"><span class="glyphicon glyphicon-pencil">Terminar Cita
-							</a>
+							<a href="#" onclick="return abrir_modal('{% url 'citasyconsultas:modificar_cita' con.pk %}', 'Modificar/{{ con.codCon }}')" class="btn"><span class="glyphicon glyphicon-pencil">Modificar Cita
+
+							</a></td>
+							<td style="text-align:center;">
+							<a onclick="return abrir_modal('{% url 'citasyconsultas:crear_consulta' %}', 'Crear consulta al paciente: {{con.pacien.nomPaciente}}')" class="btn btn-success" style="color:white; background-color:#33CC00" value="Crear consulta">Crear Consulta</a>
 						</td>
+
 					</tr>
 		{% endfor %}
 	

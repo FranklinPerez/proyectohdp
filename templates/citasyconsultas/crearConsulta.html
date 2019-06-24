@@ -1,8 +1,7 @@
 <div >
         <div class="modal-content">  
-        	{% if object %}
         <form role="form" action="{% url 'citasyconsultas:crear_consulta'%}" method="post">
-        	{% endif %}
+        
      	 <div class="modal-body">
                                 {% csrf_token %}
     
