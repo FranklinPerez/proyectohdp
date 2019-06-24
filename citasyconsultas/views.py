@@ -60,8 +60,8 @@ def citasParaHoy(request):
 class verCita(DetailView):
     template_name = 'citasyconsultas/verCita.html'
     model = Cita
-    context_object_name = 'verCita'
-    success_url = reverse_lazy('citasyconsultas:gestion_cita')
+   ## context_object_name = 'verCita'
+    ##success_url = reverse_lazy('citasyconsultas:gestion_cita')
 
 
 #==========================================================================

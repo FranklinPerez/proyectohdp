@@ -17,7 +17,7 @@ urlpatterns=[
 	path('modificar_cita/<int:pk>/', ModificarCita.as_view(), name = 'modificar_cita'),
 	path('cancelar_cita/<int:pk>/', CancelarCita.as_view(), name = 'cancelar_cita'),
 	path('cobrar/', RealizarCobro, name = 'cobrar'),
-	path('citasParaHoy/', citasParaHoy, name='gestion_cita'),
+	path('citasParaHoy/', citasParaHoy, name='citasParaHoy'),
 	
 	path('verCita/<int:pk>/', verCita.as_view(), name='verCita'),
 
