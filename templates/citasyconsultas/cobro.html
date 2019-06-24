@@ -1,22 +1,79 @@
+{% extends 'base/base.html'%}
+
+{% block title %} Realizar Cobro {% endblock %}
+
+{% block encabezado %} Realizar Cobro {% endblock %}
+{% block content %}
 
 <div>
-	<h3>Realizar Cobro</h3>
-	<form action="." method="GET">
-		<div>
-			<label >Fecha de Hoy: {{form.fecCon}}</label>
-		</div>
-		<label for="q">Numero de Cita</label>
-		<input type="number" name="q"  required="">
-		<br>
-		<input type="submit" value="Buscar">
-		<br><br><br>
-		<h2>Resultado</h2>
-		{{ cita_a_cobrar.numCit }}
-		{{ cita_a_cobrar.servic.nomSer }}
-		{{ cita_a_cobrar.servic.precio }}
+	<h3>Realizar Cobro de una Cita de Hoy</h3>
 
+	<form action="." method="GET">
+		<label for="q">Numero de Cita</label>
+		<input type="number" name="q"  required="" > || <input type="submit" value="Buscar" class="btn btn-success" style="color:white; background-color:#33CC00">
+		<br><br>
+		<div class="row text-center">
+		<table  class="table table-sm">
+			<tr style="text-align: center">
+				<th style="text-align: center">No. de Cita</th>
+				<th style="text-align: center">Paciente</th>
+				<th style="text-align: center">Servicio Prestado</th>
+	            <th style="text-align: center">Precio ( $ )</th>
+			</tr>
+			{% for cit in cita_a_cobrar %}
+					<tr>
+						<td>{{cit.numCit}}</td>
+						<td>{{cit.pacien}}</td>
+						<td>{{cit.servic.nomSer}}</td>
+						<td>$ {{cit.servic.precio}}</td>
+						
+					</tr>
+			{% endfor %}
+		</table>	
+		<br><br><br><br>
+		</div>
+
+			<a href="{% url 'citasyconsultas:gestion_cita' %}" class="btn btn-success" style="color:white; background-color:#f6685e">Regresar</a>
+	
+		
 	</form>	
 	
 
+</div>
+
+<div id="popup">
 
 </div>
+	<script>
+var modal;
+
+function abrir_modal(url, titulo)
+{
+    modal = $('#popup').dialog(
+    {
+        title: titulo,
+        modal: true,
+        width: 600,
+        resizable: false
+    }).dialog('open').load(url)
+}
+
+function cerrar_modal()
+{
+    modal.dialog("close");
+}
+
+$(document).ready(function()
+{
+    var table = $('#tabla').dataTable( {
+        "language": {
+                url: "/static/localizacion/es_ES.json"
+        }
+    } );
+});
+
+
+</script>
+
+
+{% endblock %}

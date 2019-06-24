@@ -7,16 +7,19 @@ from django.utils import timezone
 class Horario(models.Model):
 	hora = models.CharField(max_length = 10)
 
+	def __str__(self):
+		return self.hora
+
 # Modelo de los Servicios
 class Servicio (models.Model):
 
 	codSer = models.IntegerField(primary_key = True)
 	nomSer = models.CharField(max_length = 200) # Nombre del servicio
 	precio = models.DecimalField(max_digits = 10, decimal_places = 2)
-	duraci = models.IntegerField()# Duracion PROMEDIO del servicio en minutos
+	duraci = models.CharField(max_length = 10)# Duracion PROMEDIO del servicio en minutos
 
 	def __str__(self):
-		return self.nomSer
+		return self.nomSer + " ---(" + self.duraci + " min.)"
 	
 	class Meta:
 		ordering = ('codSer',)
@@ -53,7 +56,7 @@ class Cita (models.Model):
 	fecCon = models.DateField(null=True, help_text = " ")# Fecha de la consulta
 	horCon = models.ForeignKey(Horario, null=True, on_delete=models.PROTECT)
 	servic = models.ForeignKey(Servicio,on_delete = models.PROTECT, null=True)
-	estado = models.IntegerField(default=0, null=True, help_text = "Pendiente = 0,  Completado = 1") #  Pendiente = 0 ,  Completado = 1
+	estado = models.IntegerField(default=0, null=True, help_text = "Activa (0), Completada (1)") #  Pendiente = 0 ,  Completado = 1
 	fecCre = models.DateField(auto_now_add = True)# afecha de creacion
 
 	def __str__(self):

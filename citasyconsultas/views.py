@@ -32,14 +32,14 @@ class GestionCitas(ListView):
 
 
 class ModificarCita(UpdateView):
-    template_name = 'citasyconsultas/cita_form.html'
+    template_name = 'citasyconsultas/modificarCita.html'
     model = Cita
-    form_class = NuevaCitaForm
+    form_class = ModificarCitaForm
     success_url = reverse_lazy('citasyconsultas:gestion_cita')
     
 
-class EliminarCita(DeleteView):
-    template_name = 'citasyconsultas/eliminarCita.html'
+class CancelarCita(DeleteView):
+    template_name = 'citasyconsultas/cancelarCita.html'
     model = Cita
     success_url = reverse_lazy('citasyconsultas:gestion_cita')
 

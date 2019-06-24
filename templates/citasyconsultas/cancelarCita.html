@@ -1,0 +1,27 @@
+<div class="modal-dialog modal-lg-4">
+	<div class="modal-content">
+
+		<form action=" {% url 'citasyconsultas:cancelar_cita' object.pk %}" method="post">
+
+             <div class="modal-body">
+				{% csrf_token %}
+				<div class="mdl-dialog__content" align="center">
+					<h4> ¿Realmente desea cancelar esta Cita? </h4>
+					<br>
+					<h7> Si cancela la cita, ésta será eliminada </h7>
+					<br><br>
+					<h5> Cita No. {{object.pk}}, de la Fecha: {{object.fecCon}} </h5>
+					<h5> del Paciente: {{object.pacien}} </h5>
+				</div>
+			</div>
+					<div class="modal-footer">
+			                                <div class="col-lg-8 text-right"> 
+
+					<button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" style="background-color:#f6685e;color:white" type="submit">Cancelar Cita</button>
+
+					 <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" onclick="return cerrar_modal()">Regresar</button>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>

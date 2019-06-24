@@ -1,14 +1,7 @@
-{% extends 'base/base.html'%}
 
-{% block title %} Creacion de citas {% endblock %}
-
-{% block encabezado %} Creacion de citas {% endblock %}
-{% block content %}
-
-<h3>Nueva Cita</h3>
 <div class="container">
 	<div class="row">
-		<form action="" method="POST">
+		<form action="{% url 'citasyconsultas:modificar_cita' object.pk %}" method="POST">
 			{% csrf_token %}
 			
 			<div class="panel-body">
@@ -18,9 +11,8 @@
 			</div>
 				
 			<div>
-				<button type="submit" class="btn btn-success" style="color:white; background-color:#33CC00">Aceptar</button>
-				 || 
-				<a href="{% url 'citasyconsultas:gestion_cita' %}" class="btn btn-success" style="color:white; background-color:#f6685e">Cancelar</a>
+				<button type="submit" class="btn btn-success" style="color:white; background-color:#33CC00">Guardar Cambios</button>
+				<button type="button" class="btn btn-success" style="background-color:#f6685e;color:white" onclick="return cerrar_modal()">Cancelar</button>
    			</div>
 		</form>
 	</div>
@@ -76,6 +68,3 @@ $(document).ready(function()
     } );
 });
 </script>
-
-
-{% endblock %}

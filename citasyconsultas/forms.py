@@ -8,14 +8,14 @@ class NuevaCitaForm(forms.ModelForm):
 	class Meta:
 		model = Cita
 		fields = {
-			'numCit', 'pacien', 'fecCon', 'horCon', 'servic','estado',
+			'numCit', 'pacien', 'fecCon', 'horCon', 'servic',
 		}
 		labels = {
 			'numCit': 'Número de Cita',
 			'pacien': 'Paciente ',
-			'fecCon': 'Fecha de Consulta',
-			'horCon': 'Hora de Consulta ',
-			'servic': 'Motivo de Consulta',
+			'fecCon': 'Fecha de Cita',
+			'horCon': 'Hora ',
+			'servic': 'Motivo de la Cita ',
 		}
 		widgets ={
 			'fecCon' : forms.DateInput(attrs={'class':'datepicker'}),
@@ -71,4 +71,23 @@ class ConsultaForm(forms.ModelForm):
 		}
 		labels={
 		'paciente':'Paciente', 'servicios':'Servicio que se aplico','diagnostico':'diagnostico','dosis':'dosis','medicamentos':'medicamentos recetados','estado':'colocar 1 para terminar consulta',
+		}
+
+
+class ModificarCitaForm(forms.ModelForm):
+	class Meta:
+		model = Cita
+		fields = {
+			'pacien', 'fecCon', 'horCon', 'servic','estado',
+		}
+		labels = {
+			
+			'pacien': 'Paciente ',
+			'fecCon': 'Fecha de Cita',
+			'horCon': 'Hora ',
+			'servic': 'Motivo de la Cita ',
+			'estado': 'Estado ( 0-> Activa, 1-> Finalizada)'
+		}
+		widgets ={
+			'fecCon' : forms.DateInput(attrs={'class':'datepicker'}),
 		}
