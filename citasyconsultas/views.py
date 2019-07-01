@@ -168,16 +168,18 @@ def iniciarSesion(request):
     )
 
 def autenticarUsuario(request):
+    
         username = request.POST.get('username')
         password = request.POST.get('password')
         filtro = Usuario.objects.filter(codUsu=username).filter(pasUsu=password).values('tipo_usuario')
-        
-        if filtro[0].get('tipo_usuario')=='m':           
-            return redirect('citasyconsultas:listado_consulta')
-            
-        else:
-            if filtro[0].get('tipo_usuario')=='s': 
-                return redirect('citasyconsultas:gestion_cita')              
+        if filtro:
+            if filtro[0].get('tipo_usuario')=='m':           
+                return redirect('citasyconsultas:listado_consulta')            
+            else:
+                if filtro[0].get('tipo_usuario')=='s': 
+                    return redirect('citasyconsultas:gestion_cita')
+        else:   
+            return render(request,'citasyconsultas/errorUsuario.html')
                 
                 
         
@@ -190,6 +192,9 @@ def ir_a_medicamento(request):
 
 def ir_a_servicio(request):
     return redirect('citasyconsultas:listado_servicio')
+
+
+
 
 
         
