@@ -31,23 +31,27 @@ urlpatterns=[
 	path('eliminarServicio/<int:pk>/', eliminarServicio.as_view(), name='eliminar_servicio'),
 
 	#views para exp
-	path('gestionExpediente/', BuscarExpediente.as_view(), name='listado_expediente'),
+	path('gestionExpediente/', GestionExpediente.as_view(), name='listado_expediente'),
 	path('crearExpediente/', crearExpediente.as_view(), name='crear_expediente'),
 	path('modificarExpediente/<int:pk>/', modificarExpediente.as_view(), name='modificar_expediente'),
-
+# MIO =================================================
+    path('ver_expediente/<int:pk>/', VerExpediente.as_view(), name='ver_expediente'),
+	path('buscar_exp/', BuscarExpediente, name = 'buscar_exp'),
+# ======================================================
 
 	#views para consulta
 	path('consultasPendientes/', consultasPendientes, name='listado_consulta'),
 	path('modificarConsulta/<int:pk>/', modificarConsulta.as_view(), name='modificar_consulta'),
 	path('crearConsulta', crearConsulta.as_view(), name='crear_consulta'),
 
+    # VIEWS PARA  CONTROL DE USUARIOS
 	path('iniciarSesion', iniciarSesion, name='inicar_sesion'),
 	path('autenticarUsuario', autenticarUsuario, name='autenticar_usuario'),
 	path('cerrarSesion', cerrarSesion, name='cerrar_sesion'),
 
-	path('gestionMedicamento/', ir_a_medicamento, name='ir_a_medicamento'),
-	path('gestionServicio/', ir_a_servicio, name='ir_a_servicio'),
+	#
+	path('gestionMedicamento', ir_a_medicamento, name='ir_a_medicamento'),
+	path('gestionServicio', ir_a_servicio, name='ir_a_servicio'),
 
-	path('ajax/load_mun/', load_municipio, name='load_mun'),
 ]
 

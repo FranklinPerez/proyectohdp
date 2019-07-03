@@ -1,6 +1,5 @@
 from django.db.models import Q
 from django import forms
-from dal import autocomplete
 
 
 from django.shortcuts import render
@@ -82,6 +81,15 @@ def ConfirmarCancelar(request):
     return render(request, 'citasyconsultas/confirmCancel.html')
           
 #==========================================================================
+#REALIZAR COBRO============================================================
+def BuscarExpediente(request):
+    queryNom = request.GET.get('expNom')
+    queryApe = request.GET.get('expApe')
+    qset = (Q(nomPaciente__iexact = queryNom) & Q(apelPaciente__iexact = queryApe))
+    results = Paciente.objects.filter(qset).exists()
+
+    return render(request, 'citasyconsultas/buscarExp.html',context={'exp':results})
+#==========================================================================
 
 #modelos de Medicamento
 class ListadoMedicamento(ListView):
@@ -119,7 +127,7 @@ class crearServicio(CreateView):
 class modificarServicio(UpdateView):
     model = Servicio
     template_name = 'citasyconsultas/crearServicio.html'
-    form_class = ServicioForm
+    form_class = ModificarServicioForm
     success_url = reverse_lazy('citasyconsultas:listado_servicio')
 
 class eliminarServicio(DeleteView):
@@ -130,7 +138,7 @@ class eliminarServicio(DeleteView):
 
 
 
-class BuscarExpediente(ListView):
+class GestionExpediente(ListView):
     model = Paciente
     template_name = 'citasyconsultas/gestionExpediente.html'
     context_object_name = 'expedientes'
@@ -143,9 +151,12 @@ class crearExpediente(CreateView):
 class modificarExpediente(UpdateView):
     model = Paciente
     template_name = 'citasyconsultas/crearExpediente.html'
-    form_class = ExpedienteForm
+    form_class = ModificarExpedienteForm
     success_url = reverse_lazy('citasyconsultas:listado_expediente')
 
+class VerExpediente(DetailView):
+    template_name = 'citasyconsultas/verExpediente.html'
+    model = Paciente
 
 
 def consultasPendientes(request):
@@ -174,16 +185,18 @@ def iniciarSesion(request):
     )
 
 def autenticarUsuario(request):
+    
         username = request.POST.get('username')
         password = request.POST.get('password')
         filtro = Usuario.objects.filter(codUsu=username).filter(pasUsu=password).values('tipo_usuario')
-        
-        if filtro[0].get('tipo_usuario')=='m':           
-            return redirect('citasyconsultas:listado_consulta')
-            
-        else:
-            if filtro[0].get('tipo_usuario')=='s': 
-                return redirect('citasyconsultas:gestion_cita')              
+        if filtro:
+            if filtro[0].get('tipo_usuario')=='m':           
+                return redirect('citasyconsultas:listado_consulta')            
+            else:
+                if filtro[0].get('tipo_usuario')=='s': 
+                    return redirect('citasyconsultas:gestion_cita')
+        else:   
+            return render(request,'citasyconsultas/errorUsuario.html')
                 
                 
         
@@ -202,6 +215,7 @@ def load_municipio(request):
     dep_id = request.GET.get('depResidencia')
     municip = munResidencia.objects.filter(numDep = dep_id).order_by('nomDep')
     return render (request, 'hr/mun_dropdown_list.html',{'municip':municip})
+
 
 
         

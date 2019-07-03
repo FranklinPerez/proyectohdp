@@ -1,33 +1,30 @@
+
 <div class="modal-dialog modal-lg-4">
     <div class="modal-content">
         <div class="container">
     <div class="row">
 
-        <form action=" {% url 'citasyconsultas:verCita' object.pk %}" method="post">
+        <form action=" {% url 'citasyconsultas:ver_expediente' object.pk %}" method="post">
 
              <div class="modal-body">
-                {% csrf_token %}
+      
                 <div class="mdl-dialog__content" align="center">
-                    <h4> Ver Cita </h4>
+                    <h4> Expediente del Paciente: {{object.nomPaciente}} {{object.apelPaciente}} </h4>
                     
 
 
-                            <label>Numero de cita:  {{ object.numCit }} </label>
+                            <label>No. Expediente:  {{ object.numExpediente }} </label>
                             <p></p>
-                            <label>Fecha de cita:  {{ object.fecCon }}</label>
+                            <label>Paciente: {{object.apelPaciente}}, {{ object.nomPaciente}}</label>
                             <p></p>
-                            <label>Paciente:  {{ object.pacien }}</label>
+                            <label>Fecha de Nacimiento:  {{ object.fechaNacimiento }}</label>
                             <p></p>
-                            <label>Hora de cita:  {{ object.horCon }}</label>
+                            <label>E-mail:  {{ object.emailPaciente }}</label>
                             <p></p>
-                             <label>Servicio:  {{ object.servic }}</label>
+                             <label>Direccion:  {{ object.depResidencia }}, {{object.munResidencia}}</label>
+                          	<p></p>
+                          	<label>Telefono:  {{ object.telefono }}</label>
                             <p></p>
-                            <label>Fecha de Solicitud:  {{ object.fecCre }}</label>
-                            <p></p>
-                            <label>Estado :  {{ object.estado }}</label>
-                            <label>    (0-> Activa,   1-> Finalizada)</label>
-                            <p></p>
- 
                         
         <table/>
 

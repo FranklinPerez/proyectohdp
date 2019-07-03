@@ -4,7 +4,7 @@
 
 {% block encabezado %} Gestion de Servicio {% endblock %}
 {% block content %}
-<h3>Aqui puede registrar, modificar y eliminar los servicios</h3>
+<h3>Registrar, modificar y eliminar servicios</h3>
 <div class="container">
 	<div class="row">
 
@@ -18,10 +18,9 @@
 		<tr style="text-align: center">
 			<th style="text-align: center">Codigo</th>
 			<th style="text-align: center">Nombre</th>
-			<th style="text-align: center">Precio</th>
+			<th style="text-align: center">Precio ($)</th>
 			<th style="text-align: center">Duracion (minutos)</th>
-			<th style="text-align: center">Editar</th>
-            <th style="text-align: center">Eliminar</th>
+	
 		</tr>
 		{% for ser in servicios %}
 					<tr>
@@ -30,10 +29,10 @@
 						<td>{{ser.precio}}</td>
 						<td>{{ser.duraci}}</td>
 						<td style="text-align:center;">
-							<a href="#" onclick="return abrir_modal('{% url 'citasyconsultas:modificar_servicio' ser.pk %}', 'Modificar/{{ ser.codSer }}')" class="btn"><span class="glyphicon glyphicon-pencil">Editar</a>
+							<a href="#" onclick="return abrir_modal('{% url 'citasyconsultas:modificar_servicio' ser.pk %}', 'Modificar Servicio: {{ ser.codSer }}')" class="btn"><span class="glyphicon glyphicon-pencil">Editar</a>
 							</td>
 						<td style="text-align:center;">
-							<a href="#" onclick="return abrir_modal('{% url 'citasyconsultas:eliminar_servicio' ser.pk %}', 'Emiminar/{{ ser.codSer}}')" class="btn"><span class="glyphicon glyphicon-trash"></span>Eliminar</a
+							<a href="#" onclick="return abrir_modal('{% url 'citasyconsultas:eliminar_servicio' ser.pk %}', 'Emiminar Servicio: {{ ser.codSer}}')" class="btn"><span class="glyphicon glyphicon-trash"></span>Eliminar</a
 								>
 					</tr>
 		{% endfor %}

@@ -40,20 +40,5 @@ $(function(){
         yearRange: "1900:3000",
     });
 });
->
-</script>
 
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-<script>
-$("#depResidencia").change(function(){
-    var url = $("#ExpedienteForm").attr("data-mun-url");
-    var munId = $(this).val();
-    $.ajax({
-        url: url,
-        data:{'depResidencia': depResidencia},
-        success: function(data){
-            $.(#"munResidencia").html(data);
-        }
-    });
-});
 </script>

@@ -15,12 +15,14 @@
 
 <!-- PARA MIENTRAS PONGO ESTE BOTON AQUI-->
 	<a href="{% url 'citasyconsultas:citasParaHoy' %}" class="btn btn-success" style="color:white; background-color:#33CC00">Citas para Hoy</a>.
-	<div><a href="{% url 'citasyconsultas:listado_expediente' %}" class="btn btn-success" style="color:white; background-color:#f6685e">Expedientes</a></div>
+	<div><a href="{% url 'citasyconsultas:listado_expediente' %}" class="btn btn-success" style="color:white; background-color:#f6685e">Expedientes</a></div>.
+	
+	<a href="{% url 'citasyconsultas:buscar_exp' %}" class="btn btn-success" style="color:white; background-color:#33CC00">Buscar Expediente</a></a> 
 
 </div>
 <br><br><br>
 <div class="row text-center">
-	<table  class="table table- striped table-sm">
+	<table  class="table table- stripped">
 		<tr style="text-align: center">
 			<th style="text-align: center">Numero de Cita</th>
 			<th style="text-align: center">Fecha de Cita</th>
@@ -51,7 +53,7 @@
 						</td>
 
 						<td style="text-align:center;">
-							<a onclick="return abrir_modal('{% url 'citasyconsultas:crear_consulta' %}', 'Crear consulta al paciente: {{con.pacien.nomPaciente}}')" class="btn btn-success" style="color:white; background-color:#33CC00" value="Crear consulta">Crear Consulta</a>
+							<a onclick="return abrir_modal('{% url 'citasyconsultas:crear_consulta' %}', 'Crear consulta al paciente')" class="btn btn-success" style="color:white; background-color:#33CC00" value="Crear consulta">Crear Consulta</a>
 						</td>
 					</tr>
 		{% endfor %}

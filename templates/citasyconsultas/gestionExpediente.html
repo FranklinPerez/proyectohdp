@@ -6,7 +6,7 @@
 {% block content %}
 
 
-<h3>Aqui puede registrar y modificar los expedientes</h3><br>
+<h3>Control de Expedientes</h3><br>
 <div><a onclick="return abrir_modal('{% url 'citasyconsultas:crear_expediente' %}', 'Crear expediente')" class="btn btn-success" style="color:white; background-color:#33CC00">
    Registrar Nuevo Paciente
 		</a>
@@ -18,19 +18,20 @@
 <div class="row text-center">
 <table  class="table ">
 		<tr style="text-align: center">
-			<th style="text-align: center">No. de Expediente</th>
-			<th style="text-align: center">Nombre</th>
-			<th style="text-align: center">Apellido</th>
-			<th style="text-align: center">Editar Paciente</th>
+			<th style="text-align: center">No. Expediente</th>
+			<th style="text-align: center">Paciente</th>
+			
 		</tr>
 		{% for pac in expedientes %}
 					<tr>
 						<td>{{pac.numExpediente}}</td>
-						<td>{{pac.nomPaciente}}</td>
-						<td>{{pac.apelPaciente}}</td>
+						<td>{{pac.apelPaciente}}, {{pac.nomPaciente}}</td>
+						
 						<td style="text-align:center;">
-							<a href="#" onclick="return abrir_modal('{% url 'citasyconsultas:modificar_expediente' pac.pk %}', 'Modificar/{{ pac.numExpediente }}')" class="btn"><span class="glyphicon glyphicon-pencil">Editar {{pac.nomPaciente}}
-							</a>
+							<a href="#" onclick="return abrir_modal('{% url 'citasyconsultas:modificar_expediente' pac.pk %}', 'Modificar/{{ pac.numExpediente }}')" class="btn"><span class="glyphicon glyphicon-pencil">Editar</a>
+						</td>
+						<td style="text-align:center;">
+							<a href="#" onclick="return abrir_modal('{% url 'citasyconsultas:ver_expediente' pac.pk %}', 'Detalle del Expediente')" class="btn"><span class="glyphicon glyphicon-pencil">Ver</a>
 						</td>
 					</tr>
 		{% endfor %}

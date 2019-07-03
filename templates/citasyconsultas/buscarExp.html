@@ -1,0 +1,114 @@
+
+{% extends 'base/base.html'%}
+
+{% block title %} Buacar Expediente {% endblock %}
+
+{% block encabezado %} Buacar Expediente  {% endblock %}
+{% block content %}
+
+<div>
+	<h3>Buscar Expediente</h3>
+
+	<form action="." method="GET">
+	
+		<label for="expNom">Nombre</label>
+		<input type="text" name="expNom"  required="" onkeypress=" return soloLetras(event) "> 
+		<label for="expApe">Apellido</label>
+		<input type="text" name="expApe"  required="" onkeypress=" return soloLetras(event) "> 
+		||
+		 <input type="submit" value="Buscar" class="btn btn-success" style="color:white; background-color:#33CC00">
+		 <br><br><br>
+		<div class="row text-center">
+		{% if exp %}
+			<table  class="table table-sm">
+				<tr style="text-align: center">
+					<th style="text-align: center">No. Expediente</th>
+					<th style="text-align: center">Paciente</th>
+					<th style="text-align: center">Fecha de Nacimiento</th>
+		            <th style="text-align: center">E-mail</th>
+		            <th style="text-align: center">Telefono</th>
+		            <th style="text-align: center">Direccion</th>
+				</tr>
+				{% for e in exp %}
+						<tr>
+							<td>{{e.numExpediente}}</td>
+							<td>{{e.apelPaciente}}, {{e.nomPaciente}}</td>
+							<td>{{e.fechaNacimiento}}</td>
+							<td>{{e.emailPaciente}}</td>
+							<td>{{e.telefono}}</td>
+							<td>{{e.depResidencia}}, {{e.munResidencia}}</td>
+							<td style="text-align:center;">
+								<a href="#" onclick="return abrir_modal('{% url 'citasyconsultas:modificar_expediente' e.pk %}', 'Modificar Expediente: {{ pac.numExpediente }}')" class="btn"><span class="glyphicon glyphicon-pencil"></span>Editar</a>
+							</td>
+						</tr>
+				{% endfor %}
+			</table>
+		{% else %}
+			<h4  >No se ha encontrado expediente para ese paciente</h4>
+		{% endif %}
+			<br><br><br><br>
+		</div>
+			<div>
+			<a href="{% url 'citasyconsultas:gestion_cita' %}" class="btn btn-success" style="color:white; background-color:#f6685e">Regresar</a></div>
+		
+	</form>	
+	
+
+</div>
+
+</div>
+
+<div id="popup">
+
+</div>
+<script>
+var modal;
+
+
+function soloLetras(e){
+	key = e.keyCode || e.which;
+	teclado = String.fromCharCode(key).toLowerCase();
+	letras = " abcdefghijklmnñopqrstuvwxyz";
+	especiales = "8-37-38-46-164";
+	teclado_especial = false;
+
+	for ( i in especiales ){
+		if( key == especiales[i]){
+			teclado_especial = true;break;
+		}
+	}
+
+	if(letras.indexOf(teclado) == -1 && !teclado_especial){
+		return false;
+	}
+}
+
+function abrir_modal(url, titulo)
+{
+    modal = $('#popup').dialog(
+    {
+        title: titulo,
+        modal: true,
+        width: 600,
+        resizable: false
+    }).dialog('open').load(url)
+}
+
+function cerrar_modal()
+{
+    modal.dialog("close");
+}
+
+$(document).ready(function()
+{
+    var table = $('#tabla').dataTable( {
+        "language": {
+                url: "/static/localizacion/es_ES.json"
+        }
+    } );
+});
+
+
+</script>
+
+{% endblock %}

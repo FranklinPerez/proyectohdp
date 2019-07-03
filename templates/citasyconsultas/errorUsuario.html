@@ -7,12 +7,11 @@
         <link rel="stylesheet" type="text/css" href="{% static 'css/archivo.css' %}">       
     </head>
  
- <body>
-    
-    <form action="{% url 'citasyconsultas:autenticar_usuario'%}" method="post">
-   {% csrf_token %}
-        
-        <div class="wrapper fadeInDown">
+ <body>    
+        {% csrf_token %}
+
+
+<div class="wrapper fadeInDown">
             <div id="formContent" style ="margin-top:0px">
                 <!-- Tabs Titles -->
                 <div id="formFooter">
@@ -21,20 +20,22 @@
                         <ul class = "col"><h1 class="text-white">Expediente Cl&iacutenico</h1></ul>   
                     </div>                     
                 </div>
-                <!-- Icon -->
+               
                 <div class="fadeIn first" style ="margin-top:30px ;margin-bottom:30px;">
-                    
+                    <h3>Error de autenticacion</h3>
+                    <h3>Usuario y/o contrasena no validos</h3>
+    <a href="{% url 'citasyconsultas:inicar_sesion' %}" class="btn btn-success" style="color:white; background-color:#33CC00">Volver a intentar</a>
                 </div>
-                <!-- Login Form -->
-                <form>    
-                    <input type ="text" id = "id_username" class = "fadeIn second" name= "username" placeholder="Usuario">
-                    <input  type = "password" class ="fadeIn third"  name = "password" required id = "id_password" placeholder="Contraseña"/>
-                  
-                    <input type = "submit"  value= "login" style ="margin-top:20px;margin-bottom:60px;">
-                </form>
+              
+                   
+                    
+                
                 
             </div>
         </div>
-    </form>
+
+    <div>
+        <
+</div>
 </body>    
 </html>

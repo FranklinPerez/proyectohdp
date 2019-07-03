@@ -25,7 +25,7 @@
 </div>
 <br><br><br>
 
-<h3>Aqui puede completar los datos de las consultas pendientes para darlas por terminadas</h3>
+<h3>Completar los datos de las consultas pendientes para darlas por terminadas</h3>
 
 <br><br><br>
 <div class="row text-center">
@@ -43,7 +43,7 @@
 						<td>{{con.paciente.nomPaciente}}</td>
 						
 						<td style="text-align:center;">
-							<a onclick="return abrir_modal('{% url 'citasyconsultas:modificar_consulta' con.pk %}', 'Terminar consulta al paciente: {{con.pacien.nomPaciente}}')" class="btn btn-success" style="color:white; background-color:#33CC00" value="Modificar consulta">Terminar Consulta</a>
+							<a onclick="return abrir_modal('{% url 'citasyconsultas:modificar_consulta' con.pk %}', 'Terminar consulta al paciente: {{con.pacien}}')" class="btn btn-success" style="color:white; background-color:#33CC00" value="Modificar consulta">Terminar Consulta</a>
 						</td>
 					</tr>
 		{% endfor %}

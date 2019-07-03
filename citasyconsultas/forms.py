@@ -68,9 +68,6 @@ class ExpedienteForm(forms.ModelForm):
 		widgets ={
 			'fechaNacimiento' : forms.DateInput(attrs={'class':'datepicker'}),
 		}
-		def __init__(self, *args, **kwargs):
-			super().__init__(*args, **kwargs)
-			self.fields['munResidencia'].queryset = Municipio.objects.none()
 
 
 class ConsultaForm(forms.ModelForm):
@@ -82,7 +79,7 @@ class ConsultaForm(forms.ModelForm):
 		labels={
 		'paciente':'Paciente', 'servicios':'Servicio que se aplico','diagnostico':'diagnostico','dosis':'dosis','medicamentos':'medicamentos recetados','estado':'colocar 1 para terminar consulta',
 		}
-
+# VISTAS ESPECIALES PARA MODIFICAR====================================0
 class ModificarCitaForm(forms.ModelForm):
 	class Meta:
 		model = Cita
@@ -100,6 +97,37 @@ class ModificarCitaForm(forms.ModelForm):
 		widgets ={
 			'fecCon' : forms.DateInput(attrs={'class':'datepicker'}),
 		}
+
+class ModificarServicioForm(forms.ModelForm):
+	class Meta:
+		model = Servicio
+		fields = (
+			'nomSer','precio','duraci',
+		)
+		labels = {
+		    'nomSer':'Nombre',
+		    'precio':'Precio ($)',
+		    'duraci':'Duracion (Min.)',
+		}	
+
+class ModificarExpedienteForm(forms.ModelForm):
+	class Meta:
+		model = Paciente
+		fields = (
+			'nomPaciente', 'apelPaciente', 'fechaNacimiento', 'emailPaciente',
+			'depResidencia', 'munResidencia', 'telefono',
+		)
+		labels = {
+			"nomPaciente" : "Nombre del paciente: ",
+			"apelPaciente" : "Apellido del paciente: ", "fechaNacimiento" : "Fecha de nacimiento: ",
+			"emailPaciente" : "e-Mail: ", "depResidencia" : "Departamento: ", "munResidencia" : "Municipio: ", 
+			"telefono" : "Teléfono de contacto: ",
+		}
+		widgets ={
+			'fechaNacimiento' : forms.DateInput(attrs={'class':'datepicker'}),
+		}
+
+#===================================================================================
 
 class nuevaConsultaForm(forms.ModelForm):
 	class Meta:
