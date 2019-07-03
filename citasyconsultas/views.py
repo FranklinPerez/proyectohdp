@@ -1,4 +1,6 @@
 from django.db.models import Q
+from django import forms
+from dal import autocomplete
 
 
 from django.shortcuts import render
@@ -15,7 +17,7 @@ from django.views import View
 
 from django.http import HttpResponseRedirect
 from django.core import serializers
-from django.views.generic import TemplateView
+
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
 from django.contrib.auth import authenticate, login
@@ -54,7 +56,7 @@ class CancelarCita(DeleteView):
 
 def citasParaHoy(request):
     fechahoy=datetime.now().date()
-    citas=Cita.objects.filter(fecCitHoy__contains=fechahoy)            
+    citas=Cita.objects.filter(fecCon__contains=fechahoy)            
     return render(request, 'citasyconsultas/citasParaHoy.html',context={'citas':citas})
 
 class verCita(DetailView):
@@ -75,7 +77,11 @@ def RealizarCobro(request):
     return render(request, 'citasyconsultas/cobro.html',context={'cita_a_cobrar':results})
           
 #==========================================================================
-
+# CONFIRMACION DE CANCELACION DE CITA======================================
+def ConfirmarCancelar(request):
+    return render(request, 'citasyconsultas/confirmCancel.html')
+          
+#==========================================================================
 
 #modelos de Medicamento
 class ListadoMedicamento(ListView):
@@ -190,6 +196,12 @@ def ir_a_medicamento(request):
 
 def ir_a_servicio(request):
     return redirect('citasyconsultas:listado_servicio')
+
+
+def load_municipio(request):
+    dep_id = request.GET.get('depResidencia')
+    municip = munResidencia.objects.filter(numDep = dep_id).order_by('nomDep')
+    return render (request, 'hr/mun_dropdown_list.html',{'municip':municip})
 
 
         

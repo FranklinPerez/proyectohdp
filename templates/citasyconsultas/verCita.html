@@ -11,22 +11,24 @@
                     <h4> Ver Cita </h4>
                     
 
-                      <div class="row">
-                        <div class="col-md-12">
 
                             <label>Numero de cita:  {{ object.numCit }} </label>
                             <p></p>
-                            <label>NOMBRE:  {{ object.pacien }}</label>
-                            <p></p>
                             <label>Fecha de cita:  {{ object.fecCon }}</label>
+                            <p></p>
+                            <label>Paciente:  {{ object.pacien }}</label>
                             <p></p>
                             <label>Hora de cita:  {{ object.horCon }}</label>
                             <p></p>
                              <label>Servicio:  {{ object.servic }}</label>
                             <p></p>
+                            <label>Fecha de Solicitud:  {{ object.fecCre }}</label>
+                            <p></p>
+                            <label>Estado :  {{ object.estado }}</label>
+                            <label> 0-> Activa,   1-> Finalizada</label>
+                            <p></p>
                             
-                        </div>
-                    </div>
+                  
             
 
      
@@ -41,7 +43,7 @@
                     <div class="modal-footer">
                                             <div class="col-lg-8 text-right"> 
 
-                   <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" onclick="return cerrar_modal()">OK</button>
+                   <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" onclick="return cerrar_modal()">Cerrar</button>
                         </div>
 
                     

@@ -8,9 +8,7 @@
 <div class="container">
 	<div class="row">
 
-	<a onclick="return abrir_modal('{% url 'citasyconsultas:crear_servicio' %}', 'Crear servicio')" class="btn btn-success" style="color:white; background-color:#33CC00">
-   Registrar Nuevo Servicio
-		</a>---
+	<a onclick="return abrir_modal('{% url 'citasyconsultas:crear_servicio' %}', 'Crear servicio')" class="btn btn-success" style="color:white; background-color:#33CC00">Nuevo Servicio</a>.
 		<a href="{% url 'citasyconsultas:listado_consulta' %}" class="btn btn-success" style="color:white; background-color:#f6685e">Regresar a Consultas Pendientes</a>
 	</div>
 </div>
@@ -18,12 +16,12 @@
 <div class="row text-center">
 <table  class="table table-sm">
 		<tr style="text-align: center">
-			<th style="text-align: center">Codigo del Servicio</th>
-			<th style="text-align: center">Nombre del Servicio</th>
-			<th style="text-align: center">Precio del Servicio</th>
-			<th style="text-align: center">Duracion del Servicio (minutos)</th>
-			<th style="text-align: center">Editar Servicio</th>
-            <th style="text-align: center">Eliminar Servicio</th>
+			<th style="text-align: center">Codigo</th>
+			<th style="text-align: center">Nombre</th>
+			<th style="text-align: center">Precio</th>
+			<th style="text-align: center">Duracion (minutos)</th>
+			<th style="text-align: center">Editar</th>
+            <th style="text-align: center">Eliminar</th>
 		</tr>
 		{% for ser in servicios %}
 					<tr>
@@ -32,11 +30,11 @@
 						<td>{{ser.precio}}</td>
 						<td>{{ser.duraci}}</td>
 						<td style="text-align:center;">
-							<a href="#" onclick="return abrir_modal('{% url 'citasyconsultas:modificar_servicio' ser.pk %}', 'Modificar/{{ ser.codSer }}')" class="btn"><span class="glyphicon glyphicon-pencil">Editar {{ser.nomSer}}</a>
+							<a href="#" onclick="return abrir_modal('{% url 'citasyconsultas:modificar_servicio' ser.pk %}', 'Modificar/{{ ser.codSer }}')" class="btn"><span class="glyphicon glyphicon-pencil">Editar</a>
 							</td>
 						<td style="text-align:center;">
-							<a href="#" onclick="return abrir_modal('{% url 'citasyconsultas:eliminar_servicio' ser.pk %}', 'Emiminar/{{ ser.codSer}}')" class="btn"><span class="glyphicon glyphicon-trash"></span>Eliminar {{ser.nomSer}}</a
-								td>
+							<a href="#" onclick="return abrir_modal('{% url 'citasyconsultas:eliminar_servicio' ser.pk %}', 'Emiminar/{{ ser.codSer}}')" class="btn"><span class="glyphicon glyphicon-trash"></span>Eliminar</a
+								>
 					</tr>
 		{% endfor %}
 	</table>

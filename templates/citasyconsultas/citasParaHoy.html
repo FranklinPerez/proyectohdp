@@ -6,7 +6,7 @@
 {% block content %}
 
 <br>
-<div><h3>Aqui puede ver las citas de este dia</h3></div><br>
+<div><h3>Citas de este dia</h3></div><br>
 	<div><a href="{% url 'citasyconsultas:gestion_cita' %}" class="btn btn-success" style="color:white; background-color:#f6685e">Regresar a Todas las Citas</a></div>
 <br><br>
 
@@ -15,10 +15,11 @@
 
 <table  class="table ">
 		<tr style="text-align: center">
-			<th style="text-align: center">Numero de cita</th>
-
-
-			<th style="text-align: center">Ver Cita</th>
+			<th style="text-align: center">Numero</th>
+			<th style="text-align: center">Hora de Cita</th>
+			<th style="text-align: center">Paciente</th>
+			
+		
 		
 			
 			
@@ -27,9 +28,11 @@
 		{% for cit in citas %}
 					<tr>
 						<td>{{cit.numCit}}</td>
-
+						<td>{{cit.horCon}}</td>
+						<td>{{cit.pacien}}</td>
+						
 						<td style="text-align:center;">
-							<a href="#" onclick="return abrir_modal('{% url 'citasyconsultas:verCita' cit.pk %}', 'Ver Cita Numero: -->> {{ cit.numCit }}')" class="btn"><span class="glyphicon glyphicon-pencil">Ver Cita</a>
+							<a href="#" onclick="return abrir_modal('{% url 'citasyconsultas:verCita' cit.pk %}', 'Cita Numero: -->> {{ cit.numCit }}')" class="btn"><span class="glyphicon glyphicon-pencil">Ver Cita</a>
 							</td>
 
 					</tr>
@@ -54,7 +57,7 @@ function abrir_modal(url, titulo)
     {
         title: titulo,
         modal: true,
-        width: 600,
+        width: 400,
         resizable: false
     }).dialog('open').load(url)
 }

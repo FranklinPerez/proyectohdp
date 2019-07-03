@@ -16,6 +16,7 @@ urlpatterns=[
 	path('gestion_cita/', GestionCitas.as_view(), name = 'gestion_cita'),
 	path('modificar_cita/<int:pk>/', ModificarCita.as_view(), name = 'modificar_cita'),
 	path('cancelar_cita/<int:pk>/', CancelarCita.as_view(), name = 'cancelar_cita'),
+	path('confirmar_cancelar/', ConfirmarCancelar, name = 'confirmar_cancelar'),
 	path('cobrar/', RealizarCobro, name = 'cobrar'),
 	path('citasParaHoy/', citasParaHoy, name='citasParaHoy'),
 	
@@ -44,7 +45,9 @@ urlpatterns=[
 	path('autenticarUsuario', autenticarUsuario, name='autenticar_usuario'),
 	path('cerrarSesion', cerrarSesion, name='cerrar_sesion'),
 
-	path('gestionMedicamento', ir_a_medicamento, name='ir_a_medicamento'),
-	path('gestionServicio', ir_a_servicio, name='ir_a_servicio'),
+	path('gestionMedicamento/', ir_a_medicamento, name='ir_a_medicamento'),
+	path('gestionServicio/', ir_a_servicio, name='ir_a_servicio'),
+
+	path('ajax/load_mun/', load_municipio, name='load_mun'),
 ]
 
