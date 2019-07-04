@@ -1,9 +1,16 @@
+{% extends 'base/base.html'%}
+
+{% block title %} Crear Expediente {% endblock %}
+
+{% block encabezado %} Crear Expediente {% endblock %}
+{% block content %}
+
 <div >
         <div class="modal-content">
         {% if object %}
-        <form role="form" action="{% url 'citasyconsultas:modificar_expediente' object.pk %}" method="post">
+        <form id="expForm" action="{% url 'citasyconsultas:modificar_expediente' object.pk %}" method="post">
         {% else %}
-        <form role="form" id="ExpedienteForm" action="{% url 'citasyconsultas:crear_expediente' %}" method="post" data-mun-url=" {% url 'citasyconsultas:load_mun' %}">
+        <form id="expForm" id="ExpedienteForm" action="{% url 'citasyconsultas:crear_expediente' %}" method="post" >
         {% endif %}
             <div class="modal-body">
                                 {% csrf_token %}
@@ -15,30 +22,55 @@
                                         
                         <div class="modal-footer">
                                 <div class="col-lg-12 text-right">
-                                       <input type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" name="submit" value="Guardar">
-                                        <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" style="background-color:#f6685e;color:white" onclick="return cerrar_modal()">
-                                                Cancelar
-                                        </button>
+                                       <input type="submit" class="btn-success" name="submit" value="Guardar" 
+                                       style="color:white; background-color: #33CC00">
+                                       
+                                       <a href="{% url 'citasyconsultas:listado_expediente' %}" class="btn btn-success" style="color:white; background-color:#f6685e">Cancelar</a>
+
                                 </div>
                         </div>
                 </form>
         </div>
 </div>
 
-<script >
-    //<!--Para el  datepicker-->
-$(function(){
-    $(".datepicker").datepicker({
-        monthNames: [ "Enero","Ferero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Dicimbre" ],
-        monthNamesShort: [ "Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic" ], 
-        dayNames: [ "Domingo", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado" ], 
-        dayNamesShort: [ "Dom", "Lun", "Mar", "Mie", "jue", "Vie", "Sab" ], 
-        dayNamesMin: [ "Dom", "Lun", "Mar", "Mie", "jue", "Vie", "Sab"],
-        dateFormat: "dd/mm/yy",
-        changeYear: true,
-        changeMonth: true,
-        yearRange: "1900:3000",
+<script type="text/javascript">
+
+    $(document).ready(function(){
+        $("#id_depResidencia").on("change", getMunicipios);    
     });
-});
+
+    function getMunicipios(){
+        var departamentoId = $("#id_depResidencia").val();
+        if (departamentoId){
+            $("#id_munResidencia").html("");
+            var request = $.ajax({
+                type: "GET",
+                url: "{% url 'citasyconsultas:load_Municipio' %}",
+                data: {
+                    "depId":departamentoId
+                },
+            });
+        request.done(function(response){
+            $("#id_depResidencia").trigger("change")
+        });
+        }
+    }
+
+    //<!--Para el  datepicker-->
+    $(function(){
+        $(".datepicker").datepicker({
+            monthNames: [ "Enero","Ferero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Dicimbre" ],
+            monthNamesShort: [ "Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic" ], 
+            dayNames: [ "Domingo", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado" ], 
+            dayNamesShort: [ "Dom", "Lun", "Mar", "Mie", "jue", "Vie", "Sab" ], 
+            dayNamesMin: [ "Dom", "Lun", "Mar", "Mie", "jue", "Vie", "Sab"],
+            dateFormat: "dd/mm/yy",
+            changeYear: true,
+            changeMonth: true,
+            yearRange: "1900:3000",
+        });
+    });
 
 </script>
+
+{% endblock %}

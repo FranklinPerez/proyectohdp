@@ -1,4 +1,4 @@
-
+from .validators import valid_Nombres, valid_Apellidos, valid_Telefono
 from django.db import models
 from datetime import *
 from django.utils import timezone
@@ -40,13 +40,13 @@ class Municipio(models.Model):
 
 class Paciente(models.Model):
 	numExpediente = models.IntegerField(primary_key = True)
-	nomPaciente = models.CharField(max_length = 200, help_text = "Ingrese el nombre del paciente")
-	apelPaciente = models.CharField(max_length = 200, help_text = "Ingrese el apellido del paciente")
+	nomPaciente = models.CharField(max_length = 200, help_text = "Ingrese el nombre del paciente", validators = [valid_Nombres])
+	apelPaciente = models.CharField(max_length = 200, help_text = "Ingrese el apellido del paciente", validators = [valid_Apellidos])
 	fechaNacimiento = models.DateField(null=True, blank=True)
 	emailPaciente = models.CharField(max_length = 200, help_text = "Ingrese eMail del paciente")
 	depResidencia = models.ForeignKey(Departamento, on_delete=models.PROTECT, default = '10')
 	munResidencia = models.ForeignKey(Municipio, on_delete = models.PROTECT, default = '15')
-	telefono = models.CharField(max_length = 8, help_text = "Ingrese el telefono del paciente")
+	telefono = models.CharField(max_length = 8, help_text = "Solo numeros", validators=[valid_Telefono])
 	def __str__(self):
 		return self.apelPaciente + ", " + self.nomPaciente
 

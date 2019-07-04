@@ -7,9 +7,7 @@
 
 
 <h3>Control de Expedientes</h3><br>
-<div><a onclick="return abrir_modal('{% url 'citasyconsultas:crear_expediente' %}', 'Crear expediente')" class="btn btn-success" style="color:white; background-color:#33CC00">
-   Registrar Nuevo Paciente
-		</a>
+<div><a href="{% url 'citasyconsultas:crear_expediente' %}" class="btn btn-success" style="color:white; background-color:#33CC00">Registrar Nuevo Paciente</a>
 	</div><br>
 	<div><a href="{% url 'citasyconsultas:gestion_cita' %}" class="btn btn-success" style="color:white; background-color:#f6685e">Regresar a Todas las Citas</a></div><br>
 <div class="container">
@@ -28,7 +26,8 @@
 						<td>{{pac.apelPaciente}}, {{pac.nomPaciente}}</td>
 						
 						<td style="text-align:center;">
-							<a href="#" onclick="return abrir_modal('{% url 'citasyconsultas:modificar_expediente' pac.pk %}', 'Modificar/{{ pac.numExpediente }}')" class="btn"><span class="glyphicon glyphicon-pencil">Editar</a>
+				
+							<a href="{% url 'citasyconsultas:modificar_expediente' pac.pk %}" class="btn"><span class="glyphicon glyphicon-pencil">Editar</a>
 						</td>
 						<td style="text-align:center;">
 							<a href="#" onclick="return abrir_modal('{% url 'citasyconsultas:ver_expediente' pac.pk %}', 'Detalle del Expediente')" class="btn"><span class="glyphicon glyphicon-pencil">Ver</a>

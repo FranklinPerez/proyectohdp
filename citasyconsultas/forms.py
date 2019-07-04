@@ -4,6 +4,7 @@ from .models import *
 
 
 
+
 		
 class NuevaCitaForm(forms.ModelForm):
 	class Meta:
@@ -22,10 +23,6 @@ class NuevaCitaForm(forms.ModelForm):
 		widgets ={
 			'fecCon' : forms.DateInput(attrs={'class':'datepicker'}),
 		}
-
-		def __init__(self, *args, **kwargs):
-			super().__init__(*args, **kwargs)
-			self.fields['horCon'].queryset = Horario.objects.none()
 
 
 class ServicioForm(forms.ModelForm):
@@ -53,6 +50,8 @@ class MedicamentoForm(forms.ModelForm):
 		}		
 
 class ExpedienteForm(forms.ModelForm):
+
+
 	class Meta:
 		model = Paciente
 		fields = (
@@ -60,14 +59,15 @@ class ExpedienteForm(forms.ModelForm):
 			 'depResidencia', 'munResidencia', 'telefono',
 		)
 		labels = {
-			"numExpediente" : "Número de expediente: ", "nomPaciente" : "Nombre del paciente: ",
-			"apelPaciente" : "Apellido del paciente: ", "fechaNacimiento" : "Fecha de nacimiento: ",
-			"emailPaciente" : "eMail: ", "depResidencia" : "Departamento: ", "munResidencia" : "Municipio: ", 
-			"telefono" : "Teléfono de contacto: ",
+			'numExpediente' : 'Número de expediente', 'nomPaciente' : 'Nombre',
+			'apelPaciente' : 'Apellido', 'fechaNacimiento' : 'Fecha de nacimiento',
+			'emailPaciente' : 'eMail', 'depResidencia' : 'Departamento', 'munResidencia' : 'Municipio', 
+			'telefono' : 'Teléfono',
 		}
 		widgets ={
 			'fechaNacimiento' : forms.DateInput(attrs={'class':'datepicker'}),
 		}
+
 
 
 class ConsultaForm(forms.ModelForm):
@@ -118,10 +118,10 @@ class ModificarExpedienteForm(forms.ModelForm):
 			'depResidencia', 'munResidencia', 'telefono',
 		)
 		labels = {
-			"nomPaciente" : "Nombre del paciente: ",
-			"apelPaciente" : "Apellido del paciente: ", "fechaNacimiento" : "Fecha de nacimiento: ",
-			"emailPaciente" : "e-Mail: ", "depResidencia" : "Departamento: ", "munResidencia" : "Municipio: ", 
-			"telefono" : "Teléfono de contacto: ",
+			"nomPaciente" : "Nombre del paciente ",
+			"apelPaciente" : "Apellido del paciente ", "fechaNacimiento" : "Fecha de nacimiento ",
+			"emailPaciente" : "e-Mail", "depResidencia" : "Departamento", "munResidencia" : "Municipio", 
+			"telefono" : "Teléfono de contacto ",
 		}
 		widgets ={
 			'fechaNacimiento' : forms.DateInput(attrs={'class':'datepicker'}),

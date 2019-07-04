@@ -86,8 +86,8 @@ def BuscarExpediente(request):
     queryNom = request.GET.get('expNom')
     queryApe = request.GET.get('expApe')
     qset = (Q(nomPaciente__iexact = queryNom) & Q(apelPaciente__iexact = queryApe))
-    results = Paciente.objects.filter(qset).exists()
-
+    results = Paciente.objects.filter(qset)
+    
     return render(request, 'citasyconsultas/buscarExp.html',context={'exp':results})
 #==========================================================================
 
@@ -210,12 +210,10 @@ def ir_a_medicamento(request):
 def ir_a_servicio(request):
     return redirect('citasyconsultas:listado_servicio')
 
-
-def load_municipio(request):
+def load_Mun(request):
     dep_id = request.GET.get('depResidencia')
-    municip = munResidencia.objects.filter(numDep = dep_id).order_by('nomDep')
-    return render (request, 'hr/mun_dropdown_list.html',{'municip':municip})
-
+    result = Municipio.objects.filter(departamento_id = dep_id)
+    return render(request, 'hr/mun_dropdown_list.html',context={'munic':result})
 
 
         

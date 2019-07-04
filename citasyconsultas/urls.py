@@ -1,3 +1,4 @@
+from .ajax import load_Municipio
 
 from django.urls import path, include
 from .views import *
@@ -38,6 +39,7 @@ urlpatterns=[
     path('ver_expediente/<int:pk>/', VerExpediente.as_view(), name='ver_expediente'),
 	path('buscar_exp/', BuscarExpediente, name = 'buscar_exp'),
 # ======================================================
+	path('ajax/load_Municipio/', load_Municipio, name='load_Municipio'),
 
 	#views para consulta
 	path('consultasPendientes/', consultasPendientes, name='listado_consulta'),
