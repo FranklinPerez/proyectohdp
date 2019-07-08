@@ -22,7 +22,7 @@ class NuevaCitaForm(forms.ModelForm):
 		widgets ={
 			'fecCon' : forms.DateInput(attrs={'class':'datepicker'}),
 		}
-
+		unique_together = ['fecCon', 'horCon']
 
 class ServicioForm(forms.ModelForm):
 	class Meta:
@@ -49,8 +49,6 @@ class MedicamentoForm(forms.ModelForm):
 		}		
 
 class ExpedienteForm(forms.ModelForm):
-
-
 	class Meta:
 		model = Paciente
 		fields = (
@@ -67,6 +65,10 @@ class ExpedienteForm(forms.ModelForm):
 			'fechaNacimiento' : forms.DateInput(attrs={'class':'datepicker'}),
 		}
 
+	def __init__(self, *args, **kwargs):
+		super().__init__(*args, **kwargs)
+		self.fields['munResidencia'].queryset = Municipio.objects.none()
+  
 
 
 class ConsultaForm(forms.ModelForm):
@@ -91,7 +93,7 @@ class ModificarCitaForm(forms.ModelForm):
 			'fecCon': 'Fecha de Cita',
 			'horCon': 'Hora ',
 			'servic': 'Motivo de la Cita ',
-			'estado': 'Estado ( 0-> Activa, 1-> Finalizada)'
+			'estado': 'Estado'
 		}
 		widgets ={
 			'fecCon' : forms.DateInput(attrs={'class':'datepicker'}),

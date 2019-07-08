@@ -1,3 +1,5 @@
+from django.db import models
+from .models import *
 
 from django.core.exceptions import ValidationError
 

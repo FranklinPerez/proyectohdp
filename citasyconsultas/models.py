@@ -77,9 +77,10 @@ class Cita (models.Model):
 		return self.numCit
 
 	class Meta:
+
 		ordering = ('numCit',)
 		unique_together = ['fecCon', 'horCon']
-		ValidationError('a')
+		
 
 # Create your models here.
 class Medicamento(models.Model):

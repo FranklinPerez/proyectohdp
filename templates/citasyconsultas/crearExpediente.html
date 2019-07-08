@@ -45,9 +45,14 @@
                     "depId":departamentoId
                 },
             });
-        request.done(function(response){
-            $("#id_depResidencia").trigger("change")
-        });
+            request.done(function(response){
+                $("#id_munResidencia").html(response);
+               
+            });
+    
+        }else{
+            $("#id_munResidencia").html('<option value="" selected = "selected">-----------</option>');      
+            $("#id_munResidencia").trigger("change");
         }
     }
 
