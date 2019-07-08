@@ -13,12 +13,11 @@ class NuevaCitaForm(forms.ModelForm):
 			'numCit', 'pacien', 'servic', 'fecCon', 'horCon', 
 		)
 		labels = {
-			'numCit': 'Número de Cita    .',
-			'pacien': 'Paciente          .',
-			'servic': 'Motivo de la Cita .',
-			'fecCon': 'Fecha de Cita     .',
-			'horCon': 'Hora              .',
-			
+			'numCit': 'Número de Cita',
+			'pacien': 'Paciente',
+			'servic': 'Motivo de la Cita',
+			'fecCon': 'Fecha de Cita',
+			'horCon': 'Hora',
 		}
 		widgets ={
 			'fecCon' : forms.DateInput(attrs={'class':'datepicker'}),

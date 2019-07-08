@@ -7,8 +7,9 @@
 
 			<div class="modal-footer">
                 <div class="col-lg-12 text-right">
-                    <a onclick="return cerrar_modal()" class="btn btn-success" style="color:white; background-color:#f6685e"> SI </a> | 
-                    <a onclick="return abrir_modal('{% url 'citasyconsultas:nueva_cita' %}')" class="btn btn-success" style="color:white; background-color:#33CC00"> No </a>
+                    <a href="{% url 'citasyconsultas:gestion_cita' %}" class="btn btn-success" style="color:white; background-color:#f6685e"> SI </a>.
+                    <a onclick="return cerrar_modal()" class="btn btn-success" style="color:white; background-color:#33CC00"> NO </a>  
+    
                 </div>
             </div>
 		</form>

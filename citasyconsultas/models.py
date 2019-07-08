@@ -1,4 +1,6 @@
 from .validators import valid_Nombres, valid_Apellidos, valid_Telefono
+from django.core.exceptions import ValidationError
+
 from django.db import models
 from datetime import *
 from django.utils import timezone
@@ -23,7 +25,7 @@ class Servicio (models.Model):
 		return self.nomSer
 	
 	class Meta:
-		ordering = ('codSer',)
+		ordering = ('nomSer',)
 
 class Departamento(models.Model):
 	numDep = models.IntegerField(primary_key = True) 
@@ -38,6 +40,9 @@ class Municipio(models.Model):
 	def __str__(self):
 		return self.nomMunicipio	
 
+	class Meta:
+		ordering = ('nomMunicipio',)
+
 class Paciente(models.Model):
 	numExpediente = models.IntegerField(primary_key = True)
 	nomPaciente = models.CharField(max_length = 200, help_text = "Ingrese el nombre del paciente", validators = [valid_Nombres])
@@ -50,21 +55,31 @@ class Paciente(models.Model):
 	def __str__(self):
 		return self.apelPaciente + ", " + self.nomPaciente
 
+	class  Meta:
+		unique_together = ['telefono',]
+
+
 # Modelo de laas citas.
 class Cita (models.Model):
-	numCit = models.IntegerField(primary_key = True)# Numero de cita del dia
+	numCit = models.IntegerField(primary_key = True, help_text = "Numero de cita del dia")# Numero de cita del dia
 	pacien = models.ForeignKey('Paciente', on_delete = models.PROTECT, null=True)
 	fecCon = models.DateField(null=True, help_text = " ")# Fecha de la consulta
 	horCon = models.ForeignKey(Horario, null=True, on_delete=models.PROTECT)
 	servic = models.ForeignKey(Servicio,on_delete = models.PROTECT, null=True)
 	estado = models.IntegerField(default=0, null=True, help_text = "Activa (0), Completada (1)") #  Pendiente = 0 ,  Completado = 1
-	fecCre = models.DateField(auto_now_add = True)# afecha de creacion
-	#fecCitHoy=models.DateField(default=datetime.now().date())
+	fecCre = models.DateField(auto_now_add = True)# fecha de creacion
 	
+	labels = {
+		'numCit': 'Numero de Cita',
+	}
 
 	def __str__(self):
 		return self.numCit
 
+	class Meta:
+		ordering = ('numCit',)
+		unique_together = ['fecCon', 'horCon']
+		ValidationError('a')
 
 # Create your models here.
 class Medicamento(models.Model):

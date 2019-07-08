@@ -7,7 +7,7 @@ def valid_Nombres(value):
 
 	for i in value:
 		if i not in letras:
-			raise ValidationError('No se permiten numeros en los nombres')
+			raise ValidationError('Este no es un nombre valido')
 
 def valid_Apellidos(apellido):
 
@@ -15,7 +15,7 @@ def valid_Apellidos(apellido):
 
 	for i in apellido:
 		if i not in letras:
-			raise ValidationError('No se permiten numeros en los apellidos')
+			raise ValidationError('Este no es un apellido valido')
 
 def valid_Telefono(tel):
 
@@ -23,4 +23,4 @@ def valid_Telefono(tel):
 
 	for i in tel:
 		if i not in numeros:
-			raise ValidationError('No es un numero telefonico valido')
+			raise ValidationError('Solo se permiten numeros')
