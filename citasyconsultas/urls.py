@@ -1,4 +1,4 @@
-from .ajax import load_Municipio
+from .ajax import load_Municipio, load_Horario
 
 from django.urls import path, include
 from .views import *
@@ -35,11 +35,14 @@ urlpatterns=[
 	path('gestionExpediente/', GestionExpediente.as_view(), name='listado_expediente'),
 	path('crearExpediente/', crearExpediente.as_view(), name='crear_expediente'),
 	path('modificarExpediente/<int:pk>/', modificarExpediente.as_view(), name='modificar_expediente'),
-# MIO =================================================
+
+# R ====================================================================================================
     path('ver_expediente/<int:pk>/', VerExpediente.as_view(), name='ver_expediente'),
 	path('buscar_exp/', BuscarExpediente, name = 'buscar_exp'),
-# ======================================================
+	# CONSULTAS AJAX PARA EXPEDIENTE Y CITA    =======================
 	path('ajax/load_Municipio/', load_Municipio, name='load_Municipio'),
+	path('ajax/load_Horario/', load_Horario, name='load_Horario'),
+# ======================================================================================================
 
 	#views para consulta
 	path('consultasPendientes/', consultasPendientes, name='listado_consulta'),

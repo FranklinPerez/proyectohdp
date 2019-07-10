@@ -1,0 +1,53 @@
+
+
+<ul>
+<table  class="table ">
+		<tr style="text-align: center">
+			<th style="text-align: center">Servivios prestados</th>
+			<th style="text-align: center">Diagnostico</th>
+			<th style="text-align: center">Medicamento</th>
+			<th style="text-align: center">Estado</th>
+		</tr>
+		{% for c in consultas %}
+					<tr>
+						<td>{{c.servicioas.nomSer}}</td>
+						<td>{{c.diagnostico}}</td>
+						<td>{{c.dosis}}</td>
+						<td>{{c.estado}}</td>
+					</tr>
+		{% endfor %}
+	</table>
+	<button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" onclick="return cerrar_modal()">Cerrar</button>
+                        </div>
+</ul>
+
+
+
+<script>
+var modal;
+
+function abrir_modal(url, titulo)
+{
+    modal = $('#popup').dialog(
+    {
+        title: titulo,
+        modal: true,
+        width: 600,
+        resizable: false
+    }).dialog('open').load(url)
+}
+
+function cerrar_modal()
+{
+    modal.dialog("close");
+}
+
+$(document).ready(function()
+{
+    var table = $('#tabla').dataTable( {
+        "language": {
+                url: "/static/localizacion/es_ES.json"
+        }
+    } );
+});
+</script>

@@ -40,6 +40,9 @@
 							<td style="text-align:center;">
 								<a href="#" onclick="return abrir_modal('{% url 'citasyconsultas:modificar_expediente' e.pk %}', 'Modificar Expediente: {{ pac.numExpediente }}')" class="btn"><span class="glyphicon glyphicon-pencil"></span>Editar</a>
 							</td>
+							<td style="text-align:center;">
+								<a href="#" onclick="return abrir_modal('{% url 'citasyconsultas:ver_expediente' e.pk %}', 'Detalle del Expediente: {{ pac.numExpediente }}')" class="btn"></span>Ver</a>
+							</td>
 						</tr>
 				{% endfor %}
 			</table>

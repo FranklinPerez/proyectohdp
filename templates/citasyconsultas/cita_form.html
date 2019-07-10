@@ -35,6 +35,35 @@
 <script>
 var modal;
 
+//  SELECT DEPENDIENTE PARA LA HORA DE LA CITA ============
+
+$(document).ready(function(){
+        $("#id_fecCon").on("change", getHorarios);    
+    });
+
+    function getHorarios(){
+        var fechaCita = $("#id_fecCon").val();
+        if (fechaCita){
+            $("#id_horCon").html("");
+            var request = $.ajax({
+                type: "GET",
+                url: "{% url 'citasyconsultas:load_Horario' %}",
+                data: {
+                    "fecha":fechaCita
+                },
+            });
+            request.done(function(response){
+                $("#id_horCon").html(response);
+               
+            });
+    
+        }else{
+            $("#id_horCon").html('<option value="" selected = "selected">-------</option>');      
+            $("#id_horCon").trigger("change");
+        }
+    }
+
+// ========================================================
 
 //<!--Para el  datepicker-->
 $(function(){
@@ -44,7 +73,7 @@ $(function(){
 		dayNames: [ "Domingo", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado" ], 
 		dayNamesShort: [ "Dom", "Lun", "Mar", "Mie", "jue", "Vie", "Sab" ], 
 		dayNamesMin: [ "Dom", "Lun", "Mar", "Mie", "jue", "Vie", "Sab"],
-		dateFormat: "dd/mm/yy",
+		dateFormat: "yy-mm-dd",
 		changeYear: true,
 		changeMonth: true,
 		yearRange: "2019:3000",

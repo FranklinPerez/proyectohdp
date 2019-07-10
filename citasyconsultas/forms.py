@@ -1,3 +1,4 @@
+from django.core.exceptions import NON_FIELD_ERRORS
 
 from django import forms
 from .models import *
@@ -22,7 +23,7 @@ class NuevaCitaForm(forms.ModelForm):
 		widgets ={
 			'fecCon' : forms.DateInput(attrs={'class':'datepicker'}),
 		}
-		unique_together = ['fecCon', 'horCon']
+
 
 class ServicioForm(forms.ModelForm):
 	class Meta:
@@ -88,7 +89,7 @@ class ModificarCitaForm(forms.ModelForm):
 			'pacien', 'fecCon', 'horCon', 'servic','estado',
 		)
 		labels = {
-			
+
 			'pacien': 'Paciente ',
 			'fecCon': 'Fecha de Cita',
 			'horCon': 'Hora ',
@@ -98,7 +99,7 @@ class ModificarCitaForm(forms.ModelForm):
 		widgets ={
 			'fecCon' : forms.DateInput(attrs={'class':'datepicker'}),
 		}
-
+		
 class ModificarServicioForm(forms.ModelForm):
 	class Meta:
 		model = Servicio

@@ -81,7 +81,7 @@ def ConfirmarCancelar(request):
     return render(request, 'citasyconsultas/confirmCancel.html')
           
 #==========================================================================
-#REALIZAR COBRO============================================================
+# BUSCAR UN EXPEDIENTE ESPECIFICO==========================================
 def BuscarExpediente(request):
     queryNom = request.GET.get('expNom')
     queryApe = request.GET.get('expApe')

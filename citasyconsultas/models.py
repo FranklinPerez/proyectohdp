@@ -61,26 +61,25 @@ class Paciente(models.Model):
 
 # Modelo de laas citas.
 class Cita (models.Model):
-	numCit = models.IntegerField(primary_key = True, help_text = "Numero de cita del dia")# Numero de cita del dia
+	numCit = models.IntegerField(primary_key = True, help_text = "Numero de cita del dia", error_messages={'unique':"Ya existe una Cita con este numero"})# Numero de cita del dia
 	pacien = models.ForeignKey('Paciente', on_delete = models.PROTECT, null=True)
-	fecCon = models.DateField(null=True, help_text = " ")# Fecha de la consulta
-	horCon = models.ForeignKey(Horario, null=True, on_delete=models.PROTECT)
+	fecCon = models.DateField(null=True, verbose_name="Fecha de Cita")# Fecha de la consulta
+	horCon = models.ForeignKey(Horario, null=True, on_delete=models.PROTECT, verbose_name="Hora de Cita")
 	servic = models.ForeignKey(Servicio,on_delete = models.PROTECT, null=True)
 	estado = models.IntegerField(default=0, null=True, help_text = "Activa (0), Completada (1)") #  Pendiente = 0 ,  Completado = 1
 	fecCre = models.DateField(auto_now_add = True)# fecha de creacion
 	
-	labels = {
-		'numCit': 'Numero de Cita',
-	}
-
 	def __str__(self):
 		return self.numCit
 
 	class Meta:
-
 		ordering = ('numCit',)
-		unique_together = ['fecCon', 'horCon']
-		
+		unique_together =['fecCon', 'horCon']
+    
+
+	def unique_error_message(self, model_class, unique_check):
+		if len(unique_check) != 1:
+			return 'Esta hora en esta fecha ya esta ocupada, seleccione otra hora y/o fecha'
 
 # Create your models here.
 class Medicamento(models.Model):
