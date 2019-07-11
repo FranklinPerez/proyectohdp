@@ -33,6 +33,9 @@ class Departamento(models.Model):
 	def __str__(self):
 		return self.nomDep
 
+	class Meta:
+		ordering = ('nomDep',)
+
 class Municipio(models.Model):
 	numMunicipio = models.IntegerField(primary_key = True)
 	nomMunicipio = models.CharField(max_length = 100, help_text = "Ingrese un municipio")
@@ -133,7 +136,7 @@ class Consulta(models.Model):
 	servicios=models.ForeignKey('Servicio', blank=True, on_delete=models.SET_NULL, null=True)
 	
 	Estado_Consulta= (
-		('f','Finalizar'),
+		('f','Finalizada'),
 		('p', 'Pendiente'),		
 		)
 
@@ -146,8 +149,6 @@ class Consulta(models.Model):
 
 	def __str__(self):
 		return self.dosis
-
-
 
 
 

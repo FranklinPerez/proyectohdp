@@ -20,20 +20,19 @@
 <div class="row text-center">
 	<table  class="table table-sm">
 		<tr style="text-align: center">
-			<th style="text-align: center">Codigo del Medicamento</th>
-			<th style="text-align: center">Nombre del Medicamento</th>
-			<th style="text-align: center">Editar Medicamento</th>
-            <th style="text-align: center">Eliminar Medicamento</th>
+			<th style="text-align: center">Codigo</th>
+			<th style="text-align: center">Nombre / Marca</th>
+		
 		</tr>
 		{% for med in medicamentos %}
 					<tr>
 						<td>{{med.codMedicamento}}</td>
 						<td>{{med.nomMedicamento}}</td>
 						<td style="text-align:center;">
-							<a href="#" onclick="return abrir_modal('{% url 'citasyconsultas:modificar_medicamento' med.pk %}', 'Modificar/{{ med.codMedicamento }}')" class="btn"><span class="glyphicon glyphicon-pencil">Editar {{med.nomMedicamento}}</a>
+							<a href="#" onclick="return abrir_modal('{% url 'citasyconsultas:modificar_medicamento' med.pk %}', 'Modificar/{{ med.codMedicamento }}')" class="btn"><span class="glyphicon glyphicon-pencil">Editar </a>
 							</td>
 						<td style="text-align:center;">
-							<a href="#" onclick="return abrir_modal('{% url 'citasyconsultas:eliminar_medicamento' med.pk %}', 'Emiminar/{{ med.codMedicamento}}')" class="btn"><span class="glyphicon glyphicon-trash"></span>Eliminar {{med.nomMedicamento}}</a
+							<a href="#" onclick="return abrir_modal('{% url 'citasyconsultas:eliminar_medicamento' med.pk %}', 'Emiminar/{{ med.codMedicamento}}')" class="btn"><span class="glyphicon glyphicon-trash"></span>Eliminar</a
 								td>
 					</tr>
 		{% endfor %}

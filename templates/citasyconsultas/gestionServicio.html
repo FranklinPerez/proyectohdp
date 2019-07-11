@@ -18,16 +18,16 @@
 		<tr style="text-align: center">
 			<th style="text-align: center">Codigo</th>
 			<th style="text-align: center">Nombre</th>
-			<th style="text-align: center">Precio ($)</th>
-			<th style="text-align: center">Duracion (minutos)</th>
+			<th style="text-align: center">Precio </th>
+			<th style="text-align: center">Duracion </th>
 	
 		</tr>
 		{% for ser in servicios %}
 					<tr>
 						<td>{{ser.codSer}}</td>
 						<td>{{ser.nomSer}}</td>
-						<td>{{ser.precio}}</td>
-						<td>{{ser.duraci}}</td>
+						<td>$ {{ser.precio}}</td>
+						<td>{{ser.duraci}} min.</td>
 						<td style="text-align:center;">
 							<a href="#" onclick="return abrir_modal('{% url 'citasyconsultas:modificar_servicio' ser.pk %}', 'Modificar Servicio: {{ ser.codSer }}')" class="btn"><span class="glyphicon glyphicon-pencil">Editar</a>
 							</td>

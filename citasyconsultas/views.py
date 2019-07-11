@@ -1,24 +1,24 @@
 from django.db.models import Q
 from django import forms
+from django.template import loader
 
 
-from django.shortcuts import render
 from django.views.generic.edit import UpdateView, CreateView, DeleteView
 from django.views.generic.list import ListView
 from django.views.generic import TemplateView
 from django.urls import reverse_lazy, reverse
-from django.http import HttpResponse
+
 from datetime import *
 from .models import *
 from .forms import *
 from django.views.generic.detail import DetailView
 from django.views import View
 
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.core import serializers
 
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
 from django.contrib.auth import authenticate, login
 
 def index(request):   
@@ -85,7 +85,7 @@ def ConfirmarCancelar(request):
 def BuscarExpediente(request):
     queryNom = request.GET.get('expNom')
     queryApe = request.GET.get('expApe')
-    qset = (Q(nomPaciente__iexact = queryNom) & Q(apelPaciente__iexact = queryApe))
+    qset = (Q(nomPaciente__icontains = queryNom) & Q(apelPaciente__icontains = queryApe))
     results = Paciente.objects.filter(qset)
     
     return render(request, 'citasyconsultas/buscarExp.html',context={'exp':results})
@@ -153,11 +153,11 @@ class modificarExpediente(UpdateView):
     template_name = 'citasyconsultas/crearExpediente.html'
     form_class = ModificarExpedienteForm
     success_url = reverse_lazy('citasyconsultas:listado_expediente')
-
+# TENTATIVAMENTE SE ELIMINARA =====================================================================
 class VerExpediente(DetailView):
     template_name = 'citasyconsultas/verExpediente.html'
     model = Paciente
-
+# =================================================================================================
 
 def consultasPendientes(request):
     fechahoy=datetime.now().date()
@@ -210,10 +210,11 @@ def ir_a_medicamento(request):
 def ir_a_servicio(request):
     return redirect('citasyconsultas:listado_servicio')
 
-def load_Mun(request):
-    dep_id = request.GET.get('depResidencia')
-    result = Municipio.objects.filter(departamento_id = dep_id)
-    return render(request, 'hr/mun_dropdown_list.html',context={'munic':result})
-
+# PARA VER EXPEDIENTE Y CONSULTAS ===============================================================
+def DetalleExpediente(request, pk):
+    expediente =Paciente.objects.get(numExpediente = pk)
+    consultas = Consulta.objects.filter(paciente = pk).filter(estado='f')
+    return render(request, 'citasyconsultas/verExpediente.html', context = {'expediente':expediente,'consultas':consultas})
+# ===============================================================================================
 
         

@@ -38,7 +38,7 @@
 							<td>{{e.telefono}}</td>
 							<td>{{e.depResidencia}}, {{e.munResidencia}}</td>
 							<td style="text-align:center;">
-								<a href="#" onclick="return abrir_modal('{% url 'citasyconsultas:modificar_expediente' e.pk %}', 'Modificar Expediente: {{ pac.numExpediente }}')" class="btn"><span class="glyphicon glyphicon-pencil"></span>Editar</a>
+								<a href="{% url 'citasyconsultas:modificar_expediente' e.pk %}" class="btn"><span class="glyphicon glyphicon-pencil"></span>Editar</a>
 							</td>
 							<td style="text-align:center;">
 								<a href="#" onclick="return abrir_modal('{% url 'citasyconsultas:ver_expediente' e.pk %}', 'Detalle del Expediente: {{ pac.numExpediente }}')" class="btn"></span>Ver</a>
@@ -72,7 +72,7 @@ var modal;
 function soloLetras(e){
 	key = e.keyCode || e.which;
 	teclado = String.fromCharCode(key).toLowerCase();
-	letras = " abcdefghijklmnñopqrstuvwxyz";
+	letras = " abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZáéíóú";
 	especiales = "8-37-38-46-164";
 	teclado_especial = false;
 
@@ -93,7 +93,7 @@ function abrir_modal(url, titulo)
     {
         title: titulo,
         modal: true,
-        width: 600,
+        width: 900,
         resizable: false
     }).dialog('open').load(url)
 }

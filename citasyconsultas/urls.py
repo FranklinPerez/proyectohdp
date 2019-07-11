@@ -37,7 +37,7 @@ urlpatterns=[
 	path('modificarExpediente/<int:pk>/', modificarExpediente.as_view(), name='modificar_expediente'),
 
 # R ====================================================================================================
-    path('ver_expediente/<int:pk>/', VerExpediente.as_view(), name='ver_expediente'),
+    path('ver_expediente/(?P<pk>[0-9]+)/$', DetalleExpediente, name='ver_expediente'),
 	path('buscar_exp/', BuscarExpediente, name = 'buscar_exp'),
 	# CONSULTAS AJAX PARA EXPEDIENTE Y CITA    =======================
 	path('ajax/load_Municipio/', load_Municipio, name='load_Municipio'),

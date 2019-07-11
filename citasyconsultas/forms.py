@@ -69,6 +69,14 @@ class ExpedienteForm(forms.ModelForm):
 	def __init__(self, *args, **kwargs):
 		super().__init__(*args, **kwargs)
 		self.fields['munResidencia'].queryset = Municipio.objects.none()
+		if 'depResidencia' in self.data:
+			try:
+				departamento_id = int(self.data.get('depResidencia'))
+				self.fields['munResidencia'].queryset = Municipio.objects.filter(departamento_id=departamento_id)
+			except (ValueError, TypeError):
+				pass
+		elif self.instance.pk:
+			self.fields['munResidencia'].queryset = self.instance.departamento.municipio_set
   
 
 
@@ -135,10 +143,10 @@ class nuevaConsultaForm(forms.ModelForm):
 	class Meta:
 		model=Consulta
 		fields=(
-		'paciente', 'estado',
+		'paciente', 'servicios',
 		)
 		labels={
-		'paciente':'Paciente', 'estado':'colocar Pendiente para poner la consulta en espera',
+		'paciente':'Paciente', 'servicios':'Motivo de la consulta',
 		}
 
 class UsuarioForm(forms.ModelForm):
